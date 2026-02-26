@@ -21,7 +21,7 @@
     "Question": "In which year was the League of Nations dissolved?",
     "Answer": "1946",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "The League of Nations was formally dissolved on April 18, 1946. Following its final assembly, the organization transferred its assets, including the Palace of Nations in Geneva, to the newly formed United Nations. The decision to dissolve marked the end of the 26-year-old organization."
   },
   {
     "Pkey": "3",
@@ -33,7 +33,7 @@
     "Question": "What is the shortest distance between the parallel sides of a trapezium if the sides are 6cm and 10 cm respectively and the area is 40 cm^2?",
     "Answer": "5cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "h = (2 x A)/a+b. That is, double the area and divide by the sum of the two parallel sides."
   },
   {
     "Pkey": "4",
