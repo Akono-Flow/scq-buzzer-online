@@ -547,7 +547,7 @@ function renderFlashcard() {
     const lines = info.split('\n').map(l => l.trim()).filter(Boolean);
     dom.fcInfo.style.display = 'block';
     dom.fcInfo.innerHTML =
-      `<div class="fc-info-label">◈ Research Note</div>` +
+      `<div class="fc-info-label">◈ Comment(s)</div>` +
       lines.map(l => `<p>${esc(l)}</p>`).join('');
   } else {
     dom.fcInfo.style.display = 'none';
@@ -632,7 +632,7 @@ function submitQuizAnswer() {
     const lines = info.split('\n').map(l => l.trim()).filter(Boolean);
     dom.quizRevealInfo.style.display = 'block';
     dom.quizRevealInfo.innerHTML =
-      `<div class="quiz-reveal-info-label">◈ Research Note</div>` +
+      `<div class="quiz-reveal-info-label">◈ Comment(s)</div>` +
       lines.map(l => `<p>${esc(l)}</p>`).join('');
   } else {
     dom.quizRevealInfo.style.display = 'none';
