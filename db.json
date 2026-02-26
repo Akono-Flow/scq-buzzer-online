@@ -9,7 +9,7 @@
     "Question": "What is a quantum bit called?",
     "Answer": "Qubit",
     "Section": "buzzer",
-    "Info": "A quantum bit is called a qubit (pronounced "cue-bit"). It is the fundamental unit of quantum information, analogous to a classical bit but capable of representing 0, 1, or both simultaneously through the quantum mechanical principles of superposition and entanglement."
+    "Info": "A quantum bit is called a qubit (pronounced 'cue-bit'). It is the fundamental unit of quantum information, analogous to a classical bit but capable of representing 0, 1, or both simultaneously through the quantum mechanical principles of superposition and entanglement."
   },
   {
     "Pkey": "2",
