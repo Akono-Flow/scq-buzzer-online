@@ -43,9 +43,9 @@
     "Match": "1",
     "Subject": "Local and International Affairs",
     "Question": "Look at the monitor and identify the following person.",
-    "Answer": "Sean Duffy (US Secretary of Transportation)",
+    "Answer": "Sean Duffy",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Sean Patrick Duffy is an American politician, attorney, and former television personality who has served as the 20th United States secretary of transportation since January 2025. Duffy also served as the acting administrator of NASA from July to December 2025."
   },
   {
     "Pkey": "5",
@@ -57,7 +57,7 @@
     "Question": "What is the main instrument used for detecting ionizing radiation?",
     "Answer": "Geiger-Müller counter",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "The Geiger-Mueller (GM) counter (or Geiger counter) is the most common, versatile, and widely used handheld instrument for detecting ionizing radiation (alpha, beta, and gamma). It utilizes a gas-filled tube to detect ionizing events and produce audible clicks or numerical readings."
   },
   {
     "Pkey": "6",
@@ -69,7 +69,7 @@
     "Question": "Listen to the clip and identify the singer.",
     "Answer": "Tina Turner (We Don't Need Another Hero)",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "We Don't Need Another Hero (Thunderdome) is a song written by Graham Lyle and Terry Britten. It was recorded by American singer Tina Turner for the soundtrack album to the 1985 film Mad Max Beyond Thunderdome, which starred Mel Gibson and Turner. On the heels of Turner's multiplatinum album Private Dancer (1984), the song was released as an edited 7-inch single, while the full album version was released as a 12-inch single and on the film's soundtrack album. In the United Kingdom, a shaped picture disc was also issued. The power ballad[2] received a Golden Globe Award nomination for Best Original Song and a Grammy Award nomination for Best Female Pop Vocal Performance. In 1986, the song received the Ivor Novello Awards for Best Contemporary Song and Best Film Theme or Song."
   },
   {
     "Pkey": "7",
@@ -81,7 +81,7 @@
     "Question": "Complete this Jamaican proverb: rain neva fall",
     "Answer": "A one man door step",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Meaning: Hard times, problems, or opportunities affect everyone, not just one person."
   },
   {
     "Pkey": "8",
@@ -93,7 +93,7 @@
     "Question": "What is the English translation for: Je vais acheter une veste",
     "Answer": "I am going to buy a jacket",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Je vais: I am going to (near future tense)/nacheter: to buy/nune veste: a jacket/blazer/n"
   },
   {
     "Pkey": "9",
