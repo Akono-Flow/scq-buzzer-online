@@ -33,7 +33,7 @@
     "Question": "What is the shortest distance between the parallel sides of a trapezium if the sides are 6cm and 10 cm respectively and the area is 40 cm^2?",
     "Answer": "5cm",
     "Section": "buzzer",
-    "Info": "$h = \\dfrac{2A}{a+b}$. \n That is, double the area and divide by the sum of the two parallel sides."
+    "Info": "$h = \\dfrac{2A}{a+b}$. \n $h = \\dfrac{2.40}{10+6}$. \n That is, double the area and divide by the sum of the two parallel sides."
   },
   {
     "Pkey": "4",
