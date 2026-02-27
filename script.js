@@ -329,10 +329,10 @@ function renderTable() {
           // Encode info text safely into a data attribute.
           // JS tooltip handler reads this on mouseenter.
           td.innerHTML =
-            `<span>${search ? highlight(esc(val), search) : esc(val)}</span>` +
+            `<span>${search ? highlight(renderSci(val), search) : renderSci(val)}</span>` +
             `<button class="info-icon" data-info="${esc(info)}" aria-label="Research note — hover to read" tabindex="0">ⓘ</button>`;
         } else {
-          td.innerHTML = `<span>${search ? highlight(esc(val), search) : esc(val)}</span>`;
+          td.innerHTML = `<span>${search ? highlight(renderSci(val), search) : renderSci(val)}</span>`;
         }
 
       } else if (['Pkey','Qkey','Year','Round','Match'].includes(col.key)) {
@@ -341,7 +341,7 @@ function renderTable() {
 
       } else if (col.key === 'Question') {
         td.className = 'col-question';
-        td.innerHTML = search ? highlight(esc(val), search) : esc(val);
+        td.innerHTML = search ? highlight(renderSci(val), search) : renderSci(val);
 
       } else {
         td.innerHTML = search ? highlight(esc(val), search) : esc(val);
@@ -416,7 +416,7 @@ function showTooltip(iconEl) {
   if (!lines.length) return;
 
   // Populate content
-  dom.infoTooltipBody.innerHTML = lines.map(l => `<p>${esc(l)}</p>`).join('');
+  dom.infoTooltipBody.innerHTML = lines.map(l => `<p>${renderSci(l)}</p>`).join('');
   dom.infoTooltip.setAttribute('aria-hidden', 'false');
 
   // Position
@@ -483,6 +483,99 @@ function highlight(escapedStr, term) {
 
 
 // ════════════════════════════════════
+//  SCIENTIFIC NOTATION RENDERER
+//
+//  Converts plain-text scientific/chemistry/math notation into
+//  properly typeset HTML using <sup> and <sub> tags.
+//
+//  Handled patterns (all found in db.json):
+//    ^N  / ^-N     →  superscript  e.g. x^2 → x²,  10^-4 → 10⁻⁴,  dm^3 → dm³
+//    ESym + digits →  subscript    e.g. H2O → H₂O,  C6H6 → C₆H₆,  Na2SO3 → Na₂SO₃
+//    \n            →  <br>
+//
+//  Handles its own HTML escaping — do NOT pre-escape the input string.
+//  Returns an HTML string safe for assignment to innerHTML.
+// ════════════════════════════════════
+function renderSci(raw) {
+  if (!raw) return '';
+
+  // Full periodic table symbol set. Two-char symbols (Na, Mg, Cu …) are stored
+  // alongside single-char ones. The tokeniser always tries 2-char first so that
+  // e.g. "Na2" is recognised as Sodium rather than Nitrogen + "a2".
+  const ELEMENTS = new Set([
+    'H','He','Li','Be','B','C','N','O','F','Ne',
+    'Na','Mg','Al','Si','P','S','Cl','Ar','K','Ca',
+    'Sc','Ti','V','Cr','Mn','Fe','Co','Ni','Cu','Zn',
+    'Ga','Ge','As','Se','Br','Kr','Rb','Sr','Y','Zr',
+    'Nb','Mo','Tc','Ru','Rh','Pd','Ag','Cd','In','Sn',
+    'Sb','Te','I','Xe','Cs','Ba','La','Ce','Pr','Nd',
+    'Pm','Sm','Eu','Gd','Tb','Dy','Ho','Er','Tm','Yb',
+    'Lu','Hf','Ta','W','Re','Os','Ir','Pt','Au','Hg',
+    'Tl','Pb','Bi','Po','At','Rn','Fr','Ra','Ac','Th',
+    'Pa','U','Np','Pu','Am','Cm','Bk','Cf','Es','Fm',
+    'Md','No','Lr'
+  ]);
+
+  // Process line-by-line; join with <br> at the end.
+  return raw.split('\n').map(line => {
+    let out = '';
+    let i = 0;
+    const n = line.length;
+
+    while (i < n) {
+      const ch = line[i];
+
+      // ── Superscript: ^ followed by optional sign then one or more digits ──
+      // Covers: x^2, 10^-4, dm^3, cm^2, m^2, a^2, Cr2O7^2-, x^6 …
+      if (ch === '^' && i + 1 < n) {
+        let j = i + 1;
+        if (line[j] === '-' || line[j] === '+') j++;  // optional sign character
+        const numStart = j;
+        while (j < n && /\d/.test(line[j])) j++;      // consume digit run
+        if (j > numStart) {                            // at least one digit found
+          out += `<sup>${esc(line.slice(i + 1, j))}</sup>`;
+          i = j;
+          continue;
+        }
+      }
+
+      // ── Chemical subscript: ElementSymbol immediately followed by digits ──
+      // Covers: H2O, C6H6, Na2SO3, C12H22O11, NH4NO3, CuSO4, MgSiO3 …
+      if (/[A-Z]/.test(ch)) {
+        let sym = null;
+        // Try two-character symbol first (Na, Mg, Cl, Br, …)
+        if (
+          i + 1 < n &&
+          /[a-z]/.test(line[i + 1]) &&
+          ELEMENTS.has(line[i] + line[i + 1])
+        ) {
+          sym = line[i] + line[i + 1];
+        } else if (ELEMENTS.has(ch)) {
+          sym = ch;
+        }
+
+        if (sym) {
+          let j = i + sym.length;
+          const numStart = j;
+          while (j < n && /\d/.test(line[j])) j++;    // consume trailing digits
+          if (j > numStart) {                          // digits found → subscript
+            out += esc(sym) + `<sub>${esc(line.slice(numStart, j))}</sub>`;
+            i = j;
+            continue;
+          }
+        }
+      }
+
+      // ── Default: HTML-escape the character and advance ─────────────────────
+      out += esc(ch);
+      i++;
+    }
+    return out;
+  }).join('<br>');
+}
+
+
+// ════════════════════════════════════
 //  EXPORT CSV
 // ════════════════════════════════════
 function exportCSV() {
@@ -531,8 +624,8 @@ function renderFlashcard() {
 
   const card = cards[i];
   dom.fcCounter.textContent = `Card ${i + 1} of ${cards.length}`;
-  dom.fcQuestion.textContent = card.Question;
-  dom.fcAnswer.textContent   = card.Answer;
+  dom.fcQuestion.innerHTML = renderSci(card.Question);
+  dom.fcAnswer.innerHTML   = renderSci(card.Answer);
   dom.fcMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -548,7 +641,7 @@ function renderFlashcard() {
     dom.fcInfo.style.display = 'block';
     dom.fcInfo.innerHTML =
       `<div class="fc-info-label">◈ Comment(s)</div>` +
-      lines.map(l => `<p>${esc(l)}</p>`).join('');
+      lines.map(l => `<p>${renderSci(l)}</p>`).join('');
   } else {
     dom.fcInfo.style.display = 'none';
   }
@@ -596,7 +689,7 @@ function renderQuizQuestion() {
 
   const card = q.cards[q.index];
   dom.quizQNum.textContent     = `Question ${q.index + 1} of ${q.cards.length}`;
-  dom.quizQuestion.textContent = card.Question;
+  dom.quizQuestion.innerHTML   = renderSci(card.Question);
   dom.quizMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -620,7 +713,7 @@ function submitQuizAnswer() {
   q.total++;
   if (isCorrect) q.correct++;
 
-  dom.quizRevealAnswer.textContent = card.Answer;
+  dom.quizRevealAnswer.innerHTML = renderSci(card.Answer);
   dom.quizFeedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
   dom.quizFeedback.className   = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
   dom.quizReveal.hidden        = false;
@@ -633,7 +726,7 @@ function submitQuizAnswer() {
     dom.quizRevealInfo.style.display = 'block';
     dom.quizRevealInfo.innerHTML =
       `<div class="quiz-reveal-info-label">◈ Comment(s)</div>` +
-      lines.map(l => `<p>${esc(l)}</p>`).join('');
+      lines.map(l => `<p>${renderSci(l)}</p>`).join('');
   } else {
     dom.quizRevealInfo.style.display = 'none';
   }
