@@ -329,10 +329,10 @@ function renderTable() {
           // Encode info text safely into a data attribute.
           // JS tooltip handler reads this on mouseenter.
           td.innerHTML =
-            `<span>${search ? highlight(renderSci(val), search) : renderSci(val)}</span>` +
+            `<span>${search ? highlight(renderContent(val), search) : renderContent(val)}</span>` +
             `<button class="info-icon" data-info="${esc(info)}" aria-label="Research note — hover to read" tabindex="0">ⓘ</button>`;
         } else {
-          td.innerHTML = `<span>${search ? highlight(renderSci(val), search) : renderSci(val)}</span>`;
+          td.innerHTML = `<span>${search ? highlight(renderContent(val), search) : renderContent(val)}</span>`;
         }
 
       } else if (['Pkey','Qkey','Year','Round','Match'].includes(col.key)) {
@@ -341,7 +341,7 @@ function renderTable() {
 
       } else if (col.key === 'Question') {
         td.className = 'col-question';
-        td.innerHTML = search ? highlight(renderSci(val), search) : renderSci(val);
+        td.innerHTML = search ? highlight(renderContent(val), search) : renderContent(val);
 
       } else {
         td.innerHTML = search ? highlight(esc(val), search) : esc(val);
@@ -416,7 +416,7 @@ function showTooltip(iconEl) {
   if (!lines.length) return;
 
   // Populate content
-  dom.infoTooltipBody.innerHTML = lines.map(l => `<p>${renderSci(l)}</p>`).join('');
+  dom.infoTooltipBody.innerHTML = lines.map(l => `<p>${renderContent(l)}</p>`).join('');
   dom.infoTooltip.setAttribute('aria-hidden', 'false');
 
   // Position
@@ -576,6 +576,87 @@ function renderSci(raw) {
 
 
 // ════════════════════════════════════
+//  CONTENT RENDERER (KaTeX + renderSci)
+//
+//  renderContent(raw) is the single entry point used everywhere
+//  text is placed into innerHTML.  It gives you two layers:
+//
+//  ┌─ Manual (KaTeX) ─────────────────────────────────────────┐
+//  │  Wrap text in these delimiters for full LaTeX control:   │
+//  │   $...$        inline math    e.g. $E = mc^2$            │
+//  │   $$...$$      display math   e.g. $$\frac{a}{b}$$       │
+//  │   \ce{...}     chemistry      e.g. \ce{H2SO4}            │
+//  │                (mhchem; works standalone, no $ needed)    │
+//  └──────────────────────────────────────────────────────────┘
+//  └─ Automatic (renderSci) ──────────────────────────────────┘
+//     Plain text segments (not wrapped above) are still
+//     auto-detected: H2O → H₂O,  x^2 → x²,  Na2SO3 → Na₂SO₃
+//  └──────────────────────────────────────────────────────────┘
+//
+//  The two layers do NOT overlap: KaTeX segments are extracted
+//  first and bypass renderSci entirely, so there is no
+//  double-processing.  Existing plain-text data works unchanged.
+// ════════════════════════════════════
+
+// Regex that matches the three supported KaTeX delimiter forms.
+// Capturing group 1  →  the whole matched token (passed to KaTeX).
+// Matching order: $$…$$ before $…$ so display blocks are not split.
+const _KATEX_RE = /(\\ce\{[^}]*\}|\$\$[\s\S]*?\$\$|\$[^$\n]*?\$)/g;
+
+function renderContent(raw) {
+  if (!raw || typeof raw !== 'string') return '';
+
+  // If KaTeX is not yet loaded (e.g. network issue), fall through to renderSci.
+  const hasKatex = typeof window !== 'undefined' && typeof window.katex !== 'undefined';
+
+  if (!hasKatex) return renderSci(raw);
+
+  const parts = raw.split(_KATEX_RE);
+  // split() with a capturing group interleaves plain and matched segments:
+  // ['plain', 'matched', 'plain', 'matched', 'plain', …]
+
+  return parts.map((part, idx) => {
+    if (!part) return '';
+
+    // Odd indices are captured KaTeX tokens
+    if (idx % 2 === 1) {
+      try {
+        let expr, displayMode;
+
+        if (part.startsWith('$$')) {
+          // Display / block math
+          expr        = part.slice(2, -2).trim();
+          displayMode = true;
+        } else if (part.startsWith('$')) {
+          // Inline math
+          expr        = part.slice(1, -1);
+          displayMode = false;
+        } else {
+          // \ce{...} — chemistry shorthand, rendered as inline KaTeX
+          expr        = part;          // e.g.  \ce{H2SO4}
+          displayMode = false;
+        }
+
+        return window.katex.renderToString(expr, {
+          displayMode,
+          throwOnError: false,   // show error glyph rather than crash
+          trust:        false,
+        });
+      } catch (e) {
+        // If KaTeX itself throws, return the raw token escaped so the user
+        // can see what went wrong without breaking the page.
+        console.warn('KaTeX render error:', e.message, '→', part);
+        return esc(part);
+      }
+    }
+
+    // Even indices are plain-text segments — use the auto-detector.
+    return renderSci(part);
+  }).join('');
+}
+
+
+// ════════════════════════════════════
 //  EXPORT CSV
 // ════════════════════════════════════
 function exportCSV() {
@@ -624,8 +705,8 @@ function renderFlashcard() {
 
   const card = cards[i];
   dom.fcCounter.textContent = `Card ${i + 1} of ${cards.length}`;
-  dom.fcQuestion.innerHTML = renderSci(card.Question);
-  dom.fcAnswer.innerHTML   = renderSci(card.Answer);
+  dom.fcQuestion.innerHTML = renderContent(card.Question);
+  dom.fcAnswer.innerHTML   = renderContent(card.Answer);
   dom.fcMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -641,7 +722,7 @@ function renderFlashcard() {
     dom.fcInfo.style.display = 'block';
     dom.fcInfo.innerHTML =
       `<div class="fc-info-label">◈ Comment(s)</div>` +
-      lines.map(l => `<p>${renderSci(l)}</p>`).join('');
+      lines.map(l => `<p>${renderContent(l)}</p>`).join('');
   } else {
     dom.fcInfo.style.display = 'none';
   }
@@ -689,7 +770,7 @@ function renderQuizQuestion() {
 
   const card = q.cards[q.index];
   dom.quizQNum.textContent     = `Question ${q.index + 1} of ${q.cards.length}`;
-  dom.quizQuestion.innerHTML   = renderSci(card.Question);
+  dom.quizQuestion.innerHTML   = renderContent(card.Question);
   dom.quizMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -713,7 +794,7 @@ function submitQuizAnswer() {
   q.total++;
   if (isCorrect) q.correct++;
 
-  dom.quizRevealAnswer.innerHTML = renderSci(card.Answer);
+  dom.quizRevealAnswer.innerHTML = renderContent(card.Answer);
   dom.quizFeedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
   dom.quizFeedback.className   = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
   dom.quizReveal.hidden        = false;
@@ -726,7 +807,7 @@ function submitQuizAnswer() {
     dom.quizRevealInfo.style.display = 'block';
     dom.quizRevealInfo.innerHTML =
       `<div class="quiz-reveal-info-label">◈ Comment(s)</div>` +
-      lines.map(l => `<p>${renderSci(l)}</p>`).join('');
+      lines.map(l => `<p>${renderContent(l)}</p>`).join('');
   } else {
     dom.quizRevealInfo.style.display = 'none';
   }
