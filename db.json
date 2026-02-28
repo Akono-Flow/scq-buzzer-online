@@ -57,7 +57,7 @@
     "Question": "What is the main instrument used for detecting ionizing radiation?",
     "Answer": "Geiger-Müller counter",
     "Section": "buzzer",
-    "Info": "The Geiger-Mueller (GM) counter (or Geiger counter) is the most common, versatile, and widely used handheld instrument for detecting ionizing radiation (alpha, beta, and gamma). It utilizes a gas-filled tube to detect ionizing events and produce audible clicks or numerical readings."
+    "Info": "The Geiger-Mueller (GM) counter (or Geiger counter) is the most common, versatile, and widely used handheld instrument for detecting ionizing radiation (alpha, beta, and gamma). It utilizes a gas-filled tube to detect ionizing events and produce audible clicks or numerical readings. \n The Geiger counter was invented by German physicist Hans Geiger in 1908 to detect alpha particles, a development he later refined with Walther Müller in 1928 to create the improved Geiger-Müller tube. This device revolutionized nuclear physics by enabling the detection of various types of ionizing radiation."
   },
   {
     "Pkey": "6",
