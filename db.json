@@ -380,9 +380,9 @@
     "Subject": "Mathematics",
     "Question": "An electric motor makes 4500 revolutions per minute. How many degrees does it rotate in one second?",
     "Answer": "27000 degrees",
-    "ImageUrl": "https://chatgpt.com/s/m_69a35b7258c881918627c0ede63260fc",
+    "ImageUrl": "",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "\\dfrac{4500rev}{1 min} \\times \\drac{1min}{60sec} \\times dfrac{360 deg}{1rev}"
   },
   {
     "Pkey": "32",
