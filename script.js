@@ -72,6 +72,8 @@ const dom = {
   infoTooltipBody:  $('infoTooltipBody'),
   infoTooltipTitle: $('infoTooltipTitle'),
   infoTooltipIcon:  $('infoTooltipIcon'),
+  tooltipPinBtn:    $('tooltipPinBtn'),
+  tooltipCloseBtn:  $('tooltipCloseBtn'),
 
   // Flashcard
   fcCounter:    $('fcCounter'),
@@ -438,10 +440,26 @@ function extractYouTubeId(url) {
 //    4. If it would overflow the viewport bottom, flip it above.
 //    5. Clamp horizontally so it never clips off screen edges.
 // ════════════════════════════════════
-let _tooltipHideTimer = null;
+// ════════════════════════════════════
+//  INFO TOOLTIP — PIN STATE
+//
+//  _tooltipPinned: when true the panel is locked open and will not
+//  close on mouseout, scroll, or any automatic trigger.
+//  Only forceHideTooltip() can close it (close button, Escape, mode switch).
+//
+//  _tooltipAnchorIcon: the ⓘ button that opened the current tooltip,
+//  used for live repositioning on scroll when pinned.
+// ════════════════════════════════════
+let _tooltipHideTimer  = null;
+let _tooltipPinned     = false;
+let _tooltipAnchorIcon = null;
 
 function showTooltip(iconEl) {
+  // If pinned, the user has locked the panel — do not replace its content.
+  if (_tooltipPinned) return;
+
   clearTimeout(_tooltipHideTimer);
+  _tooltipAnchorIcon = iconEl;
 
   const rawInfo  = iconEl.dataset.info    || '';
   const imageUrl = (iconEl.dataset.image  || '').trim();
@@ -506,6 +524,9 @@ function showTooltip(iconEl) {
   // ── Widen tooltip when it contains media ──
   dom.infoTooltip.style.width = (hasImage || hasYT) ? '400px' : '320px';
 
+  // Reset pin visuals whenever fresh content is loaded into the panel
+  _setTooltipPinned(false);
+
   // ── Position ──
   positionTooltip(iconEl);
 
@@ -514,6 +535,7 @@ function showTooltip(iconEl) {
 }
 
 function positionTooltip(iconEl) {
+  if (!iconEl) return;
   const GAP     = 8;   // px gap between icon and tooltip
   const MARGIN  = 12;  // min px from viewport edges
   const tip     = dom.infoTooltip;
@@ -546,15 +568,45 @@ function positionTooltip(iconEl) {
   tip.style.left = `${left}px`;
 }
 
+// Called by hover/focus-out — respects the pin lock.
 function hideTooltip(delay = 120) {
-  _tooltipHideTimer = setTimeout(() => {
-    dom.infoTooltip.classList.remove('visible');
-    dom.infoTooltip.setAttribute('aria-hidden', 'true');
-    // Stop YouTube playback by blanking the iframe src.
-    // This is the most reliable cross-browser method without the YT JS API.
-    const ytFrame = document.getElementById('tooltipYtFrame');
-    if (ytFrame) ytFrame.src = '';
-  }, delay);
+  if (_tooltipPinned) return;
+  clearTimeout(_tooltipHideTimer);
+  _tooltipHideTimer = setTimeout(_doHide, delay);
+}
+
+// Called by close button, Escape, and mode switch — always closes.
+function forceHideTooltip() {
+  clearTimeout(_tooltipHideTimer);
+  _setTooltipPinned(false);
+  _doHide();
+}
+
+// Shared internal close routine used by both hide functions.
+function _doHide() {
+  _tooltipAnchorIcon = null;
+  dom.infoTooltip.classList.remove('visible');
+  dom.infoTooltip.setAttribute('aria-hidden', 'true');
+  // Stop YouTube playback by blanking the iframe src.
+  // This is the most reliable cross-browser method without the YT JS API.
+  const ytFrame = document.getElementById('tooltipYtFrame');
+  if (ytFrame) ytFrame.src = '';
+}
+
+// Toggle or set the pin state and update button appearance accordingly.
+function _setTooltipPinned(pinned) {
+  _tooltipPinned = pinned;
+  const btn = dom.tooltipPinBtn;
+  if (!btn) return;
+  btn.setAttribute('aria-pressed', String(pinned));
+  btn.classList.toggle('pinned', pinned);
+  btn.title = pinned
+    ? 'Pinned — click to unpin and allow auto-close'
+    : 'Pin open — click to keep this panel visible';
+  const label = btn.querySelector('.pin-label');
+  if (label) label.textContent = pinned ? 'Pinned' : 'Pin';
+  // Reflect the pinned state on the tooltip border for a clear visual signal
+  dom.infoTooltip.classList.toggle('pinned', pinned);
 }
 
 
@@ -1075,7 +1127,7 @@ function switchMode(mode) {
     sec.hidden = !active;
     sec.classList.toggle('active', active);
   });
-  hideTooltip(0); // hide tooltip when switching modes
+  forceHideTooltip(); // always dismiss tooltip (even if pinned) when switching modes
   if (mode === 'stats')     renderStats();
   if (mode === 'flashcard') renderFlashcard();
   if (mode === 'quiz')      renderQuizQuestion();
@@ -1161,6 +1213,18 @@ function setupEventListeners() {
   dom.infoTooltip.addEventListener('mouseenter', () => clearTimeout(_tooltipHideTimer));
   dom.infoTooltip.addEventListener('mouseleave', () => hideTooltip());
 
+  // ── Pin button — toggle pin state ──
+  dom.tooltipPinBtn.addEventListener('click', e => {
+    e.stopPropagation(); // don't bubble into tooltip mouseleave
+    _setTooltipPinned(!_tooltipPinned);
+  });
+
+  // ── Close button — always dismisses, even when pinned ──
+  dom.tooltipCloseBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    forceHideTooltip();
+  });
+
   // Keyboard accessibility: show on focus, hide on blur
   dom.tableBody.addEventListener('focusin', e => {
     const icon = e.target.closest('.info-icon');
@@ -1170,16 +1234,17 @@ function setupEventListeners() {
     const icon = e.target.closest('.info-icon');
     if (icon) hideTooltip(200);
   });
-  // Press Escape to dismiss tooltip
+  // Press Escape to force-dismiss tooltip (works even when pinned)
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') hideTooltip(0);
+    if (e.key === 'Escape') forceHideTooltip();
   });
-  // Scroll/resize: reposition live if tooltip is visible
+  // Scroll/resize: reposition live whether pinned or not
   window.addEventListener('scroll', () => {
     if (dom.infoTooltip.classList.contains('visible')) {
-      const activeIcon = dom.tableBody.querySelector('.info-icon:focus, .info-icon:hover');
-      if (activeIcon) positionTooltip(activeIcon);
-      else hideTooltip(0);
+      const anchor = _tooltipAnchorIcon ||
+        dom.tableBody.querySelector('.info-icon:focus, .info-icon:hover');
+      if (anchor) positionTooltip(anchor);
+      else if (!_tooltipPinned) forceHideTooltip();
     }
   }, { passive: true });
 
