@@ -382,7 +382,7 @@
     "Answer": "27000 degrees",
     "ImageUrl": "",
     "Section": "buzzer",
-    "Info": "$\\dfrac{4500rev}{1 min} \\times \\drac{1min}{60sec} \\times dfrac{360 deg}{1rev}$"
+    "Info": "$\\dfrac{4500rev}{1 min} \\times \\dfrac{1min}{60sec} \\times dfrac{360 deg}{1rev}$"
   },
   {
     "Pkey": "32",
