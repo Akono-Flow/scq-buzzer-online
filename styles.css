@@ -328,14 +328,17 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   Positioned at body level via JS (getBoundingClientRect + fixed positioning).
   Uses opacity + transform for smooth fade-in/out.
   pointer-events:none when hidden so it doesn't interfere with mouse events.
+  Drag and resize are handled entirely in JS using the Pointer Events API
+  (pointerdown/pointermove/pointerup) which works on mouse, touch, and stylus
+  across desktop, laptop, tablet, and mobile without any separate handlers.
 */
 .info-tooltip {
   position: fixed;
   z-index: 9999;
   width: 320px;
-  min-width: 260px;
+  min-width: 240px;
   min-height: 80px;
-  max-width: calc(100vw - 24px);
+  max-width: calc(100vw - 16px);
   background: var(--bg-elevated);
   border: 1px solid var(--info-border);
   border-radius: var(--radius-md);
@@ -344,31 +347,34 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   pointer-events: none;
   transform: translateY(6px) scale(0.97);
   transition: opacity 0.18s ease, transform 0.18s ease;
-  /* overflow:auto (not hidden) is required for resize:both to show the handle */
-  overflow: auto;
-  resize: both;
-  /* Flex column so header stays fixed-height and body fills the rest */
+  overflow: hidden;        /* body handles its own scroll */
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  /* header fixed, body fills rest, handle at bottom */
 }
 .info-tooltip.visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
 }
-/* Disable transition while dragging to eliminate position lag */
-.info-tooltip.is-dragging {
+/* Suppress transitions while dragging or resizing to eliminate lag */
+.info-tooltip.is-dragging,
+.info-tooltip.is-resizing {
   transition: none !important;
-  cursor: grabbing !important;
 }
+.info-tooltip.is-dragging  { cursor: grabbing !important; }
+.info-tooltip.is-resizing  { cursor: se-resize !important; }
+
 .info-tooltip-header {
   display: flex; align-items: center; gap: 8px;
   padding: 8px 10px 8px 14px;
   border-bottom: 1px solid var(--info-border);
   background: var(--info-bg);
-  /* Signal to the user that the header is the drag handle */
   cursor: grab;
-  flex-shrink: 0;  /* header never shrinks when panel is resized smaller */
+  flex-shrink: 0;
+  /* Prevent browser scroll/zoom from hijacking pointer during drag */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .info-tooltip-header:active { cursor: grabbing; }
 .info-tooltip-icon { font-size: 0.9rem; color: var(--info-accent); flex-shrink: 0; }
@@ -394,6 +400,7 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   cursor: pointer;
   transition: all var(--transition);
   line-height: 1;
+  touch-action: manipulation; /* fast tap, no double-tap zoom */
 }
 .tooltip-pin-btn:hover {
   border-color: var(--info-accent);
@@ -418,6 +425,7 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   cursor: pointer;
   transition: all var(--transition);
   line-height: 1; padding: 0;
+  touch-action: manipulation;
 }
 .tooltip-close-btn:hover {
   border-color: var(--incorrect);
@@ -430,14 +438,45 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   border-color: var(--info-accent);
   box-shadow: var(--shadow-tooltip), 0 0 0 2px var(--info-bg);
 }
+
 .info-tooltip-body {
   padding: 0;
   font-family: var(--font-body); font-size: 0.82rem;
   color: var(--text-primary); line-height: 1.65;
-  /* flex:1 + min-height:0 lets body grow/shrink with the resized panel */
-  flex: 1;
-  min-height: 0;
+  flex: 1;        /* fills all height between header and resize handle */
+  min-height: 0;  /* essential — flex children won't shrink below content without this */
   overflow-y: auto;
+}
+
+/* ── Custom resize handle (bottom-right corner) ──
+   Works on all devices via Pointer Events in JS.
+   touch-action:none prevents browser scroll/zoom from consuming the gesture.
+   The ⤡ glyph is a visual affordance that works at any size/DPI.
+*/
+.tooltip-resize-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  cursor: se-resize;
+  touch-action: none;        /* critical — hands pointer control to JS */
+  user-select: none;
+  -webkit-user-select: none;
+  opacity: 0.5;
+  transition: opacity var(--transition), color var(--transition);
+  border-radius: 0 0 var(--radius-md) 0;
+  z-index: 1;
+}
+.tooltip-resize-handle:hover,
+.info-tooltip.is-resizing .tooltip-resize-handle {
+  opacity: 1;
+  color: var(--info-accent);
 }
 
 /* ── Tooltip: image section ── */
