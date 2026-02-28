@@ -333,7 +333,9 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   position: fixed;
   z-index: 9999;
   width: 320px;
-  max-width: calc(100vw - 32px);
+  min-width: 260px;
+  min-height: 80px;
+  max-width: calc(100vw - 24px);
   background: var(--bg-elevated);
   border: 1px solid var(--info-border);
   border-radius: var(--radius-md);
@@ -342,19 +344,33 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   pointer-events: none;
   transform: translateY(6px) scale(0.97);
   transition: opacity 0.18s ease, transform 0.18s ease;
-  overflow: hidden;
+  /* overflow:auto (not hidden) is required for resize:both to show the handle */
+  overflow: auto;
+  resize: both;
+  /* Flex column so header stays fixed-height and body fills the rest */
+  display: flex;
+  flex-direction: column;
 }
 .info-tooltip.visible {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0) scale(1);
 }
+/* Disable transition while dragging to eliminate position lag */
+.info-tooltip.is-dragging {
+  transition: none !important;
+  cursor: grabbing !important;
+}
 .info-tooltip-header {
   display: flex; align-items: center; gap: 8px;
   padding: 8px 10px 8px 14px;
   border-bottom: 1px solid var(--info-border);
   background: var(--info-bg);
+  /* Signal to the user that the header is the drag handle */
+  cursor: grab;
+  flex-shrink: 0;  /* header never shrinks when panel is resized smaller */
 }
+.info-tooltip-header:active { cursor: grabbing; }
 .info-tooltip-icon { font-size: 0.9rem; color: var(--info-accent); flex-shrink: 0; }
 .info-tooltip-title {
   font-family: var(--font-mono); font-size: 0.65rem;
@@ -418,7 +434,10 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   padding: 0;
   font-family: var(--font-body); font-size: 0.82rem;
   color: var(--text-primary); line-height: 1.65;
-  max-height: 420px; overflow-y: auto;
+  /* flex:1 + min-height:0 lets body grow/shrink with the resized panel */
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
 }
 
 /* ── Tooltip: image section ── */
