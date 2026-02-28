@@ -1967,7 +1967,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Declan Rice (English Footballer - Arsenal)",
-    "ImageUr": "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/68ad/live/2f3e5170-2f14-11f0-90bf-8d5b436191fe.jpg",
+    "ImageUrl": "https://ichef.bbci.co.uk/ace/standard/1024/cpsprodpb/68ad/live/2f3e5170-2f14-11f0-90bf-8d5b436191fe.jpg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2198,7 +2198,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Karsten Warholm (Norwegian 400m hurdles world record holder)",
-    "ImageUr": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Karsten_Warholm_(NOR)_2017.jpg/120px-Karsten_Warholm_(NOR)_2017.jpg",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Karsten_Warholm_(NOR)_2017.jpg/120px-Karsten_Warholm_(NOR)_2017.jpg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2429,7 +2429,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Steve Kerr (NBA Coach-Golden State Warriors)",
-    "ImageUr": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2107862650.jpg?c=16x9&q=h_833,w_1480,c_fill",
+    "ImageUrl": "https://media.cnn.com/api/v1/images/stellar/prod/gettyimages-2107862650.jpg?c=16x9&q=h_833,w_1480,c_fill",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2636,7 +2636,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Taekwondo Tracey",
-    "ImageUr": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpnPV2TdI4fCRPJP7xK1i9QrMcp8346DhoQMhs5oY31RCH3Ehf",
+    "ImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpnPV2TdI4fCRPJP7xK1i9QrMcp8346DhoQMhs5oY31RCH3Ehf",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2843,7 +2843,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Kerron Stewart (Jamaican Former Sprinter)",
-    "ImageUr": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoDvVgZQCojau6u3h6PsZDB02TPCi2OZuw9gQSy2lkyskxj38H",
+    "ImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoDvVgZQCojau6u3h6PsZDB02TPCi2OZuw9gQSy2lkyskxj38H",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3062,7 +3062,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Martina Hingis (Swiss Tennis Former Player)",
-    "ImageUr": "https://sportsmatik.com/uploads/world-events/players/martina-hingis_1564555974.jpg",
+    "ImageUrl": "https://sportsmatik.com/uploads/world-events/players/martina-hingis_1564555974.jpg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3257,7 +3257,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor and identify the following person.",
     "Answer": "Karim Benzema (French footballer)",
-    "ImageUr": "https://newafricanmagazine.com/wordpress/wp-content/uploads/2021/06/000_8WT63Q-scaled-e1623237506605.jpeg",
+    "ImageUrl": "https://newafricanmagazine.com/wordpress/wp-content/uploads/2021/06/000_8WT63Q-scaled-e1623237506605.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
