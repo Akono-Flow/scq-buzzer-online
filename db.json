@@ -1556,7 +1556,7 @@
     "Question": "The mean of 8 numbers is 7. If the sum of 7 of those numbers is 50, what is the eighth number?",
     "Answer": "6",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Mean of 8 numbers } = 7, \\text{ Sum of 7 numbers } = 50 \\\\[10pt]&\\textbf{Step 1: Recall the Mean Formula} \\\\[4pt]&\\text{Mean} = \\dfrac{\\text{Sum of all values}}{\\text{Number of values}} \\\\[10pt]&\\textbf{Step 2: Find the Total Sum of all 8 Numbers} \\\\[4pt]&\\text{Total Sum} = \\text{Mean} \\times \\text{Number of values} \\\\[4pt]&\\text{Total Sum} = 7 \\times 8 = 56 \\\\[10pt]&\\textbf{Step 3: State the Relationship} \\\\[4pt]&\\text{Total Sum} = \\text{Sum of 7 numbers} + \\text{8th number} \\\\[10pt]&\\textbf{Step 4: Substitute Known Values} \\\\[4pt]&56 = 50 + x \\\\[10pt]&\\textbf{Step 5: Solve for } x \\\\[4pt]&x = 56 - 50 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&x = 6\\end{aligned}$$"
   },
   {
     "Pkey": "128",
@@ -1678,7 +1678,7 @@
     "Question": "If the gradient of AB is 2 and the gradient of BC is -1/2, what is the angle between the two lines?",
     "Answer": "90 degrees",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Gradient of AB } = 2, \\text{ Gradient of BC } = -\\dfrac{1}{2} \\\\[10pt]&\\textbf{Step 1: Recall the Angle Between Two Lines Formula} \\\\[4pt]&\\tan\\theta = \\left|\\dfrac{m_1 - m_2}{1 + m_1 m_2}\\right| \\\\[10pt]&\\textbf{Step 2: Check the Product of the Gradients} \\\\[4pt]&m_1 \\times m_2 = 2 \\times \\left(-\\dfrac{1}{2}\\right) = -1 \\\\[10pt]&\\textbf{Step 3: Recall the Perpendicularity Condition} \\\\[4pt]&\\text{If } m_1 \\times m_2 = -1 \\text{, then the two lines are perpendicular} \\\\[10pt]&\\textbf{Step 4: Verify Using the Formula} \\\\[4pt]&\\tan\\theta = \\left|\\dfrac{2 - \\left(-\\dfrac{1}{2}\\right)}{1 + (-1)}\\right| = \\left|\\dfrac{\\dfrac{5}{2}}{0}\\right| = \\text{undefined} \\\\[10pt]&\\textbf{Step 5: Interpret the Result} \\\\[4pt]&\\tan\\theta = \\text{undefined} \\Rightarrow \\theta = 90^{\\circ} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\text{The angle between AB and BC } = 90^{\\circ}\\end{aligned}$$"
   },
   {
     "Pkey": "138",
@@ -2179,7 +2179,7 @@
     "Question": "A geometric sequence has first term 3 and common ratio 2. What is the 7th term in that sequence?",
     "Answer": "192",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ First term } a = 3, \\text{ Common ratio } r = 2 \\\\[10pt]&\\textbf{Step 1: Recall the General Term Formula} \\\\[4pt]&T_n = a \\times r^{n-1} \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&T_7 = 3 \\times 2^{7-1} \\\\[10pt]&\\textbf{Step 3: Simplify the Exponent} \\\\[4pt]&T_7 = 3 \\times 2^{6} \\\\[10pt]&\\textbf{Step 4: Evaluate the Power} \\\\[4pt]&2^6 = 2 \\times 2 \\times 2 \\times 2 \\times 2 \\times 2 = 64 \\\\[10pt]&\\textbf{Step 5: Multiply} \\\\[4pt]&T_7 = 3 \\times 64 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&T_7 = 192\\end{aligned}$$"
   },
   {
     "Pkey": "179",
@@ -2435,7 +2435,7 @@
     "Question": "A tank fills at 15 Litres per minute and leaks at 3 Litres per minute. If the capacity of the tank is 240 litres, how long will it take to fill?",
     "Answer": "20 minutes",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Fill rate } = 15 \\text{ L/min, Leak rate } = 3 \\text{ L/min, Capacity } = 240 \\text{ L} \\\\[10pt]&\\textbf{Step 1: Find the Net Fill Rate} \\\\[4pt]&\\text{Net rate} = \\text{Fill rate} - \\text{Leak rate} \\\\[4pt]&\\text{Net rate} = 15 - 3 = 12 \\text{ L/min} \\\\[10pt]&\\textbf{Step 2: Recall the Time Formula} \\\\[4pt]&\\text{Time} = \\dfrac{\\text{Capacity}}{\\text{Net rate}} \\\\[10pt]&\\textbf{Step 3: Substitute Known Values} \\\\[4pt]&\\text{Time} = \\dfrac{240}{12} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&\\text{Time} = 20 \\text{ minutes}\\end{aligned}$$"
   },
   {
     "Pkey": "200",
