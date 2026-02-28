@@ -263,6 +263,7 @@
     "Subject": "Local and International Affairs",
     "Question": "Look at the clip and identify this person.",
     "Answer": "Anutin Charnvirakul (PM of Thailand)",
+    "ImageUrl": "https://cdn.britannica.com/91/278991-050-98749664/Anutin-Charnvirakul-Thailand-prime-minister-2025.jpg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -456,6 +457,7 @@
     "Subject": "Local and International Affairs",
     "Question": "Look at the monitor and identify this person.",
     "Answer": "Hun Manet (PM of Cambodia)",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Hun_Manet_2023.jpg",
     "Section": "buzzer",
     "Info": ""
   },
