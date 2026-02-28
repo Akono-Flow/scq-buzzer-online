@@ -453,6 +453,7 @@ function extractYouTubeId(url) {
 let _tooltipHideTimer  = null;
 let _tooltipPinned     = false;
 let _tooltipAnchorIcon = null;
+let _tooltipDragged    = false;  // true after user manually drags the panel
 
 function showTooltip(iconEl) {
   // If pinned, the user has locked the panel — do not replace its content.
@@ -521,8 +522,13 @@ function showTooltip(iconEl) {
   dom.infoTooltipBody.innerHTML = html;
   dom.infoTooltip.setAttribute('aria-hidden', 'false');
 
-  // ── Widen tooltip when it contains media ──
-  dom.infoTooltip.style.width = (hasImage || hasYT) ? '400px' : '320px';
+  // ── Widen when media present; clear any manually resized height so each
+  //    new open starts fresh — user can drag/resize again as needed. ──
+  dom.infoTooltip.style.width  = (hasImage || hasYT) ? '400px' : '320px';
+  dom.infoTooltip.style.height = '';
+
+  // Reset drag flag so auto-positioning takes effect for this open.
+  _tooltipDragged = false;
 
   // Reset pin visuals whenever fresh content is loaded into the panel
   _setTooltipPinned(false);
@@ -585,6 +591,7 @@ function forceHideTooltip() {
 // Shared internal close routine used by both hide functions.
 function _doHide() {
   _tooltipAnchorIcon = null;
+  _tooltipDragged    = false;
   dom.infoTooltip.classList.remove('visible');
   dom.infoTooltip.setAttribute('aria-hidden', 'true');
   // Stop YouTube playback by blanking the iframe src.
@@ -607,6 +614,85 @@ function _setTooltipPinned(pinned) {
   if (label) label.textContent = pinned ? 'Pinned' : 'Pin';
   // Reflect the pinned state on the tooltip border for a clear visual signal
   dom.infoTooltip.classList.toggle('pinned', pinned);
+}
+
+
+// ════════════════════════════════════
+//  TOOLTIP DRAG
+//
+//  Called once from setupEventListeners().
+//  Attaches mousedown to the tooltip header — but NOT to any button
+//  inside it — so the pin and close buttons still work normally.
+//
+//  The panel uses position:fixed, so all coordinates are viewport-
+//  relative. We read the live getBoundingClientRect() on mousedown
+//  so it works correctly whether the panel was auto-positioned or
+//  was previously dragged to a custom location.
+//
+//  _tooltipDragged is set true on mouseup so the scroll-reposition
+//  handler knows not to override the user's chosen position.
+// ════════════════════════════════════
+function _initTooltipDrag() {
+  const tip    = dom.infoTooltip;
+  const header = tip.querySelector('.info-tooltip-header');
+
+  let dragging   = false;
+  let startMouseX, startMouseY;
+  let startTipLeft, startTipTop;
+
+  header.addEventListener('mousedown', e => {
+    // Ignore clicks that land on a button — those have their own actions.
+    if (e.target.closest('button')) return;
+
+    e.preventDefault(); // prevent text selection while dragging
+
+    // Capture the tooltip's current viewport position.
+    // Using getBoundingClientRect() is correct for position:fixed —
+    // it gives viewport-relative coordinates regardless of scrollY.
+    const rect   = tip.getBoundingClientRect();
+    startTipLeft = rect.left;
+    startTipTop  = rect.top;
+    startMouseX  = e.clientX;
+    startMouseY  = e.clientY;
+
+    dragging = true;
+    tip.classList.add('is-dragging');
+    document.body.style.userSelect = 'none'; // no text selection during drag
+  });
+
+  // mousemove/mouseup on document so dragging outside the panel works.
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+
+    const MARGIN = 8;   // minimum px from any viewport edge
+    const dx     = e.clientX - startMouseX;
+    const dy     = e.clientY - startMouseY;
+    const tipW   = tip.offsetWidth;
+    const tipH   = tip.offsetHeight;
+    const vw     = window.innerWidth;
+    const vh     = window.innerHeight;
+
+    let newLeft = startTipLeft + dx;
+    let newTop  = startTipTop  + dy;
+
+    // Clamp so the panel can't be dragged entirely off-screen.
+    // Allow top to go to MARGIN so the header stays reachable.
+    // Allow a generous bottom clamp so at least 40px of header stays visible.
+    newLeft = Math.max(MARGIN, Math.min(newLeft, vw - tipW - MARGIN));
+    newTop  = Math.max(MARGIN, Math.min(newTop,  vh - 40));
+
+    // position:fixed → assign viewport coordinates directly, no scrollY.
+    tip.style.left = `${newLeft}px`;
+    tip.style.top  = `${newTop}px`;
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging        = false;
+    _tooltipDragged = true; // prevent scroll handler from repositioning
+    tip.classList.remove('is-dragging');
+    document.body.style.userSelect = '';
+  });
 }
 
 
@@ -1225,6 +1311,9 @@ function setupEventListeners() {
     forceHideTooltip();
   });
 
+  // ── Drag — mousedown on header initiates free drag ──
+  _initTooltipDrag();
+
   // Keyboard accessibility: show on focus, hide on blur
   dom.tableBody.addEventListener('focusin', e => {
     const icon = e.target.closest('.info-icon');
@@ -1238,9 +1327,10 @@ function setupEventListeners() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') forceHideTooltip();
   });
-  // Scroll/resize: reposition live whether pinned or not
+  // Scroll: reposition live — but skip if the user has manually dragged the panel,
+  // since they placed it intentionally and we must not override that position.
   window.addEventListener('scroll', () => {
-    if (dom.infoTooltip.classList.contains('visible')) {
+    if (dom.infoTooltip.classList.contains('visible') && !_tooltipDragged) {
       const anchor = _tooltipAnchorIcon ||
         dom.tableBody.querySelector('.info-icon:focus, .info-icon:hover');
       if (anchor) positionTooltip(anchor);
