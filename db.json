@@ -44,6 +44,7 @@
     "Subject": "Local and International Affairs",
     "Question": "Look at the monitor and identify the following person.",
     "Answer": "Sean Duffy",
+    "ImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyr9HVdhLwmC4kAxV0nVMsIPUA4NdMVyMfAWXk-aYLersQrjHJCL_PoPTP7dWBipYpcJggQYIACCtAPDCjvy3tgieqBZz8Gs2y4pA5eJg&s=10",
     "Section": "buzzer",
     "Info": "Sean Patrick Duffy is an American politician, attorney, and former television personality who has served as the 20th United States secretary of transportation since January 2025. Duffy also served as the acting administrator of NASA from July to December 2025."
   },
@@ -57,6 +58,7 @@
     "Question": "What is the main instrument used for detecting ionizing radiation?",
     "Answer": "Geiger-Müller counter",
     "Section": "buzzer",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Geiger-Muller-counter-en.png/250px-Geiger-Muller-counter-en.png",
     "Info": "The Geiger-Mueller (GM) counter (or Geiger counter) is the most common, versatile, and widely used handheld instrument for detecting ionizing radiation (alpha, beta, and gamma). It utilizes a gas-filled tube to detect ionizing events and produce audible clicks or numerical readings. \n The Geiger counter was invented by German physicist Hans Geiger in 1908 to detect alpha particles, a development he later refined with Walther Müller in 1928 to create the improved Geiger-Müller tube. This device revolutionized nuclear physics by enabling the detection of various types of ionizing radiation."
   },
   {
