@@ -2496,7 +2496,7 @@
     "Question": "Factorize the expression 6x^2 - 15x + 6.",
     "Answer": "(3x-6) (2x-1)",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Factorize } 6x^2 - 15x + 6 \\\\[10pt]&\\textbf{Step 1: Extract the Highest Common Factor} \\\\[4pt]&6x^2 - 15x + 6 = 3(2x^2 - 5x + 2) \\\\[10pt]&\\textbf{Step 2: Focus on the Trinomial } 2x^2 - 5x + 2 \\\\[4pt]&\\text{Find two numbers that multiply to } ac = 2 \\times 2 = 4 \\\\[4pt]&\\text{and add to } b = -5 \\\\[4pt]&\\text{Those numbers are } -4 \\text{ and } -1 \\\\[10pt]&\\textbf{Step 3: Split the Middle Term} \\\\[4pt]&3(2x^2 - 4x - x + 2) \\\\[10pt]&\\textbf{Step 4: Group and Factor} \\\\[4pt]&3[2x(x - 2) - 1(x - 2)] \\\\[10pt]&\\textbf{Step 5: Extract the Common Bracket} \\\\[4pt]&3[(x - 2)(2x - 1)] \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&6x^2 - 15x + 6 = 3(2x - 1)(x - 2)\\end{aligned}$$"
   },
   {
     "Pkey": "205",
@@ -2741,7 +2741,7 @@
     "Question": "The gradient of a line is 3 and it passes through the point (2,5). What is the equation of the line?",
     "Answer": "y = 3x - 1",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Gradient } m = 3, \\text{ Point } (x_1, y_1) = (2, 5) \\\\[10pt]&\\textbf{Step 1: Recall the Point-Slope Formula} \\\\[4pt]&y - y_1 = m(x - x_1) \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&y - 5 = 3(x - 2) \\\\[10pt]&\\textbf{Step 3: Expand the Bracket} \\\\[4pt]&y - 5 = 3x - 6 \\\\[10pt]&\\textbf{Step 4: Rearrange} \\\\[4pt]&y = 3x - 6 + 5 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&y = 3x - 1\\end{aligned}$$"
   },
   {
     "Pkey": "225",
@@ -3071,7 +3071,7 @@
     "Question": "What is the gradient of the line perpendicular to y = -3x + 7?",
     "Answer": "1 over 3",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Line equation } y = -3x + 7 \\\\[10pt]&\\textbf{Step 1: Identify the Gradient of the Given Line} \\\\[4pt]&\\text{Comparing with } y = mx + c \\\\[4pt]&m_1 = -3 \\\\[10pt]&\\textbf{Step 2: Recall the Perpendicularity Condition} \\\\[4pt]&m_1 \\times m_2 = -1 \\\\[10pt]&\\textbf{Step 3: Substitute the Known Gradient} \\\\[4pt]&-3 \\times m_2 = -1 \\\\[10pt]&\\textbf{Step 4: Solve for } m_2 \\\\[4pt]&m_2 = \\dfrac{-1}{-3} \\\\[10pt]&\\textbf{Step 5: Simplify} \\\\[4pt]&m_2 = \\dfrac{1}{3} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\text{The perpendicular gradient } = \\dfrac{1}{3}\\end{aligned}$$"
   },
   {
     "Pkey": "252",
@@ -3132,7 +3132,7 @@
     "Question": "What is the solution for the inequality 3x - 7 > 2x +5?",
     "Answer": "x > 12",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Solve } 3x - 7 > 2x + 5 \\\\[10pt]&\\textbf{Step 1: Collect } x \\text{ terms on the Left Side} \\\\[4pt]&3x - 2x - 7 > 5 \\\\[10pt]&\\textbf{Step 2: Simplify the Left Side} \\\\[4pt]&x - 7 > 5 \\\\[10pt]&\\textbf{Step 3: Collect Constant Terms on the Right Side} \\\\[4pt]&x > 5 + 7 \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&x > 12\\end{aligned}$$"
   },
   {
     "Pkey": "257",
@@ -3511,7 +3511,7 @@
     "Question": "In an isosceles triangle, the vertex angle is an exterior angle of size 150 degrees. What is the size of each equal interior angle of the triangle?",
     "Answer": "75 degrees",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Exterior vertex angle } = 150^{\\circ}, \\text{ Triangle is isosceles} \\\\[10pt]&\\textbf{Step 1: Find the Interior Vertex Angle} \\\\[4pt]&\\text{Angles on a straight line sum to } 180^{\\circ} \\\\[4pt]&\\text{Interior vertex angle} = 180^{\\circ} - 150^{\\circ} = 30^{\\circ} \\\\[10pt]&\\textbf{Step 2: Recall the Triangle Angle Sum} \\\\[4pt]&\\text{Sum of interior angles of a triangle } = 180^{\\circ} \\\\[10pt]&\\textbf{Step 3: Set Up the Equation} \\\\[4pt]&\\text{Let each equal base angle } = \\alpha \\\\[4pt]&30^{\\circ} + \\alpha + \\alpha = 180^{\\circ} \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&30^{\\circ} + 2\\alpha = 180^{\\circ} \\\\[10pt]&\\textbf{Step 5: Solve for } \\alpha \\\\[4pt]&2\\alpha = 180^{\\circ} - 30^{\\circ} = 150^{\\circ} \\\\[4pt]&\\alpha = \\dfrac{150^{\\circ}}{2} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\alpha = 75^{\\circ}\\end{aligned}$$"
   },
   {
     "Pkey": "288",
@@ -3596,7 +3596,7 @@
     "Question": "An employee earns $75000 per month. His salary is increased by 7% after which 4% income tax is deducted from the new salary. What is his net monthly salary?",
     "Answer": "77040",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Original salary } = \\$75000, \\text{ Increase } = 7\\%, \\text{ Tax } = 4\\% \\\\[10pt]&\\textbf{Step 1: Calculate the 7\\% Salary Increase} \\\\[4pt]&\\text{Increase} = \\dfrac{7}{100} \\times 75000 = \\$5250 \\\\[10pt]&\\textbf{Step 2: Find the New Salary After Increase} \\\\[4pt]&\\text{New Salary} = 75000 + 5250 = \\$80250 \\\\[10pt]&\\textbf{Step 3: Calculate the 4\\% Income Tax} \\\\[4pt]&\\text{Tax} = \\dfrac{4}{100} \\times 80250 = \\$3210 \\\\[10pt]&\\textbf{Step 4: Deduct the Tax from the New Salary} \\\\[4pt]&\\text{Net Salary} = 80250 - 3210 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&\\text{Net Monthly Salary} = \\$77040\\end{aligned}$$"
   },
   {
     "Pkey": "295",
@@ -4000,7 +4000,7 @@
     "Question": "The mean of 5 numbers is 12. Four of the numbers are 10, 14, 8 and 18. What is the other number?",
     "Answer": "10",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Mean of 5 numbers } = 12, \\text{ Four numbers are } 10, 14, 8, 18 \\\\[10pt]&\\textbf{Step 1: Recall the Mean Formula} \\\\[4pt]&\\text{Mean} = \\dfrac{\\text{Sum of all values}}{\\text{Number of values}} \\\\[10pt]&\\textbf{Step 2: Find the Total Sum of all 5 Numbers} \\\\[4pt]&\\text{Total Sum} = \\text{Mean} \\times \\text{Number of values} \\\\[4pt]&\\text{Total Sum} = 12 \\times 5 = 60 \\\\[10pt]&\\textbf{Step 3: Find the Sum of the Four Known Numbers} \\\\[4pt]&\\text{Sum of 4 numbers} = 10 + 14 + 8 + 18 = 50 \\\\[10pt]&\\textbf{Step 4: Set Up the Equation} \\\\[4pt]&50 + x = 60 \\\\[10pt]&\\textbf{Step 5: Solve for } x \\\\[4pt]&x = 60 - 50 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&x = 10\\end{aligned}$$"
   },
   {
     "Pkey": "328",
@@ -4060,7 +4060,7 @@
     "Question": "A sum of $15, 000 earns compound interest at 8% per annum for 2 years. To the nearest Thousand Dollars, how much interest is earned?",
     "Answer": "$2000 (exactly $2496)",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Principal } P = \\$15000, \\text{ Rate } r = 8\\%, \\text{ Time } n = 2 \\text{ years} \\\\[10pt]&\\textbf{Step 1: Recall the Compound Interest Formula} \\\\[4pt]&A = P\\left(1 + \\dfrac{r}{100}\\right)^n \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&A = 15000\\left(1 + \\dfrac{8}{100}\\right)^2 \\\\[10pt]&\\textbf{Step 3: Simplify the Bracket} \\\\[4pt]&A = 15000(1.08)^2 \\\\[10pt]&\\textbf{Step 4: Evaluate the Power} \\\\[4pt]&(1.08)^2 = 1.1664 \\\\[10pt]&\\textbf{Step 5: Calculate the Final Amount} \\\\[4pt]&A = 15000 \\times 1.1664 = \\$17496 \\\\[10pt]&\\textbf{Step 6: Calculate the Interest Earned} \\\\[4pt]&\\text{Interest} = A - P = 17496 - 15000 = \\$2496 \\\\[10pt]&\\textbf{Step 7: Round to the Nearest Thousand} \\\\[4pt]&\\$2496 \\approx \\$2000 \\\\[10pt]&\\textbf{Step 8: Answer} \\\\[4pt]&\\text{Interest earned} \\approx \\$2000\\end{aligned}$$"
   },
   {
     "Pkey": "333",
@@ -4280,7 +4280,7 @@
     "Question": "The area of a trapezium is 180 cm^2. Its height is 12 cm and one base is 8 cm. What is the measurement of the other base?",
     "Answer": "22 cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Area } = 180\\text{ cm}^2, \\text{ Height } h = 12\\text{ cm, One base } a = 8\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Recall the Trapezium Area Formula} \\\\[4pt]&A = \\dfrac{1}{2}(a + b)h \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&180 = \\dfrac{1}{2}(8 + b) \\times 12 \\\\[10pt]&\\textbf{Step 3: Simplify the Right Side} \\\\[4pt]&180 = 6(8 + b) \\\\[10pt]&\\textbf{Step 4: Divide Both Sides by 6} \\\\[4pt]&\\dfrac{180}{6} = 8 + b \\\\[10pt]&\\textbf{Step 5: Simplify} \\\\[4pt]&30 = 8 + b \\\\[10pt]&\\textbf{Step 6: Solve for } b \\\\[4pt]&b = 30 - 8 \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&b = 22\\text{ cm}\\end{aligned}$$"
   },
   {
     "Pkey": "351",
@@ -4635,7 +4635,7 @@
     "Question": "What is the square root of 10^-4 as a decimal?",
     "Answer": "0.01",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find } \\sqrt{10^{-4}} \\text{ as a decimal} \\\\[10pt]&\\textbf{Step 1: Recall the Square Root of a Power Rule} \\\\[4pt]&\\sqrt{x^n} = x^{\\frac{n}{2}} \\\\[10pt]&\\textbf{Step 2: Apply the Rule} \\\\[4pt]&\\sqrt{10^{-4}} = 10^{\\dfrac{-4}{2}} \\\\[10pt]&\\textbf{Step 3: Simplify the Exponent} \\\\[4pt]&10^{\\dfrac{-4}{2}} = 10^{-2} \\\\[10pt]&\\textbf{Step 4: Apply the Negative Exponent Rule} \\\\[4pt]&10^{-2} = \\dfrac{1}{10^2} = \\dfrac{1}{100} \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&\\sqrt{10^{-4}} = 0.01\\end{aligned}$$"
   },
   {
     "Pkey": "380",
@@ -4708,7 +4708,7 @@
     "Question": "What is the solution for the expression a^2 + 2ab + b^2 if a = 4 and b = -2?",
     "Answer": "4",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Evaluate } a^2 + 2ab + b^2 \\text{ where } a = 4, b = -2 \\\\[10pt]&\\textbf{Step 1: Recognise the Perfect Square Identity} \\\\[4pt]&a^2 + 2ab + b^2 = (a + b)^2 \\\\[10pt]&\\textbf{Step 2: Substitute Known Values into the Identity} \\\\[4pt]&(a + b)^2 = (4 + (-2))^2 \\\\[10pt]&\\textbf{Step 3: Simplify the Bracket} \\\\[4pt]&(4 - 2)^2 = (2)^2 \\\\[10pt]&\\textbf{Step 4: Verify by Direct Substitution} \\\\[4pt]&a^2 + 2ab + b^2 = (4)^2 + 2(4)(-2) + (-2)^2 \\\\[4pt]&= 16 + (-16) + 4 \\\\[4pt]&= 16 - 16 + 4 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&a^2 + 2ab + b^2 = 4\\end{aligned}$$"
   },
   {
     "Pkey": "386",
@@ -4990,7 +4990,7 @@
     "Question": "A length of rope is divided into three pieces in the ratio 2:5:7. The shortest piece is 18cm. How long is the rope?",
     "Answer": "126cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Ratio } = 2:5:7, \\text{ Shortest piece } = 18\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Identify the Shortest Ratio Part} \\\\[4pt]&\\text{The shortest piece corresponds to ratio part } 2 \\\\[10pt]&\\textbf{Step 2: Find the Value of One Ratio Part} \\\\[4pt]&2 \\text{ parts} = 18\\text{ cm} \\\\[4pt]&1 \\text{ part} = \\dfrac{18}{2} = 9\\text{ cm} \\\\[10pt]&\\textbf{Step 3: Find the Total Number of Ratio Parts} \\\\[4pt]&\\text{Total parts} = 2 + 5 + 7 = 14 \\text{ parts} \\\\[10pt]&\\textbf{Step 4: Calculate the Total Length} \\\\[4pt]&\\text{Total length} = 14 \\times 9 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&\\text{Total length} = 126\\text{ cm}\\end{aligned}$$"
   },
   {
     "Pkey": "409",
@@ -5198,7 +5198,7 @@
     "Question": "What is the length of the median drawn to the side of 6cm and 8cm in a triangle, if the third side is 10cm?",
     "Answer": "5cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Triangle with sides } a = 6\\text{ cm}, b = 8\\text{ cm}, c = 10\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Check if the Triangle is Right-Angled} \\\\[4pt]&a^2 + b^2 = 6^2 + 8^2 = 36 + 64 = 100 = 10^2 = c^2 \\\\[4pt]&\\therefore \\text{ The triangle is right-angled with hypotenuse } = 10\\text{ cm} \\\\[10pt]&\\textbf{Step 2: Recall the Median Formula} \\\\[4pt]&m_c = \\dfrac{1}{2}\\sqrt{2a^2 + 2b^2 - c^2} \\\\[10pt]&\\textbf{Step 3: Substitute Known Values} \\\\[4pt]&m_c = \\dfrac{1}{2}\\sqrt{2(6)^2 + 2(8)^2 - (10)^2} \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&m_c = \\dfrac{1}{2}\\sqrt{2(36) + 2(64) - 100} \\\\[4pt]&m_c = \\dfrac{1}{2}\\sqrt{72 + 128 - 100} \\\\[4pt]&m_c = \\dfrac{1}{2}\\sqrt{100} \\\\[10pt]&\\textbf{Step 5: Verify Using the Right Triangle Property} \\\\[4pt]&\\text{The median to the hypotenuse } = \\dfrac{1}{2} \\times \\text{hypotenuse} = \\dfrac{10}{2} = 5\\text{ cm} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&m_c = 5\\text{ cm}\\end{aligned}$$"
   },
   {
     "Pkey": "426",
@@ -5576,7 +5576,7 @@
     "Question": "What is the mean of 191, 209 and 170?",
     "Answer": "190",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find the mean of } 191, 209 \\text{ and } 170 \\\\[10pt]&\\textbf{Step 1: Recall the Mean Formula} \\\\[4pt]&\\text{Mean} = \\dfrac{\\text{Sum of all values}}{\\text{Number of values}} \\\\[10pt]&\\textbf{Step 2: Find the Sum of the Values} \\\\[4pt]&\\text{Sum} = 191 + 209 + 170 = 570 \\\\[10pt]&\\textbf{Step 3: Count the Number of Values} \\\\[4pt]&\\text{Number of values} = 3 \\\\[10pt]&\\textbf{Step 4: Substitute into the Formula} \\\\[4pt]&\\text{Mean} = \\dfrac{570}{3} \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&\\text{Mean} = 190\\end{aligned}$$"
   },
   {
     "Pkey": "457",
@@ -5698,7 +5698,7 @@
     "Question": "What is the area of a triangle with base 27cm and height 8cm?",
     "Answer": "108 cm^2",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Base } b = 27\\text{ cm, Height } h = 8\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Recall the Area Formula} \\\\[4pt]&A = \\dfrac{1}{2} \\times b \\times h \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&A = \\dfrac{1}{2} \\times 27 \\times 8 \\\\[10pt]&\\textbf{Step 3: Simplify} \\\\[4pt]&A = \\dfrac{1}{2} \\times 216 \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&A = 108\\text{ cm}^2\\end{aligned}$$"
   },
   {
     "Pkey": "467",
@@ -5868,7 +5868,7 @@
     "Question": "Identify the value of x as the median for the following values: 7, 16, 4, x, 13",
     "Answer": "10",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Values: } 7, 16, 4, x, 13 \\\\[10pt]&\\textbf{Step 1: Recall the Definition of Median} \\\\[4pt]&\\text{The median is the middle value when data is arranged in order} \\\\[4pt]&\\text{For 5 values, the median is the 3rd value} \\\\[10pt]&\\textbf{Step 2: Arrange the Known Values in Order} \\\\[4pt]&4, 7, 13, 16 \\\\[10pt]&\\textbf{Step 3: Determine the Position of } x \\\\[4pt]&\\text{For } x \\text{ to be the median, it must occupy the 3rd position} \\\\[4pt]&\\text{This means } x \\text{ must lie between } 7 \\text{ and } 13 \\\\[10pt]&\\textbf{Step 4: State the Condition for } x \\\\[4pt]&4, 7, x, 13, 16 \\\\[4pt]&7 \\leq x \\leq 13 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&x \\text{ can be any value such that } 7 \\leq x \\leq 13\\end{aligned}$$"
   },
   {
     "Pkey": "481",
@@ -6223,7 +6223,7 @@
     "Question": "What is the difference between 140 squared and 138 squared?",
     "Answer": "556",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find } 140^2 - 138^2 \\\\[10pt]&\\textbf{Step 1: Recall the Difference of Two Squares Identity} \\\\[4pt]&a^2 - b^2 = (a + b)(a - b) \\\\[10pt]&\\textbf{Step 2: Identify the Values} \\\\[4pt]&a = 140, \\quad b = 138 \\\\[10pt]&\\textbf{Step 3: Apply the Identity} \\\\[4pt]&140^2 - 138^2 = (140 + 138)(140 - 138) \\\\[10pt]&\\textbf{Step 4: Simplify Each Bracket} \\\\[4pt]&= (278)(2) \\\\[10pt]&\\textbf{Step 5: Verify by Direct Calculation} \\\\[4pt]&140^2 = 19600 \\\\[4pt]&138^2 = 19044 \\\\[4pt]&19600 - 19044 = 556 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&140^2 - 138^2 = 556\\end{aligned}$$"
   },
   {
     "Pkey": "510",
@@ -6346,7 +6346,7 @@
     "Question": "To the nearest Thousand Dollars, what is the amount after 2 years if $8000 is invested at 6% per annum compounded annually?",
     "Answer": "9000",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Principal } P = \\$8000, \\text{ Rate } r = 6\\%, \\text{ Time } n = 2 \\text{ years} \\\\[10pt]&\\textbf{Step 1: Recall the Compound Interest Formula} \\\\[4pt]&A = P\\left(1 + \\dfrac{r}{100}\\right)^n \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&A = 8000\\left(1 + \\dfrac{6}{100}\\right)^2 \\\\[10pt]&\\textbf{Step 3: Simplify the Bracket} \\\\[4pt]&A = 8000(1.06)^2 \\\\[10pt]&\\textbf{Step 4: Evaluate the Power} \\\\[4pt]&(1.06)^2 = 1.1236 \\\\[10pt]&\\textbf{Step 5: Calculate the Final Amount} \\\\[4pt]&A = 8000 \\times 1.1236 = \\$8988.80 \\\\[10pt]&\\textbf{Step 6: Round to the Nearest Thousand} \\\\[4pt]&\\$8988.80 \\approx \\$9000 \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\text{Amount after 2 years} \\approx \\$9000\\end{aligned}$$"
   },
   {
     "Pkey": "520",
@@ -6468,7 +6468,7 @@
     "Question": "The scores of students in a test are 10, 20, 30, 40 and 50 respectively. What is the standard deviation of the scores to the nearest whole number?",
     "Answer": "14",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Scores: } 10, 20, 30, 40, 50 \\\\[10pt]&\\textbf{Step 1: Recall the Standard Deviation Formula} \\\\[4pt]&\\sigma = \\sqrt{\\dfrac{\\sum(x - \\bar{x})^2}{n}} \\\\[10pt]&\\textbf{Step 2: Find the Mean} \\\\[4pt]&\\bar{x} = \\dfrac{10 + 20 + 30 + 40 + 50}{5} = \\dfrac{150}{5} = 30 \\\\[10pt]&\\textbf{Step 3: Find Each Deviation from the Mean} \\\\[4pt]&(10 - 30) = -20, \\quad (20 - 30) = -10, \\quad (30 - 30) = 0 \\\\[4pt]&(40 - 30) = 10, \\quad (50 - 30) = 20 \\\\[10pt]&\\textbf{Step 4: Square Each Deviation} \\\\[4pt]&(-20)^2 = 400, \\quad (-10)^2 = 100, \\quad (0)^2 = 0 \\\\[4pt]&(10)^2 = 100, \\quad (20)^2 = 400 \\\\[10pt]&\\textbf{Step 5: Find the Sum of Squared Deviations} \\\\[4pt]&\\sum(x - \\bar{x})^2 = 400 + 100 + 0 + 100 + 400 = 1000 \\\\[10pt]&\\textbf{Step 6: Divide by } n \\\\[4pt]&\\dfrac{\\sum(x - \\bar{x})^2}{n} = \\dfrac{1000}{5} = 200 \\\\[10pt]&\\textbf{Step 7: Take the Square Root} \\\\[4pt]&\\sigma = \\sqrt{200} = 14.14... \\\\[10pt]&\\textbf{Step 8: Answer} \\\\[4pt]&\\sigma \\approx 14\\end{aligned}$$"
   },
   {
     "Pkey": "530",
