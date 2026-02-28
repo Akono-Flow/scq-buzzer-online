@@ -382,7 +382,7 @@
     "Answer": "27000 degrees",
     "ImageUrl": "",
     "Section": "buzzer",
-    "Info": "$$\\begin{aligned}&\\textbf{Given: } (x_1, y_1) = (0, -8) \\text{ and } (x_2, y_2) = (2, 4) \\\\[10pt]&\\textbf{Step 1: Gradient Formula} \\\\[4pt]&m = \\dfrac{y_2 - y_1}{x_2 - x_1} \\\\[10pt]&\\textbf{Step 2: Substitute} \\\\[4pt]&m = \\dfrac{4 - (-8)}{2 - 0} \\\\[10pt]&\\textbf{Step 3: Simplify} \\\\[4pt]&m = \\dfrac{4 + 8}{2} = \\dfrac{12}{2} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&m = 6\\end{aligned}$$"
+    "Info": ""
   },
   {
     "Pkey": "32",
@@ -590,7 +590,7 @@
     "Question": "What is the gradient of a line which passes through the points (0, -8) and (2,4)?",
     "Answer": "6",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given: } (x_1, y_1) = (0, -8) \\text{ and } (x_2, y_2) = (2, 4) \\\\[10pt]&\\textbf{Step 1: Gradient Formula} \\\\[4pt]&m = \\dfrac{y_2 - y_1}{x_2 - x_1} \\\\[10pt]&\\textbf{Step 2: Substitute} \\\\[4pt]&m = \\dfrac{4 - (-8)}{2 - 0} \\\\[10pt]&\\textbf{Step 3: Simplify} \\\\[4pt]&m = \\dfrac{4 + 8}{2} = \\dfrac{12}{2} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&m = 6\\end{aligned}$$"
   },
   {
     "Pkey": "49",
