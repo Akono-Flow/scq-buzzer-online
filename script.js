@@ -68,8 +68,10 @@ const dom = {
   toast:           $('toast'),
 
   // Global info tooltip
-  infoTooltip:     $('infoTooltip'),
-  infoTooltipBody: $('infoTooltipBody'),
+  infoTooltip:      $('infoTooltip'),
+  infoTooltipBody:  $('infoTooltipBody'),
+  infoTooltipTitle: $('infoTooltipTitle'),
+  infoTooltipIcon:  $('infoTooltipIcon'),
 
   // Flashcard
   fcCounter:    $('fcCounter'),
@@ -322,15 +324,23 @@ function renderTable() {
       } else if (col.key === 'Answer') {
         // ── Answer cell: text + optional ⓘ icon ──
         // The td uses display:flex (set in CSS) to align text and icon.
+        // The icon appears whenever ANY of Info, ImageUrl, or YoutubeUrl has content.
         td.className = 'col-answer';
-        const info = String(row.Info || '').trim();
+        const info     = String(row.Info       || '').trim();
+        const imageUrl = String(row.ImageUrl   || '').trim();
+        const ytUrl    = String(row.YoutubeUrl || '').trim();
+        const hasMedia = info || imageUrl || ytUrl;
 
-        if (info) {
-          // Encode info text safely into a data attribute.
-          // JS tooltip handler reads this on mouseenter.
+        if (hasMedia) {
+          // All three fields are stored as data-* attributes on the button.
+          // showTooltip() reads them to build the rich media panel.
           td.innerHTML =
             `<span>${search ? highlight(renderContent(val), search) : renderContent(val)}</span>` +
-            `<button class="info-icon" data-info="${esc(info)}" aria-label="Research note — hover to read" tabindex="0">ⓘ</button>`;
+            `<button class="info-icon"` +
+            ` data-info="${esc(info)}"` +
+            ` data-image="${esc(imageUrl)}"` +
+            ` data-youtube="${esc(ytUrl)}"` +
+            ` aria-label="Details — hover to view" tabindex="0">ⓘ</button>`;
         } else {
           td.innerHTML = `<span>${search ? highlight(renderContent(val), search) : renderContent(val)}</span>`;
         }
@@ -394,45 +404,123 @@ function renderPageNums(totalPages) {
 
 
 // ════════════════════════════════════
+//  YOUTUBE ID EXTRACTOR
+//
+//  Handles the three common YouTube URL formats:
+//    https://www.youtube.com/watch?v=VIDEO_ID
+//    https://youtu.be/VIDEO_ID
+//    https://www.youtube.com/embed/VIDEO_ID
+//  Returns the 11-character video ID, or null if not matched.
+// ════════════════════════════════════
+function extractYouTubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:v=|youtu\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+
+// ════════════════════════════════════
 //  INFO TOOLTIP
 //
 //  A single floating div lives at body level (see index.html).
 //  We use event delegation on tableBody so it works across all
 //  paginated renders without re-attaching listeners.
 //
+//  The tooltip is a rich media panel that can show any combination of:
+//    • An image   (from ImageUrl field in db.json)
+//    • A YouTube  (from YoutubeUrl field in db.json)  — plays inline
+//    • Info text  (from Info field in db.json)         — typeset
+//
 //  Positioning logic:
-//    1. Get the icon's bounding rect.
-//    2. Try to place the tooltip below the icon (most common).
-//    3. If it would overflow the viewport bottom, flip it above.
-//    4. Clamp horizontally so it never clips off screen edges.
+//    1. Set width based on whether media is present.
+//    2. Get the icon's bounding rect.
+//    3. Try to place the tooltip below the icon (most common).
+//    4. If it would overflow the viewport bottom, flip it above.
+//    5. Clamp horizontally so it never clips off screen edges.
 // ════════════════════════════════════
 let _tooltipHideTimer = null;
 
 function showTooltip(iconEl) {
   clearTimeout(_tooltipHideTimer);
 
-  const raw  = iconEl.dataset.info || '';
-  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean);
-  if (!lines.length) return;
+  const rawInfo  = iconEl.dataset.info    || '';
+  const imageUrl = (iconEl.dataset.image  || '').trim();
+  const ytUrl    = (iconEl.dataset.youtube|| '').trim();
 
-  // Populate content
-  dom.infoTooltipBody.innerHTML = lines.map(l => `<p>${renderContent(l)}</p>`).join('');
+  const hasInfo  = rawInfo.trim().length > 0;
+  const hasImage = imageUrl.length > 0;
+  const hasYT    = ytUrl.length > 0;
+
+  if (!hasInfo && !hasImage && !hasYT) return;
+
+  // ── Build header title dynamically ──
+  let titleText = 'Comment(s)';
+  let iconText  = '◈';
+  if (hasImage && hasYT)        { titleText = 'Details';  iconText = '◈'; }
+  else if (hasImage && hasInfo) { titleText = 'Details';  iconText = '◈'; }
+  else if (hasYT    && hasInfo) { titleText = 'Details';  iconText = '◈'; }
+  else if (hasImage)            { titleText = 'Visual';   iconText = '⬡'; }
+  else if (hasYT)               { titleText = 'Media';    iconText = '▶'; }
+
+  dom.infoTooltipTitle.textContent = titleText;
+  dom.infoTooltipIcon.textContent  = iconText;
+
+  // ── Build body HTML ──
+  let html = '';
+
+  // Image section — shown at the top of the panel
+  if (hasImage) {
+    html += `<div class="tooltip-media-wrap">` +
+      `<img src="${esc(imageUrl)}" alt="Visual reference" class="tooltip-media-img"` +
+      ` onerror="this.closest('.tooltip-media-wrap').style.display='none'" loading="lazy" />` +
+      `</div>`;
+  }
+
+  // YouTube section — responsive 16:9 iframe that plays inline
+  if (hasYT) {
+    const ytId = extractYouTubeId(ytUrl);
+    if (ytId) {
+      html += `<div class="tooltip-youtube-wrap">` +
+        `<iframe id="tooltipYtFrame"` +
+        ` src="https://www.youtube.com/embed/${ytId}"` +
+        ` frameborder="0"` +
+        ` allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"` +
+        ` allowfullscreen></iframe>` +
+        `</div>`;
+    }
+  }
+
+  // Info / comments section
+  if (hasInfo) {
+    const lines = rawInfo.split('\n').map(l => l.trim()).filter(Boolean);
+    if (lines.length) {
+      html += `<div class="tooltip-info-section">` +
+        lines.map(l => `<p>${renderContent(l)}</p>`).join('') +
+        `</div>`;
+    }
+  }
+
+  dom.infoTooltipBody.innerHTML = html;
   dom.infoTooltip.setAttribute('aria-hidden', 'false');
 
-  // Position
+  // ── Widen tooltip when it contains media ──
+  dom.infoTooltip.style.width = (hasImage || hasYT) ? '400px' : '320px';
+
+  // ── Position ──
   positionTooltip(iconEl);
 
-  // Show
+  // ── Show ──
   dom.infoTooltip.classList.add('visible');
 }
 
 function positionTooltip(iconEl) {
-  const GAP     = 8;  // px between icon and tooltip
-  const MARGIN  = 12; // min px from viewport edges
+  const GAP     = 8;   // px gap between icon and tooltip
+  const MARGIN  = 12;  // min px from viewport edges
   const tip     = dom.infoTooltip;
   const rect    = iconEl.getBoundingClientRect();
-  const tipW    = tip.offsetWidth  || 320;
-  const tipH    = tip.offsetHeight || 200;
+  // Read inline width we set (offsetWidth may be 0 before first paint)
+  const tipW    = tip.offsetWidth  || parseInt(tip.style.width)  || 320;
+  const tipH    = tip.offsetHeight || 260;
   const vw      = window.innerWidth;
   const vh      = window.innerHeight;
 
@@ -440,7 +528,7 @@ function positionTooltip(iconEl) {
   let top  = rect.bottom + GAP + window.scrollY;
   let left = rect.left   + window.scrollX;
 
-  // Flip above if overflows bottom of viewport
+  // Flip above if it would overflow the viewport bottom
   if (rect.bottom + GAP + tipH > vh) {
     top = rect.top - GAP - tipH + window.scrollY;
   }
@@ -462,6 +550,10 @@ function hideTooltip(delay = 120) {
   _tooltipHideTimer = setTimeout(() => {
     dom.infoTooltip.classList.remove('visible');
     dom.infoTooltip.setAttribute('aria-hidden', 'true');
+    // Stop YouTube playback by blanking the iframe src.
+    // This is the most reliable cross-browser method without the YT JS API.
+    const ytFrame = document.getElementById('tooltipYtFrame');
+    if (ytFrame) ytFrame.src = '';
   }, delay);
 }
 
@@ -657,6 +749,68 @@ function renderContent(raw) {
 
 
 // ════════════════════════════════════
+//  SHARED MEDIA HTML BUILDER
+//
+//  Used by both Flashcard and Quiz modes to build the inline
+//  media panel (image + YouTube + info) shown after an answer.
+//  Returns an HTML string, or '' if the card has no media/info.
+//
+//  idSuffix is an optional string appended to the iframe id so
+//  that flashcard and quiz iframes have distinct ids (useful if
+//  both modes are in the DOM simultaneously, though only one is
+//  ever visible at a time).
+// ════════════════════════════════════
+function buildMediaHTML(card, idSuffix = '') {
+  const imageUrl = String(card.ImageUrl   || '').trim();
+  const ytUrl    = String(card.YoutubeUrl || '').trim();
+  const info     = String(card.Info       || '').trim();
+
+  const hasImage = imageUrl.length > 0;
+  const hasYT    = ytUrl.length > 0;
+  const hasInfo  = info.length > 0;
+
+  if (!hasImage && !hasYT && !hasInfo) return '';
+
+  let html = '';
+
+  // Image
+  if (hasImage) {
+    html += `<div class="media-image-wrap">` +
+      `<img src="${esc(imageUrl)}" alt="Visual reference" class="media-img"` +
+      ` onerror="this.closest('.media-image-wrap').style.display='none'" loading="lazy" />` +
+      `</div>`;
+  }
+
+  // YouTube — responsive 16:9 iframe
+  if (hasYT) {
+    const ytId = extractYouTubeId(ytUrl);
+    if (ytId) {
+      html += `<div class="media-youtube-wrap">` +
+        `<iframe id="mediaYtFrame${idSuffix}"` +
+        ` src="https://www.youtube.com/embed/${ytId}"` +
+        ` frameborder="0"` +
+        ` allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"` +
+        ` allowfullscreen></iframe>` +
+        `</div>`;
+    }
+  }
+
+  // Info / comments
+  if (hasInfo) {
+    const lines = info.split('\n').map(l => l.trim()).filter(Boolean);
+    if (lines.length) {
+      html += `<div class="media-info-section">` +
+        `<div class="media-info-label">◈ Comment(s)</div>` +
+        lines.map(l => `<p>${renderContent(l)}</p>`).join('') +
+        `</div>`;
+    }
+  }
+
+  return html;
+}
+
+
+// ════════════════════════════════════
 //  EXPORT CSV
 // ════════════════════════════════════
 function exportCSV() {
@@ -714,15 +868,11 @@ function renderFlashcard() {
     <span class="meta-tag">Mtch ${card.Match}</span>`;
   dom.fcProgressBar.style.width = `${((i + 1) / cards.length) * 100}%`;
 
-  // ── Research note on the back of the card ──
-  // Displayed below the answer, separated by a subtle border.
-  const info = String(card.Info || '').trim();
-  if (info) {
-    const lines = info.split('\n').map(l => l.trim()).filter(Boolean);
+  // ── Media panel on the back of the card (image, YouTube, info) ──
+  const fcMediaHtml = buildMediaHTML(card, 'Fc');
+  if (fcMediaHtml) {
     dom.fcInfo.style.display = 'block';
-    dom.fcInfo.innerHTML =
-      `<div class="fc-info-label">◈ Comment(s)</div>` +
-      lines.map(l => `<p>${renderContent(l)}</p>`).join('');
+    dom.fcInfo.innerHTML = fcMediaHtml;
   } else {
     dom.fcInfo.style.display = 'none';
   }
@@ -800,14 +950,11 @@ function submitQuizAnswer() {
   dom.quizReveal.hidden        = false;
   dom.quizInput.disabled       = true;
 
-  // ── Show research note below the answer when available ──
-  const info = String(card.Info || '').trim();
-  if (info) {
-    const lines = info.split('\n').map(l => l.trim()).filter(Boolean);
+  // ── Media panel below the answer (image, YouTube, info) ──
+  const quizMediaHtml = buildMediaHTML(card, 'Quiz');
+  if (quizMediaHtml) {
     dom.quizRevealInfo.style.display = 'block';
-    dom.quizRevealInfo.innerHTML =
-      `<div class="quiz-reveal-info-label">◈ Comment(s)</div>` +
-      lines.map(l => `<p>${renderContent(l)}</p>`).join('');
+    dom.quizRevealInfo.innerHTML = quizMediaHtml;
   } else {
     dom.quizRevealInfo.style.display = 'none';
   }
