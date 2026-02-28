@@ -1915,7 +1915,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actress.",
     "Answer": "Andra Day",
-     "ImageUrl": "",
+     "ImageUrl": "https://people.com/thmb/c-Sb_0PdzpekC0t0Zj7_7FQFTyk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(736x323:738x325)/Andra-Day-051324-e77763d38da74074a199f74b3df1457a.jpg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2147,7 +2147,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Jeremy Allen White",
-     "ImageUrl": "",
+     "ImageUrl": "https://variety.com/wp-content/uploads/2023/06/Variety-Actors-on-Actors-16x9-Jeremy-Allen-White.jpg?w=1024",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2379,6 +2379,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Wagner Moura",
+    "ImageUrl": "https://variety.com/wp-content/uploads/2026/01/Wagner-Moura-Golden-Globe-Win-2.jpg?crop=0px,0px,1200px,675px&resize=1000,563",
     "Section": "buzzer",
     "Info": ""
   },
