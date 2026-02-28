@@ -6468,7 +6468,7 @@
     "Question": "The scores of students in a test are 10, 20, 30, 40 and 50 respectively. What is the standard deviation of the scores to the nearest whole number?",
     "Answer": "14",
     "Section": "buzzer",
-    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Scores: } 10, 20, 30, 40, 50 \\\\[10pt]&\\textbf{Step 1: Recall the Standard Deviation Formula} \\\\[4pt]&\\sigma = \\sqrt{\\dfrac{\\sum(x - \\bar{x})^2}{n}} \\\\[10pt]&\\textbf{Step 2: Find the Mean} \\\\[4pt]&\\bar{x} = \\dfrac{10 + 20 + 30 + 40 + 50}{5} = \\dfrac{150}{5} = 30 \\\\[10pt]&\\textbf{Step 3: Find Each Deviation from the Mean} \\\\[4pt]&(10 - 30) = -20, \\quad (20 - 30) = -10, \\quad (30 - 30) = 0 \\\\[4pt]&(40 - 30) = 10, \\quad (50 - 30) = 20 \\\\[10pt]&\\textbf{Step 4: Square Each Deviation} \\\\[4pt]&(-20)^2 = 400, \\quad (-10)^2 = 100, \\quad (0)^2 = 0 \\\\[4pt]&(10)^2 = 100, \\quad (20)^2 = 400 \\\\[10pt]&\\textbf{Step 5: Find the Sum of Squared Deviations} \\\\[4pt]&\\sum(x - \\bar{x})^2 = 400 + 100 + 0 + 100 + 400 = 1000 \\\\[10pt]&\\textbf{Step 6: Divide by } n \\\\[4pt]&\\dfrac{\\sum(x - \\bar{x})^2}{n} = \\dfrac{1000}{5} = 200 \\\\[10pt]&\\textbf{Step 7: Take the Square Root} \\\\[4pt]&\\sigma = \\sqrt{200} = 14.14... \\\\[10pt]&\\textbf{Step 8: Answer} \\\\[4pt]&\\sigma \\approx 14\\end{aligned}$$"
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Scores: } 10, 20, 30, 40, 50, \\text{ Spacing } d = 10 \\\\[10pt]&\\textbf{Step 1: Confirm Equal Spacing} \\\\[4pt]&20 - 10 = 10, \\quad 30 - 20 = 10, \\quad 40 - 30 = 10, \\quad 50 - 40 = 10 \\\\[4pt]&\\therefore d = 10 \\text{ (evenly spaced)} \\\\[10pt]&\\textbf{Step 2: Recall the Shortcut Formula for 5 Evenly Spaced Values} \\\\[4pt]&\\sigma = d\\sqrt{2} \\\\[10pt]&\\textbf{Step 3: Substitute the Value of } d \\\\[4pt]&\\sigma = 10\\sqrt{2} \\\\[10pt]&\\textbf{Step 4: Evaluate} \\\\[4pt]&\\sigma = 10 \\times 1.4142... = 14.142... \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&\\sigma \\approx 14\\end{aligned}$$"
   },
   {
     "Pkey": "530",
@@ -7191,7 +7191,7 @@
     "Question": "If Sine X equals 3 over 5 and X is acute, what is Cos 2X?",
     "Answer": "7 over 25",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\sin X = \\dfrac{3}{5}, \\text{ X is acute} \\\\[10pt]&\\textbf{Step 1: Find Cos X Using the Pythagorean Identity} \\\\[4pt]&\\sin^2 X + \\cos^2 X = 1 \\\\[4pt]&\\cos^2 X = 1 - \\sin^2 X = 1 - \\left(\\dfrac{3}{5}\\right)^2 = 1 - \\dfrac{9}{25} = \\dfrac{16}{25} \\\\[4pt]&\\cos X = \\sqrt{\\dfrac{16}{25}} = \\dfrac{4}{5} \\text{ (positive since X is acute)} \\\\[10pt]&\\textbf{Step 2: Verify Using a 3-4-5 Right Triangle} \\\\[4pt]&\\text{Opposite} = 3, \\text{ Hypotenuse} = 5, \\text{ Adjacent} = \\sqrt{5^2 - 3^2} = \\sqrt{16} = 4 \\\\[4pt]&\\therefore \\cos X = \\dfrac{4}{5} \\\\[10pt]&\\textbf{Step 3: Recall the Double Angle Formula} \\\\[4pt]&\\cos 2X = 1 - 2\\sin^2 X \\\\[10pt]&\\textbf{Step 4: Substitute Known Values} \\\\[4pt]&\\cos 2X = 1 - 2\\left(\\dfrac{3}{5}\\right)^2 \\\\[10pt]&\\textbf{Step 5: Simplify} \\\\[4pt]&\\cos 2X = 1 - 2\\left(\\dfrac{9}{25}\\right) = 1 - \\dfrac{18}{25} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\cos 2X = \\dfrac{7}{25}\\end{aligned}$$"
   },
   {
     "Pkey": "589",
@@ -7484,7 +7484,7 @@
     "Question": "If x is directly proportional to y and x equals 2 when y equals 5, find the value of x when y equals 6.",
     "Answer": "12 over 5",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ } x \\propto y, \\text{ } x = 2 \\text{ when } y = 5 \\\\[10pt]&\\textbf{Step 1: Convert Proportionality to an Equation} \\\\[4pt]&x = ky \\text{ where } k \\text{ is the constant of proportionality} \\\\[10pt]&\\textbf{Step 2: Substitute Known Values to Find } k \\\\[4pt]&2 = k \\times 5 \\\\[10pt]&\\textbf{Step 3: Solve for } k \\\\[4pt]&k = \\dfrac{2}{5} \\\\[10pt]&\\textbf{Step 4: Write the Proportionality Equation} \\\\[4pt]&x = \\dfrac{2}{5}y \\\\[10pt]&\\textbf{Step 5: Substitute } y = 6 \\\\[4pt]&x = \\dfrac{2}{5} \\times 6 \\\\[10pt]&\\textbf{Step 6: Simplify} \\\\[4pt]&x = \\dfrac{12}{5} \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&x = 2.4\\end{aligned}$$"
   },
   {
     "Pkey": "613",
@@ -7581,7 +7581,7 @@
     "Question": "A cone of radius 6cm and height 3cm is melted to form a sphere. What is the radius of the sphere?",
     "Answer": "3cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Cone: radius } r = 6\\text{ cm, height } h = 3\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Recall the Volume of a Cone Formula} \\\\[4pt]&V_{cone} = \\dfrac{1}{3}\\pi r^2 h \\\\[10pt]&\\textbf{Step 2: Calculate the Volume of the Cone} \\\\[4pt]&V_{cone} = \\dfrac{1}{3} \\times \\pi \\times 6^2 \\times 3 \\\\[4pt]&V_{cone} = \\dfrac{1}{3} \\times \\pi \\times 36 \\times 3 = 36\\pi \\text{ cm}^3 \\\\[10pt]&\\textbf{Step 3: Recall the Volume of a Sphere Formula} \\\\[4pt]&V_{sphere} = \\dfrac{4}{3}\\pi R^3 \\\\[10pt]&\\textbf{Step 4: Equate the Two Volumes} \\\\[4pt]&\\dfrac{4}{3}\\pi R^3 = 36\\pi \\\\[10pt]&\\textbf{Step 5: Simplify by Dividing Both Sides by } \\pi \\\\[4pt]&\\dfrac{4}{3} R^3 = 36 \\\\[10pt]&\\textbf{Step 6: Solve for } R^3 \\\\[4pt]&R^3 = 36 \\times \\dfrac{3}{4} = \\dfrac{108}{4} = 27 \\\\[10pt]&\\textbf{Step 7: Take the Cube Root} \\\\[4pt]&R = \\sqrt[3]{27} \\\\[10pt]&\\textbf{Step 8: Answer} \\\\[4pt]&R = 3\\text{ cm}\\end{aligned}$$"
   },
   {
     "Pkey": "621",
@@ -7776,7 +7776,7 @@
     "Question": "What is the value of x if log to the base 10 of x equals 3?",
     "Answer": "1000",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\log_{10} x = 3 \\\\[10pt]&\\textbf{Step 1: Recall the Definition of a Logarithm} \\\\[4pt]&\\log_{b} a = c \\iff b^c = a \\\\[10pt]&\\textbf{Step 2: Apply the Definition} \\\\[4pt]&\\log_{10} x = 3 \\iff 10^3 = x \\\\[10pt]&\\textbf{Step 3: Evaluate the Power} \\\\[4pt]&x = 10^3 = 10 \\times 10 \\times 10 \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&x = 1000\\end{aligned}$$"
   },
   {
     "Pkey": "637",
@@ -8140,10 +8140,10 @@
     "Round": "2",
     "Match": "38",
     "Subject": "Mathematics",
-    "Question": "If f(x) = x^6 - 4x + 7, determine the coordinates of the maximum value of f(x).",
+    "Question": "If f(x) = x^2 - 4x + 7, determine the coordinates of the maximum value of f(x).",
     "Answer": "(2, 3)",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ } f(x) = x^2 - 4x + 7 \\\\[10pt]&\\textbf{Step 1: Find the First Derivative} \\\\[4pt]&f'(x) = 2x - 4 \\\\[10pt]&\\textbf{Step 2: Set } f'(x) = 0 \\text{ to Find the Critical Point} \\\\[4pt]&2x - 4 = 0 \\\\[4pt]&2x = 4 \\\\[4pt]&x = 2 \\\\[10pt]&\\textbf{Step 3: Find the Second Derivative} \\\\[4pt]&f''(x) = 2 \\\\[10pt]&\\textbf{Step 4: Apply the Second Derivative Test} \\\\[4pt]&f''(2) = 2 > 0 \\\\[4pt]&\\therefore \\text{ The critical point is a } \\textbf{Minimum} \\\\[10pt]&\\textbf{Step 5: Find the y-coordinate} \\\\[4pt]&f(2) = (2)^2 - 4(2) + 7 = 4 - 8 + 7 = 3 \\\\[10pt]&\\textbf{Step 6: Verify by Completing the Square} \\\\[4pt]&f(x) = (x - 2)^2 - 4 + 7 = (x - 2)^2 + 3 \\\\[4pt]&\\text{Minimum occurs when } (x-2)^2 = 0 \\text{, i.e. } x = 2 \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\text{Minimum coordinates} = (2, 3)\\end{aligned}$$"
   },
   {
     "Pkey": "667",
