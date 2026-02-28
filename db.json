@@ -2587,6 +2587,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the clip and identify this actress.",
     "Answer": "Mikey Madison",
+    "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSp_gtPUKiw2VPYN-IdhU7Kn59IXDhemg7hECzegagabEp3l4-H",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2794,6 +2795,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the clip and identify the actor.",
     "Answer": "Owen \"Blacka\" Ellis (Jamaican actor)",
+    "ImageUrl": "https://i.prcdn.co/img?regionKey=CQ28HozWumAAaBVcJgMaEQ==",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3013,6 +3015,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify the actress.",
     "Answer": "Penélope Cruz",
+    "ImageUrl": "",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3208,6 +3211,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Geoffrey Rush",
+    "ImageUrl": "",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3451,6 +3455,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Troy Kotsur",
+    "ImageUrl": "",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3670,6 +3675,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this Jamaican actor.",
     "Answer": "Glen Titus Campbell (Jamaican actor)",
+    "ImageUrl": "",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3901,6 +3907,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Dev Patel (British actor)",
+    "ImageUrl": "",
     "Section": "buzzer",
     "Info": ""
   },
@@ -4144,6 +4151,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Jackie Chan (Hong Kong actor)",
+    "ImageUrl": "",
     "Section": "buzzer",
     "Info": ""
   },
