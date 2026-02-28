@@ -456,7 +456,7 @@ let _tooltipPinned     = false;
 let _tooltipAnchorIcon = null;
 let _tooltipDragged    = false;  // true after user manually drags the panel
 
-function showTooltip(iconEl) {
+function showTooltip(iconEl, clientX, clientY) {
   // If pinned, the user has locked the panel — do not replace its content.
   if (_tooltipPinned) return;
 
@@ -534,45 +534,58 @@ function showTooltip(iconEl) {
   // Reset pin visuals whenever fresh content is loaded into the panel
   _setTooltipPinned(false);
 
-  // ── Position ──
-  positionTooltip(iconEl);
+  // ── Position at the pointer so the header is immediately under the cursor/finger ──
+  positionAtPointer(clientX, clientY);
 
   // ── Show ──
   dom.infoTooltip.classList.add('visible');
 }
 
-function positionTooltip(iconEl) {
-  if (!iconEl) return;
-  const GAP     = 8;   // px gap between icon and tooltip
-  const MARGIN  = 12;  // min px from viewport edges
-  const tip     = dom.infoTooltip;
-  const rect    = iconEl.getBoundingClientRect();
-  // Read inline width we set (offsetWidth may be 0 before first paint)
-  const tipW    = tip.offsetWidth  || parseInt(tip.style.width)  || 320;
-  const tipH    = tip.offsetHeight || 260;
-  const vw      = window.innerWidth;
-  const vh      = window.innerHeight;
+// ════════════════════════════════════
+//  POSITION AT POINTER
+//
+//  Places the panel so its top-left sits just below the cursor/finger,
+//  meaning the header is immediately under the pointer on first appearance.
+//  The user can therefore grab it and drag or tap Pin without any extra
+//  movement across the screen.
+//
+//  Falls back to viewport centre if no coordinates are supplied (e.g.
+//  keyboard focus via focusin, which has no pointer position).
+//
+//  All coordinates are viewport-relative (clientX/Y), matching the
+//  panel's position:fixed coordinate space — no scrollY adjustment needed.
+// ════════════════════════════════════
+function positionAtPointer(clientX, clientY) {
+  const GAP    = 12;  // px gap between pointer and panel top edge
+  const MARGIN = 8;   // min px from any viewport edge
+  const tip    = dom.infoTooltip;
+  const tipW   = tip.offsetWidth  || parseInt(tip.style.width) || 320;
+  const tipH   = tip.offsetHeight || 200;
+  const vw     = window.innerWidth;
+  const vh     = window.innerHeight;
 
-  // Default: below icon, left-aligned to icon
-  let top  = rect.bottom + GAP + window.scrollY;
-  let left = rect.left   + window.scrollX;
+  // Fallback: centre of viewport (keyboard focus has no pointer coords)
+  const px = (clientX != null) ? clientX : vw / 2;
+  const py = (clientY != null) ? clientY : vh / 2;
 
-  // Flip above if it would overflow the viewport bottom
-  if (rect.bottom + GAP + tipH > vh) {
-    top = rect.top - GAP - tipH + window.scrollY;
+  // Default: open just below the pointer
+  let top  = py + GAP;
+  let left = px;
+
+  // Flip above if panel would overflow the bottom of the viewport
+  if (top + tipH > vh - MARGIN) {
+    top = py - GAP - tipH;
   }
 
-  // Clamp horizontal — don't clip off right edge
-  if (left + tipW > vw - MARGIN) {
-    left = vw - tipW - MARGIN + window.scrollX;
-  }
-  // Don't clip off left edge
-  if (left < MARGIN + window.scrollX) {
-    left = MARGIN + window.scrollX;
-  }
+  // Clamp horizontal so panel never clips off left or right edge
+  left = Math.max(MARGIN, Math.min(left, vw - tipW - MARGIN));
 
-  tip.style.top  = `${top}px`;
+  // Clamp vertical so panel never clips off top edge (after possible flip)
+  top = Math.max(MARGIN, top);
+
+  // position:fixed → set viewport coordinates directly, no scrollY offset
   tip.style.left = `${left}px`;
+  tip.style.top  = `${top}px`;
 }
 
 // Called by hover/focus-out — respects the pin lock.
@@ -1363,7 +1376,7 @@ function setupEventListeners() {
   dom.tableBody.addEventListener('mouseover', e => {
     if (e.pointerType === 'touch') return; // handled by click below
     const icon = e.target.closest('.info-icon');
-    if (icon) showTooltip(icon);
+    if (icon) showTooltip(icon, e.clientX, e.clientY);
   });
   dom.tableBody.addEventListener('mouseout', e => {
     if (e.pointerType === 'touch') return;
@@ -1384,7 +1397,7 @@ function setupEventListeners() {
       else _setTooltipPinned(true);
     } else {
       // Different icon or panel was hidden — open fresh
-      showTooltip(icon);
+      showTooltip(icon, e.clientX, e.clientY);
       // Auto-pin on touch so the panel doesn't immediately vanish
       if (e.pointerType === 'touch' || e.pointerType === 'pen') {
         _setTooltipPinned(true);
@@ -1422,10 +1435,14 @@ function setupEventListeners() {
   // ── Resize — custom handle, pointer events, all devices ──
   _initTooltipResize();
 
-  // Keyboard accessibility: show on focus, hide on blur
+  // Keyboard accessibility: show on focus, hide on blur.
+  // No pointer coordinates available for keyboard focus — positionAtPointer
+  // will fall back to viewport centre, which is always reachable.
   dom.tableBody.addEventListener('focusin', e => {
     const icon = e.target.closest('.info-icon');
-    if (icon) showTooltip(icon);
+    if (!icon) return;
+    const r = icon.getBoundingClientRect();
+    showTooltip(icon, r.left + r.width / 2, r.bottom);
   });
   dom.tableBody.addEventListener('focusout', e => {
     const icon = e.target.closest('.info-icon');
@@ -1435,15 +1452,15 @@ function setupEventListeners() {
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') forceHideTooltip();
   });
-  // Scroll: reposition live — but skip if the user has manually dragged the panel,
-  // since they placed it intentionally and we must not override that position.
+  // Scroll: the panel is position:fixed so it doesn't move with the page.
+  // All we need to do is hide it if the user scrolls the anchor icon
+  // completely off-screen (and the panel isn't pinned or manually dragged).
   window.addEventListener('scroll', () => {
-    if (dom.infoTooltip.classList.contains('visible') && !_tooltipDragged) {
-      const anchor = _tooltipAnchorIcon ||
-        dom.tableBody.querySelector('.info-icon:focus, .info-icon:hover');
-      if (anchor) positionTooltip(anchor);
-      else if (!_tooltipPinned) forceHideTooltip();
-    }
+    if (!dom.infoTooltip.classList.contains('visible')) return;
+    if (_tooltipPinned || _tooltipDragged) return;
+    if (!_tooltipAnchorIcon) return;
+    const r = _tooltipAnchorIcon.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > window.innerHeight) hideTooltip(0);
   }, { passive: true });
 
   // ── Flashcard ──
