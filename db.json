@@ -232,7 +232,7 @@
     "Question": "According to the book of Judges, which woman drove a tent peg through Sisera's temple?",
     "Answer": "Jael",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "According to the Book of Judges (specifically chapter 4:21)Jael, the wife of Heber the Kenite, drove a tent peg through the temple of the Canaanite commander Sisera. After Sisera fled on foot to her tent for refuge, she offered him milk, covered him, and then killed him with a hammer and tent peg while he was fast asleep from exhaustion."
   },
   {
     "Pkey": "20",
@@ -243,8 +243,9 @@
     "Subject": "Biology",
     "Question": "What is the expected phenotypic ratio from a cross between two heterozygous parents for a single trait?",
     "Answer": "3 to 1",
+    "ImageUrl": "https://opentextbc.ca/biology/wp-content/uploads/sites/96/2015/02/Figure_08_02_06.png",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "The expected phenotypic ratio from a cross between two parents heterozygous for a single trait (Aa x Aa) is 3:1. This means approximately 75% of the offspring will display the dominant phenotype, while 25% will express the recessive phenotype."
   },
   {
     "Pkey": "21",
@@ -269,7 +270,7 @@
     "Answer": "Anutin Charnvirakul (PM of Thailand)",
     "ImageUrl": "https://cdn.britannica.com/91/278991-050-98749664/Anutin-Charnvirakul-Thailand-prime-minister-2025.jpg",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "As of September 7, 2025, Anutin Charnvirakul is the Prime Minister of Thailand, leading a conservative, minority government following the ousting of Paetongtarn Shinawatra. A 58-year-old former construction tycoon and leader of the Bhumjaithai Party, he is well-known for spearheading the decriminalization of cannabis and serving as health/interior minister."
   },
   {
     "Pkey": "23",
@@ -281,7 +282,7 @@
     "Question": "When the carbon content of steel exceeds 2%, what is the specific name of that substance?",
     "Answer": "Cast Iron",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Cast iron is a highly durable iron-carbon alloy (containing carbon) known for excellent, uniform heat retention, making it ideal for searing and slow cooking. Used for centuries in cookware, it requires a 'seasoning' process—baking oil onto the surface—to create a naturally non-stick, rust-resistant coating."
   },
   {
     "Pkey": "24",
@@ -305,8 +306,9 @@
     "Subject": "General Knowledge",
     "Question": "Who chartered the route around the southern tip of Africa in 1488?",
     "Answer": "Bartolomeu Dias",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Bartolomeu_Dias%2C_South_Africa_House_%28cut%29.JPG/500px-Bartolomeu_Dias%2C_South_Africa_House_%28cut%29.JPG",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Portuguese explorer Bartolomeu Dias (Bartholomew Diaz) chartered the route around the southern tip of Africa in 1488, becoming the first European to round the Cape of Good Hope. Commissioned by King John II, Dias's expedition proved a direct sea route to Asia existed. He initially named it the 'Cape of Storms'."
   },
   {
     "Pkey": "26",
