@@ -382,7 +382,7 @@
     "Answer": "27000 degrees",
     "ImageUrl": "",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Speed } = 4500 \\text{ rev/min} \\\\[10pt]&\\textbf{Step 1: Convert to Revolutions per Second} \\\\[4pt]&\\text{Rev/s} = \\dfrac{4500}{60} = 75 \\text{ rev/s} \\\\[10pt]&\\textbf{Step 2: State the Conversion} \\\\[4pt]&1 \\text{ revolution} = 360^{\\circ} \\\\[10pt]&\\textbf{Step 3: Calculate Degrees per Second} \\\\[4pt]&\\text{Degrees/s} = 75 \\times 360^{\\circ} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&\\text{Degrees/s} = 27000^{\\circ}\\end{aligned}$$"
   },
   {
     "Pkey": "32",
@@ -688,7 +688,8 @@
     "Question": "The perpendicular distance from the center of a circle to a chord is 3cm and the radius is 5cm. What is the measurement for a half length of the chord?",
     "Answer": "4 cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Perpendicular distance } = 3\\text{ cm, Radius } = 5\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Recall the Property} \\\\[4pt]&\\text{The perpendicular from the centre bisects the chord,} \\\\[4pt]&\\text{forming a right-angled triangle where:} \\\\[4pt]&\\text{hypotenuse} = r, \\text{ one leg} = 3\\text{ cm, other leg} = \\text{half-chord} \\\\[10pt]&\\textbf{Step 2: State Pythagoras' Theorem} \\\\[4pt]&r^2 = d^2 + l^2 \\\\[10pt]&\\textbf{Step 3: Substitute Known Values} \\\\[4pt]&5^2 = 3^2 + l^2 \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&25 = 9 + l^2 \\\\[10pt]&\\textbf{Step 5: Solve for } l \\\\[4pt]&l^2 = 25 - 9 = 16 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&l = \\sqrt{16} = 4\\text{ cm}\\end{aligned}$$"
+
   },
   {
     "Pkey": "57",
@@ -1079,7 +1080,7 @@
     "Question": "A polygon has an interior angle sum of 2340 degrees. How many sides does it have?",
     "Answer": "15",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Sum of interior angles } = 2340^{\\circ} \\\\[10pt]&\\textbf{Step 1: State the Formula} \\\\[4pt]&S = (n - 2) \\times 180^{\\circ} \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&2340 = (n - 2) \\times 180 \\\\[10pt]&\\textbf{Step 3: Isolate } (n - 2) \\\\[4pt]&(n - 2) = \\dfrac{2340}{180} \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&(n - 2) = 13 \\\\[10pt]&\\textbf{Step 5: Solve for } n \\\\[4pt]&n = 13 + 2 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&n = 15 \\text{ sides}\\end{aligned}$$"
   },
   {
     "Pkey": "89",
@@ -1201,7 +1202,7 @@
     "Question": "The diameter of a circle is increased by 20%. What is the percentage increase in area?",
     "Answer": "0.44",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Diameter increased by } 20\\% \\\\[10pt]&\\textbf{Step 1: Recall the Area Formula} \\\\[4pt]&A = \\pi r^2 \\text{ and since } r = \\dfrac{d}{2}, \\text{ then } A = \\dfrac{\\pi d^2}{4} \\\\[10pt]&\\textbf{Step 2: Define the Original and New Diameter} \\\\[4pt]&\\text{Let original diameter } = d \\\\[4pt]&\\text{New diameter } = 1.20d \\\\[10pt]&\\textbf{Step 3: Find the Original and New Area} \\\\[4pt]&A_1 = \\dfrac{\\pi d^2}{4} \\\\[4pt]&A_2 = \\dfrac{\\pi (1.20d)^2}{4} = \\dfrac{\\pi \\times 1.44d^2}{4} = 1.44 \\times \\dfrac{\\pi d^2}{4} \\\\[10pt]&\\textbf{Step 4: Calculate the Percentage Increase} \\\\[4pt]&\\% \\text{ increase} = \\dfrac{A_2 - A_1}{A_1} \\times 100 \\\\[10pt]&\\textbf{Step 5: Substitute} \\\\[4pt]&\\% \\text{ increase} = \\dfrac{1.44 \\times \\dfrac{\\pi d^2}{4} - \\dfrac{\\pi d^2}{4}}{\\dfrac{\\pi d^2}{4}} \\times 100 \\\\[10pt]&\\textbf{Step 6: Simplify} \\\\[4pt]&\\% \\text{ increase} = (1.44 - 1) \\times 100 = 0.44 \\times 100 \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\% \\text{ increase} = 44\\%\\end{aligned}$$"
   },
   {
     "Pkey": "99",
