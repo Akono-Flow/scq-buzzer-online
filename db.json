@@ -381,7 +381,7 @@
     "Question": "An electric motor makes 4500 revolutions per minute. How many degrees does it rotate in one second?",
     "Answer": "27000 degrees",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Step 1: Convert Revolutions per minute to revolutions per second: \n $\\dfrac{4500 rev}{1 min} \times \\dfrac{1 min}{60 seconds}$"
   },
   {
     "Pkey": "32",
