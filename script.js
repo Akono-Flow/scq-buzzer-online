@@ -74,6 +74,7 @@ const dom = {
   infoTooltipIcon:  $('infoTooltipIcon'),
   tooltipPinBtn:    $('tooltipPinBtn'),
   tooltipCloseBtn:  $('tooltipCloseBtn'),
+  tooltipResizeHandle: $('tooltipResizeHandle'),
 
   // Flashcard
   fcCounter:    $('fcCounter'),
@@ -618,80 +619,142 @@ function _setTooltipPinned(pinned) {
 
 
 // ════════════════════════════════════
-//  TOOLTIP DRAG
+//  TOOLTIP DRAG  (Pointer Events — mouse, touch, stylus, all devices)
 //
-//  Called once from setupEventListeners().
-//  Attaches mousedown to the tooltip header — but NOT to any button
-//  inside it — so the pin and close buttons still work normally.
+//  Uses the Pointer Events API (pointerdown / pointermove / pointerup)
+//  which is a single unified system covering mouse, touch finger, and
+//  stylus across desktop, laptop, tablet, and mobile without needing
+//  separate mouse and touch handlers.
 //
-//  The panel uses position:fixed, so all coordinates are viewport-
-//  relative. We read the live getBoundingClientRect() on mousedown
-//  so it works correctly whether the panel was auto-positioned or
-//  was previously dragged to a custom location.
+//  setPointerCapture() routes all subsequent events for that pointer ID
+//  to the header element even when the pointer leaves it, so fast drags
+//  never "lose" the element mid-gesture.
 //
-//  _tooltipDragged is set true on mouseup so the scroll-reposition
-//  handler knows not to override the user's chosen position.
+//  touch-action:none on the header (in CSS) tells the browser to hand
+//  full pointer control to JS instead of using the gesture for scrolling
+//  or zooming.
 // ════════════════════════════════════
 function _initTooltipDrag() {
   const tip    = dom.infoTooltip;
   const header = tip.querySelector('.info-tooltip-header');
 
-  let dragging   = false;
-  let startMouseX, startMouseY;
-  let startTipLeft, startTipTop;
+  let dragging = false;
+  let startPtrX, startPtrY, startTipLeft, startTipTop;
 
-  header.addEventListener('mousedown', e => {
-    // Ignore clicks that land on a button — those have their own actions.
+  header.addEventListener('pointerdown', e => {
+    // Ignore taps/clicks on buttons inside the header
     if (e.target.closest('button')) return;
 
-    e.preventDefault(); // prevent text selection while dragging
+    e.preventDefault();
+    header.setPointerCapture(e.pointerId); // all moves route here, even outside
 
-    // Capture the tooltip's current viewport position.
-    // Using getBoundingClientRect() is correct for position:fixed —
-    // it gives viewport-relative coordinates regardless of scrollY.
     const rect   = tip.getBoundingClientRect();
     startTipLeft = rect.left;
     startTipTop  = rect.top;
-    startMouseX  = e.clientX;
-    startMouseY  = e.clientY;
+    startPtrX    = e.clientX;
+    startPtrY    = e.clientY;
 
     dragging = true;
     tip.classList.add('is-dragging');
-    document.body.style.userSelect = 'none'; // no text selection during drag
   });
 
-  // mousemove/mouseup on document so dragging outside the panel works.
-  document.addEventListener('mousemove', e => {
+  header.addEventListener('pointermove', e => {
     if (!dragging) return;
+    e.preventDefault();
 
-    const MARGIN = 8;   // minimum px from any viewport edge
-    const dx     = e.clientX - startMouseX;
-    const dy     = e.clientY - startMouseY;
-    const tipW   = tip.offsetWidth;
-    const tipH   = tip.offsetHeight;
+    const MARGIN = 8;
+    const dx     = e.clientX - startPtrX;
+    const dy     = e.clientY - startPtrY;
     const vw     = window.innerWidth;
     const vh     = window.innerHeight;
+    const tipW   = tip.offsetWidth;
 
-    let newLeft = startTipLeft + dx;
-    let newTop  = startTipTop  + dy;
+    let newLeft = Math.max(MARGIN, Math.min(startTipLeft + dx, vw - tipW - MARGIN));
+    let newTop  = Math.max(MARGIN, Math.min(startTipTop  + dy, vh - 40));
 
-    // Clamp so the panel can't be dragged entirely off-screen.
-    // Allow top to go to MARGIN so the header stays reachable.
-    // Allow a generous bottom clamp so at least 40px of header stays visible.
-    newLeft = Math.max(MARGIN, Math.min(newLeft, vw - tipW - MARGIN));
-    newTop  = Math.max(MARGIN, Math.min(newTop,  vh - 40));
-
-    // position:fixed → assign viewport coordinates directly, no scrollY.
     tip.style.left = `${newLeft}px`;
     tip.style.top  = `${newTop}px`;
   });
 
-  document.addEventListener('mouseup', () => {
+  header.addEventListener('pointerup', e => {
     if (!dragging) return;
     dragging        = false;
-    _tooltipDragged = true; // prevent scroll handler from repositioning
+    _tooltipDragged = true;
     tip.classList.remove('is-dragging');
-    document.body.style.userSelect = '';
+    header.releasePointerCapture(e.pointerId);
+  });
+
+  // Also end drag cleanly if pointer is cancelled (e.g. incoming call on mobile)
+  header.addEventListener('pointercancel', e => {
+    if (!dragging) return;
+    dragging = false;
+    tip.classList.remove('is-dragging');
+    header.releasePointerCapture(e.pointerId);
+  });
+}
+
+
+// ════════════════════════════════════
+//  TOOLTIP RESIZE  (Pointer Events — mouse, touch, stylus, all devices)
+//
+//  The custom .tooltip-resize-handle div sits at the bottom-right corner.
+//  On pointerdown we capture the tooltip's current width/height and the
+//  pointer's viewport position, then on pointermove we compute the delta
+//  and apply it as new dimensions, clamped to sensible min/max bounds.
+//
+//  touch-action:none on the handle element (in CSS) is essential — without
+//  it the browser intercepts the touch gesture for page scrolling before JS
+//  ever sees the pointermove events.
+// ════════════════════════════════════
+function _initTooltipResize() {
+  const tip    = dom.infoTooltip;
+  const handle = dom.tooltipResizeHandle;
+
+  let resizing = false;
+  let startPtrX, startPtrY, startW, startH;
+
+  handle.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    e.stopPropagation(); // don't bubble to header drag listener
+    handle.setPointerCapture(e.pointerId);
+
+    startPtrX = e.clientX;
+    startPtrY = e.clientY;
+    startW    = tip.offsetWidth;
+    startH    = tip.offsetHeight;
+
+    resizing = true;
+    tip.classList.add('is-resizing');
+  });
+
+  handle.addEventListener('pointermove', e => {
+    if (!resizing) return;
+    e.preventDefault();
+
+    const MIN_W = 240;
+    const MIN_H = 120;
+    const MAX_W = window.innerWidth  - 16;
+    const MAX_H = window.innerHeight - 16;
+
+    const newW = Math.max(MIN_W, Math.min(startW + (e.clientX - startPtrX), MAX_W));
+    const newH = Math.max(MIN_H, Math.min(startH + (e.clientY - startPtrY), MAX_H));
+
+    tip.style.width  = `${newW}px`;
+    tip.style.height = `${newH}px`;
+  });
+
+  handle.addEventListener('pointerup', e => {
+    if (!resizing) return;
+    resizing = false;
+    tip.classList.remove('is-resizing');
+    handle.releasePointerCapture(e.pointerId);
+  });
+
+  handle.addEventListener('pointercancel', e => {
+    if (!resizing) return;
+    resizing = false;
+    tip.classList.remove('is-resizing');
+    handle.releasePointerCapture(e.pointerId);
   });
 }
 
@@ -1287,21 +1350,63 @@ function setupEventListeners() {
 
   // ══ INFO TOOLTIP — event delegation on tableBody ══
   // Using delegation means we don't need to re-attach listeners after each render.
+  //
+  // DESKTOP (mouse): hover over ⓘ to open, move away to close.
+  // TOUCH (tablet/phone): tap ⓘ to open and auto-pin; use close button or
+  //   Escape to dismiss. There is no hover on touch so auto-pin is the only
+  //   sensible behaviour — the panel must stay visible until the user is done.
+  //
+  // We distinguish touch from mouse via e.pointerType on the click event.
+  // Both device types fire 'click', so one listener handles both cleanly.
+
+  // Mouse-only: hover to show / move away to hide
   dom.tableBody.addEventListener('mouseover', e => {
+    if (e.pointerType === 'touch') return; // handled by click below
     const icon = e.target.closest('.info-icon');
     if (icon) showTooltip(icon);
   });
   dom.tableBody.addEventListener('mouseout', e => {
+    if (e.pointerType === 'touch') return;
     const icon = e.target.closest('.info-icon');
     if (icon) hideTooltip();
   });
-  // Keep tooltip alive when mouse moves into the tooltip itself
-  dom.infoTooltip.addEventListener('mouseenter', () => clearTimeout(_tooltipHideTimer));
-  dom.infoTooltip.addEventListener('mouseleave', () => hideTooltip());
+
+  // All devices: click/tap the ⓘ icon
+  dom.tableBody.addEventListener('click', e => {
+    const icon = e.target.closest('.info-icon');
+    if (!icon) return;
+
+    // On touch: first tap opens + auto-pins; second tap closes.
+    // On mouse: click while the panel is visible acts as a quick pin toggle.
+    if (dom.infoTooltip.classList.contains('visible') && _tooltipAnchorIcon === icon) {
+      // Same icon tapped again — toggle: close if pinned, pin if not
+      if (_tooltipPinned) forceHideTooltip();
+      else _setTooltipPinned(true);
+    } else {
+      // Different icon or panel was hidden — open fresh
+      showTooltip(icon);
+      // Auto-pin on touch so the panel doesn't immediately vanish
+      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+        _setTooltipPinned(true);
+      }
+    }
+  });
+
+  // Keep tooltip alive when mouse moves into the tooltip itself.
+  // Guard against touch: touchmove inside the body fires mouseleave on some
+  // browsers, which would dismiss the panel mid-scroll.
+  dom.infoTooltip.addEventListener('mouseenter', e => {
+    if (e.pointerType === 'touch') return;
+    clearTimeout(_tooltipHideTimer);
+  });
+  dom.infoTooltip.addEventListener('mouseleave', e => {
+    if (e.pointerType === 'touch') return;
+    hideTooltip();
+  });
 
   // ── Pin button — toggle pin state ──
   dom.tooltipPinBtn.addEventListener('click', e => {
-    e.stopPropagation(); // don't bubble into tooltip mouseleave
+    e.stopPropagation();
     _setTooltipPinned(!_tooltipPinned);
   });
 
@@ -1311,8 +1416,11 @@ function setupEventListeners() {
     forceHideTooltip();
   });
 
-  // ── Drag — mousedown on header initiates free drag ──
+  // ── Drag — pointer events handle mouse, touch, and stylus ──
   _initTooltipDrag();
+
+  // ── Resize — custom handle, pointer events, all devices ──
+  _initTooltipResize();
 
   // Keyboard accessibility: show on focus, hide on blur
   dom.tableBody.addEventListener('focusin', e => {
