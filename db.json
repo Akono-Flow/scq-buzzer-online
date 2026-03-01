@@ -122,6 +122,7 @@
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Marlon Brando",
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BMTg3MDYyMDE5OF5BMl5BanBnXkFtZTcwNjgyNTEzNA@@._V1_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Marlon-Brando.jpeg",
     "Section": "buzzer",
     "Info": "Marlon Brando Jr. (April 3, 1924 – July 1, 2004) was an American actor widely regarded as one of the greatest and most influential performers in the history of cinema.\nHe made his film debut playing a wounded G.I. in 'The Men' (1950) and won two Academy Awards for Best Actor for his performances as a dockworker in 'On the Waterfront' (1954) and Vito Corleone in 'The Godfather' (1972).\n He was also Oscar-nominated for playing Stanley Kowalski in 'A Streetcar Named Desire' (1951), Emiliano Zapata in 'Viva Zapata!' (1952), Mark Antony in 'Julius Caesar' (1953), an air force pilot in 'Sayonara' (1957), an American expatriate in 'Last Tango in Paris' (1973), and a lawyer in 'A Dry White Season' (1989)."
   },
@@ -348,7 +349,8 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the clip and identify this actress.",
     "Answer": "Lucille Ball",
-     "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRNc9wFmzeSUUSy2Zi3MY1C9km5CiLHv9-3TBBhUAbU-cWy5zj3",
+    "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRNc9wFmzeSUUSy2Zi3MY1C9km5CiLHv9-3TBBhUAbU-cWy5zj3",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Lucille-Ball.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -548,7 +550,8 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify the actor.",
     "Answer": "Paul Mescal",
-     "ImageUrl": "https://cdn.britannica.com/00/250500-050-47CB256E/Paul-Mescal-2022.jpg",
+    "ImageUrl": "https://cdn.britannica.com/00/250500-050-47CB256E/Paul-Mescal-2022.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Paul-Mescal.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -760,7 +763,8 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actress.",
     "Answer": "Sigourney Weaver",
-     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMyMw@@._V1_FMjpg_UX1000_.jpg",
+    "ImageUrl": "https://m.media-amazon.com/images/M/MV5BMTk1MTcyNTE3OV5BMl5BanBnXkFtZTcwMTA0MTMyMw@@._V1_FMjpg_UX1000_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Sigourney-Weaver.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1007,7 +1011,8 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the monitor and identify this actor?",
     "Answer": "Gregory Peck",
-     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BYWU1YTkwOGEtZTdjOC00ZDEyLThkZWUtMzY4ZjYzYWQyM2FlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "ImageUrl": "https://m.media-amazon.com/images/M/MV5BYWU1YTkwOGEtZTdjOC00ZDEyLThkZWUtMzY4ZjYzYWQyM2FlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Gregory-Peck.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1242,7 +1247,8 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Harrison Ford",
-     "ImageUrl": "https://people.com/thmb/pmH_PTwv39sOP2H8jhEViJncPUc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(734x312:736x314)/harrison-ford-sag-awards-022425-58fdcb98816441dea83ef371ec644b28.jpg",
+    "ImageUrl": "https://people.com/thmb/pmH_PTwv39sOP2H8jhEViJncPUc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(734x312:736x314)/harrison-ford-sag-awards-022425-58fdcb98816441dea83ef371ec644b28.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Harrison-Ford.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1478,6 +1484,7 @@
     "Question": "Look at the following clip and identify this actress.",
     "Answer": "Renate Reinsve",
      "ImageUrl": "https://m.media-amazon.com/images/M/MV5BZDliODgyNzctZjE3ZC00NDA1LWFhYTItZWNlMTcwMzc4MjFmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Renate-Reinsve.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1713,6 +1720,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Marsai Martin",
      "ImageUrl": "https://i.redd.it/6wy3jovtvote1.jpeg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Marsai-Martin.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1948,6 +1956,7 @@
     "Question": "Look at the following clip and identify this actress.",
     "Answer": "Andra Day",
      "ImageUrl": "https://people.com/thmb/c-Sb_0PdzpekC0t0Zj7_7FQFTyk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(736x323:738x325)/Andra-Day-051324-e77763d38da74074a199f74b3df1457a.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Andra-Day.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2182,6 +2191,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Jeremy Allen White",
      "ImageUrl": "https://variety.com/wp-content/uploads/2023/06/Variety-Actors-on-Actors-16x9-Jeremy-Allen-White.jpg?w=1024",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Jeremy-Allen-White-.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2416,6 +2426,7 @@
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Wagner Moura",
     "ImageUrl": "https://variety.com/wp-content/uploads/2026/01/Wagner-Moura-Golden-Globe-Win-2.jpg?crop=0px,0px,1200px,675px&resize=1000,563",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Wagner-Moura.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2626,6 +2637,7 @@
     "Question": "Look at the clip and identify this actress.",
     "Answer": "Mikey Madison",
     "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSp_gtPUKiw2VPYN-IdhU7Kn59IXDhemg7hECzegagabEp3l4-H",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Mikey-Madison.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2836,6 +2848,7 @@
     "Question": "Look at the clip and identify the actor.",
     "Answer": "Owen \"Blacka\" Ellis (Jamaican actor)",
     "ImageUrl": "https://i.prcdn.co/img?regionKey=CQ28HozWumAAaBVcJgMaEQ==",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Owen-_Blacka_-Ellis.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3058,6 +3071,7 @@
     "Question": "Look at the following clip and identify the actress.",
     "Answer": "Penélope Cruz",
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Premios_Goya_2018_-_Pen%C3%A9lope_Cruz.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Penélope-Cruz.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3256,6 +3270,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Geoffrey Rush",
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/80/Geoffrey_Rush_Final_Portrait_Red_Carpet_Berlinale_2017_01_(cropped).jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Geoffrey-Rush.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3502,6 +3517,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Troy Kotsur",
     "ImageUrl": "https://www.hollywoodreporter.com/wp-content/uploads/2022/01/Shot_01_TroyKotsur_0334-H-2022.jpg?w=1296&h=730&crop=1",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Troy-Kotsur.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3724,6 +3740,7 @@
     "Question": "Look at the following clip and identify this Jamaican actor.",
     "Answer": "Glen Titus Campbell (Jamaican actor)",
     "ImageUrl": "https://jamaicans.com/wp-content/uploads/Glen-Titus-Campbell-Jamaican-National-Honors-e1565626866770.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Glen-Titus-Campbell.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3958,6 +3975,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Dev Patel (British actor)",
     "ImageUrl": "https://cdn.britannica.com/58/256958-050-E961CE13/Dev-Patel-BFI-Luminous-Fundraising-Gala-London.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Dev-Patel.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -4204,6 +4222,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Jackie Chan (Hong Kong actor)",
     "ImageUrl": "https://aarp.widen.net/content/bdfyhloryb/jpeg/GettyImages-2229364480.jpg?crop=true&anchor=8,52&q=80&color=ffffffff&u=k2e9ec&w=2029&h=1166",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Jackie-Chan.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -4438,6 +4457,7 @@
     "Question": "Look at the clip and identify this popular Bollywood actor.",
     "Answer": "Salman Khan (Indian)",
     "ImageUrl": "https://cdn.britannica.com/54/256354-050-C19887AD/bollywood-actor-salman-khan-at-nika-mukesh-ambani-cultural-center-nmacc-mumbai-india.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Salman-Khan.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -4636,6 +4656,7 @@
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Eddie Redmayne (English Actor)",
     "ImageUrl": "https://goldenglobes.com/wp-content/uploads/2024/12/Best_Performance_by_a_Male_Actor_in_a_Television_Series_-_Drama_Day_of_the_Jackal_The_Eddie_Redmayne_Out_of_Character_Headshot.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Eddie-Redmayne.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -4846,6 +4867,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Cuba Gooding Jr (American Actor)",
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Cuba_Gooding_Jr_2022_%28cropped%29.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Cuba-Gooding-Jr.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5056,6 +5078,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Mark Rylance (English Actor and Playwright)",
     "ImageUrl": "https://i.redd.it/mark-rylance-as-socrates-thoughts-v0-qo8z42muf3df1.jpg?width=345&format=pjpg&auto=webp&s=391a6781bf41bdd7c46b16ffc1e7c0b05a5390a2",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Mark-Rylance.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5290,6 +5313,7 @@
     "Question": "Look at the following clip and identify this actress.",
     "Answer": "Inga Ibsdotter Lilleaas (Norwegian Actress)",
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BZmJhNmIzZjAtYjNhOS00NTkzLWI5NzItMTVhZTkyODQ4Y2U1XkEyXkFqcGc@._V1_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Inga-Ibsdotter-Lilleaas.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5524,6 +5548,7 @@
     "Question": "Look at the following clip and identify the actor.",
     "Answer": "Jacob Elordi (Australian Actor)",
     "ImageUrl": "https://contactanycelebrity.com/cac/wp-content/uploads/contact-jacob-elordi-2.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Jacob-Elordi.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5770,6 +5795,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Winston 'Bello' Bell (Late Jamaican Actor)",
     "ImageUrl": "https://www.dancehallmag.com/assets/2023/04/bell.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Winston-'Bello'-Bell.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -6028,6 +6054,7 @@
     "Question": "Look at the clip and identify the actress.",
     "Answer": "Chase Infiniti (Golden Globe nominee-One Battle After Another)",
     "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQCaD1ylp_eME-TJSspeuOkFkKyz9rq6FcxCz8a7ol8G_jHfQte",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Chase-Infiniti.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -6250,6 +6277,7 @@
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Richard Belzer (American Actor and Comedian)",
     "ImageUrl": "https://external-preview.redd.it/AS9Yy3i4b4KL3B-CRnxihHOkyW4M69P-5Ux3PKqavuw.jpg?auto=webp&s=95649aee8729fe8276811629aa3226b528f7f921",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Richard-Belzer.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -6448,6 +6476,7 @@
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Dominic West (English Actor)",
     "ImageUrl": "https://variety.com/wp-content/uploads/2024/11/Dominic-West.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Dominic-West.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -6646,6 +6675,7 @@
     "Question": "Look at the clip and identify this actress.",
     "Answer": "Jane Fonda (American Actress)",
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BMzQ5NTE2MDAzOV5BMl5BanBnXkFtZTgwOTQ3MTQ3MjE@._V1_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Jane-Fonda.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -6832,6 +6862,7 @@
     "Question": "Look at the clip and identify this actor.",
     "Answer": "Jim Parsons (Played Sheldon Cooper in The Big Bang Theory)",
     "ImageUrl": "https://cdn.britannica.com/65/240565-050-9E3EC559/American-actor-Jim-Parsons-2019.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Jim-Parsons.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -7018,6 +7049,7 @@
     "Question": "Look at the following clip and identify this iconic actress.",
     "Answer": "Marilyn Monroe (American Actress and model)",
     "ImageUrl": "https://m.media-amazon.com/images/M/MV5BMzVlZDc0NTUtNDdiNi00Mzk3LWEwMjYtM2EwMjZlMmFjZTY4XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Marilyn-Monroe.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -7240,6 +7272,7 @@
     "Question": "Look at the following clip and identify this actor.",
     "Answer": "Jean Dujardin (French Actor and Comedian)",
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Christophe_Lambert_et_Jean_Dujardin_(Cropped).jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Jean-Dujardin.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -7486,6 +7519,7 @@
     "Question": "Look at the following clip and give the first and last names of this Jamaican actor.",
     "Answer": "Christopher Daley (Co-host of Too live crew)",
     "ImageUrl": "https://www.caribbeannationalweekly.com/wp-content/uploads/2024/08/image-1-696x464.jpeg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Christopher-Daley.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -7720,6 +7754,7 @@
     "Question": "Look at the following clip and give the first and last names of this local actress.",
     "Answer": "Dorothy Cunningham (Miss Zella from Lime Tree Lane)",
     "ImageUrl": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS32JifXp2piSUEqErVyN3g8pgVxXsxhYyaFqq4zRgxa0P4-33F",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Dorothy-Cunningham.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -7954,6 +7989,7 @@
     "Question": "Look at the following clip and give the first and last names of this local actor.",
     "Answer": "Keith Ramsay",
     "ImageUrl": "https://jamaica-star.com/sites/default/files/styles/460px/public/media/article_images/2016/10/27/KeithRamsay.jpg?itok=8ihkjoBC",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Keith-Ramsay.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -8188,6 +8224,7 @@
     "Question": "Look at the clip, identify this actress.",
     "Answer": "Loretta Devine (Lorrell Robinson in the original Broadway production of Dreamgirls)",
     "ImageUrl": "https://people.com/thmb/KqvF6d82GvRpqLF7iOapd4FalBY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(772x395:774x397)/Loretta-Devine-Womens-Image-Network-Awards-112124-c4f09f5d3a9844199ecd0bdf70a3c17c.jpg",
+    "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Loretta-Devine.jpeg",
     "Section": "buzzer",
     "Info": ""
   },
