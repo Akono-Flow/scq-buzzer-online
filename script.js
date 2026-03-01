@@ -38,6 +38,19 @@ const state = {
 
   fc:   { cards: [], index: 0 },
   quiz: { cards: [], index: 0, correct: 0, total: 0, answered: false },
+
+  // TTS — Text-to-speech state
+  // readAll: when true, the read-question icon speaks the entire question
+  //          with language switching; when false, speaks only foreign segments.
+  tts: { readAll: false },
+
+  // Table visibility toggles
+  // answersHidden: globally hides answer text in all rows
+  // contentHidden: globally hides all cell content in all rows
+  // rowOverrides:  per-row explicit override (keyed by Pkey)
+  //   'shown'  → row content visible regardless of global state
+  //   'hidden' → row content hidden regardless of global state
+  tableToggles: { answersHidden: false, contentHidden: false, rowOverrides: {} },
 };
 
 // ════════════════════════════════════
@@ -60,6 +73,10 @@ const dom = {
   colToggleBtn:    $('colToggleBtn'),
   colPanel:        $('colPanel'),
   colChecks:       $('colChecks'),
+  // TTS and table toggle toolbar buttons
+  readAllBtn:        $('readAllBtn'),
+  toggleAnswersBtn:  $('toggleAnswersBtn'),
+  toggleContentBtn:  $('toggleContentBtn'),
   tableHead:       $('tableHead'),
   tableBody:       $('tableBody'),
   emptyState:      $('emptyState'),
@@ -149,6 +166,10 @@ async function init() {
     buildTableHead();
     applyFilters();
 
+    // Table is the default mode — activate its toolbar controls immediately
+    const toolbar = document.querySelector('.toolbar');
+    if (toolbar) toolbar.classList.add('tbl-mode-active');
+
     hideLoading();
     setupEventListeners();
   } catch (err) {
@@ -214,6 +235,14 @@ function buildColPanel() {
 // ════════════════════════════════════
 function buildTableHead() {
   dom.tableHead.innerHTML = '';
+
+  // Fixed row-toggle column (not in state.columns — always first)
+  const toggleTh = document.createElement('th');
+  toggleTh.className = 'row-toggle-th';
+  toggleTh.title = 'Toggle individual row visibility';
+  toggleTh.textContent = '◎';
+  dom.tableHead.appendChild(toggleTh);
+
   state.columns.filter(c => c.visible).forEach(col => {
     const th = document.createElement('th');
     th.className = 'sortable';
@@ -330,6 +359,24 @@ function renderTable() {
   const fragment = document.createDocumentFragment();
   pageData.forEach(row => {
     const tr = document.createElement('tr');
+
+    // ── Determine effective row visibility ──
+    const vis = getRowVisibility(row.Pkey);
+    if (!vis.content) tr.classList.add('row-content-hidden');
+    else if (!vis.answer) tr.classList.add('row-answer-hidden');
+
+    // ── Fixed row-toggle cell (always first) ──
+    const toggleTd = document.createElement('td');
+    toggleTd.className = 'row-toggle-cell';
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'row-toggle-btn' + (!vis.content ? ' row-is-hidden' : '');
+    toggleBtn.dataset.pkey = row.Pkey;
+    toggleBtn.title = vis.content ? 'Hide this row\'s content' : 'Reveal this row\'s content';
+    toggleBtn.setAttribute('aria-label', vis.content ? 'Hide row' : 'Show row');
+    toggleBtn.textContent = vis.content ? '●' : '○';
+    toggleTd.appendChild(toggleBtn);
+    tr.appendChild(toggleTd);
+
     visibleCols.forEach(col => {
       const td = document.createElement('td');
       const val = String(row[col.key] ?? '');
@@ -338,27 +385,25 @@ function renderTable() {
         td.innerHTML = `<span class="subject-badge">${esc(val)}</span>`;
 
       } else if (col.key === 'Answer') {
-        // ── Answer cell: text + optional ⓘ icon ──
-        // The td uses display:flex (set in CSS) to align text and icon.
-        // The icon appears whenever ANY of Info, ImageUrl, or YoutubeUrl has content.
         td.className = 'col-answer';
         const info     = String(row.Info       || '').trim();
         const imageUrl = String(row.ImageUrl   || '').trim();
         const ytUrl    = String(row.YoutubeUrl || '').trim();
         const hasMedia = info || imageUrl || ytUrl;
+        const renderedAnswer = search
+          ? highlight(renderWithLangTags(val), search)
+          : renderWithLangTags(val);
 
         if (hasMedia) {
-          // All three fields are stored as data-* attributes on the button.
-          // showTooltip() reads them to build the rich media panel.
           td.innerHTML =
-            `<span>${search ? highlight(renderContent(val), search) : renderContent(val)}</span>` +
+            `<span>${renderedAnswer}</span>` +
             `<button class="info-icon"` +
             ` data-info="${esc(info)}"` +
             ` data-image="${esc(imageUrl)}"` +
             ` data-youtube="${esc(ytUrl)}"` +
             ` aria-label="Details — hover to view" tabindex="0">ⓘ</button>`;
         } else {
-          td.innerHTML = `<span>${search ? highlight(renderContent(val), search) : renderContent(val)}</span>`;
+          td.innerHTML = `<span>${renderedAnswer}</span>`;
         }
 
       } else if (['Pkey','Qkey','Year','Round','Match'].includes(col.key)) {
@@ -367,35 +412,44 @@ function renderTable() {
 
       } else if (col.key === 'Question') {
         td.className = 'col-question';
-        const qHtml      = search ? highlight(renderContent(val), search) : renderContent(val);
-        const audioUrl   = String(row.AudioUrl      || '').trim();
-        const localImgUrl= String(row.LocalImageUrl || '').trim();
+        const qHtml       = search ? highlight(renderWithLangTags(val), search) : renderWithLangTags(val);
+        const audioUrl    = String(row.AudioUrl      || '').trim();
+        const localImgUrl = String(row.LocalImageUrl || '').trim();
+        const hasLangTags = _LANG_TAG_RE.test(val);
 
-        if (audioUrl || localImgUrl) {
-          // Build icon buttons — only for keys that have a value
-          let iconHtml = '';
-          if (audioUrl) {
-            iconHtml +=
-              `<button class="audio-icon"` +
-              ` data-audio="${esc(audioUrl)}"` +
-              ` aria-label="Play audio clip" title="Play audio clip">♪</button>`;
-          }
-          if (localImgUrl) {
-            iconHtml +=
-              `<button class="local-img-icon"` +
-              ` data-localimg="${esc(localImgUrl)}"` +
-              ` aria-label="View image" title="View image">◫</button>`;
-          }
-          // Use an inner div for flex — never apply display:flex directly to a <td>
-          // as it disrupts the browser's table layout engine and misaligns adjacent cells.
-          td.innerHTML =
-            `<div class="q-cell-inner">` +
-            `<span class="q-text">${qHtml}</span>` +
-            `<span class="q-icons">${iconHtml}</span>` +
-            `</div>`;
-        } else {
-          td.innerHTML = qHtml;
+        // Build the icon cluster — TTS read button always included;
+        // audio and local-image only when their URL fields are populated.
+        let iconHtml = '';
+
+        // TTS read-question icon (always shown on every question)
+        const ttsTitle = state.tts.readAll
+          ? 'Read entire question (Read All is ON)'
+          : (hasLangTags
+            ? 'Speak foreign-language segments only (Read All is OFF)'
+            : 'Read question aloud');
+        iconHtml +=
+          `<button class="tts-read-btn"` +
+          ` data-rawtext="${esc(val)}"` +
+          ` aria-label="${esc(ttsTitle)}" title="${esc(ttsTitle)}">▶</button>`;
+
+        if (audioUrl) {
+          iconHtml +=
+            `<button class="audio-icon"` +
+            ` data-audio="${esc(audioUrl)}"` +
+            ` aria-label="Play audio clip" title="Play audio clip">♪</button>`;
         }
+        if (localImgUrl) {
+          iconHtml +=
+            `<button class="local-img-icon"` +
+            ` data-localimg="${esc(localImgUrl)}"` +
+            ` aria-label="View image" title="View image">◫</button>`;
+        }
+
+        td.innerHTML =
+          `<div class="q-cell-inner">` +
+          `<span class="q-text">${qHtml}</span>` +
+          `<span class="q-icons">${iconHtml}</span>` +
+          `</div>`;
 
       } else {
         td.innerHTML = search ? highlight(esc(val), search) : esc(val);
@@ -1115,6 +1169,285 @@ function _initLocalImgResize() {
   });
 }
 // ════════════════════════════════════
+//  LANGUAGE TAG SYSTEM
+//
+//  Supports ISO 639-1 two-letter (and some three-letter) language codes
+//  embedded in question/answer text using XML-style tags:
+//    <fr>bonjour</fr>     → French
+//    <es>te amo</es>      → Spanish
+//    <pt>obrigado</pt>    → Portuguese
+//    <de>Guten Tag</de>   → German  …and so on.
+//
+//  parseLangSegments(raw) splits the raw string into an array of:
+//    { type:'text', text }      — plain English (or any untagged) text
+//    { type:'lang', lang, text} — a delimited foreign-language chunk
+//
+//  renderWithLangTags(raw) wraps renderContent() and injects an inline
+//  speaker badge (<button class="lang-speak-btn">) after each tagged chunk
+//  so the user can click it to hear that segment pronounced by the browser.
+// ════════════════════════════════════
+
+// BCP-47 locale codes for each supported ISO 639-1 tag
+const LANG_MAP = {
+  'af':'af-ZA','ar':'ar-SA','bg':'bg-BG','bn':'bn-IN',
+  'cs':'cs-CZ','cy':'cy-GB','da':'da-DK','de':'de-DE',
+  'el':'el-GR','en':'en-US','eo':'eo',  'es':'es-ES',
+  'et':'et-EE','eu':'eu-ES','fa':'fa-IR','fi':'fi-FI',
+  'fr':'fr-FR','ga':'ga-IE','gl':'gl-ES','gu':'gu-IN',
+  'he':'he-IL','hi':'hi-IN','hr':'hr-HR','hu':'hu-HU',
+  'hy':'hy-AM','id':'id-ID','is':'is-IS','it':'it-IT',
+  'ja':'ja-JP','ka':'ka-GE','kn':'kn-IN','ko':'ko-KR',
+  'la':'la',   'lt':'lt-LT','lv':'lv-LV','mk':'mk-MK',
+  'ml':'ml-IN','mr':'mr-IN','ms':'ms-MY','mt':'mt-MT',
+  'nl':'nl-NL','no':'nb-NO','pa':'pa-IN','pl':'pl-PL',
+  'pt':'pt-PT','ro':'ro-RO','ru':'ru-RU','sk':'sk-SK',
+  'sl':'sl-SI','sq':'sq-AL','sr':'sr-RS','sv':'sv-SE',
+  'sw':'sw-KE','ta':'ta-IN','te':'te-IN','th':'th-TH',
+  'tl':'tl-PH','tr':'tr-TR','uk':'uk-UA','ur':'ur-PK',
+  'vi':'vi-VN','zh':'zh-CN','zu':'zu-ZA',
+};
+
+// Human-readable language names for tooltip text
+const LANG_NAMES = {
+  'af':'Afrikaans','ar':'Arabic',    'bg':'Bulgarian','bn':'Bengali',
+  'cs':'Czech',    'cy':'Welsh',     'da':'Danish',   'de':'German',
+  'el':'Greek',    'en':'English',   'eo':'Esperanto','es':'Spanish',
+  'et':'Estonian', 'eu':'Basque',    'fa':'Persian',  'fi':'Finnish',
+  'fr':'French',   'ga':'Irish',     'gl':'Galician', 'gu':'Gujarati',
+  'he':'Hebrew',   'hi':'Hindi',     'hr':'Croatian', 'hu':'Hungarian',
+  'hy':'Armenian', 'id':'Indonesian','is':'Icelandic','it':'Italian',
+  'ja':'Japanese', 'ka':'Georgian',  'kn':'Kannada',  'ko':'Korean',
+  'la':'Latin',    'lt':'Lithuanian','lv':'Latvian',  'mk':'Macedonian',
+  'ml':'Malayalam','mr':'Marathi',   'ms':'Malay',    'mt':'Maltese',
+  'nl':'Dutch',    'no':'Norwegian', 'pa':'Punjabi',  'pl':'Polish',
+  'pt':'Portuguese','ro':'Romanian', 'ru':'Russian',  'sk':'Slovak',
+  'sl':'Slovenian','sq':'Albanian',  'sr':'Serbian',  'sv':'Swedish',
+  'sw':'Swahili',  'ta':'Tamil',     'te':'Telugu',   'th':'Thai',
+  'tl':'Filipino', 'tr':'Turkish',   'uk':'Ukrainian','ur':'Urdu',
+  'vi':'Vietnamese','zh':'Chinese',  'zu':'Zulu',
+};
+
+// Regex used to detect and extract language tags.
+// Matches <xx>...</xx> or <xxx>...</xxx> (2-3 letter ISO codes, non-greedy).
+// The 's' flag is NOT used — tags should not span newlines in practice.
+const _LANG_TAG_RE = /<([a-z]{2,3})>([\s\S]*?)<\/\1>/g;
+
+function parseLangSegments(raw) {
+  if (!raw || typeof raw !== 'string') return [{ type:'text', text: raw || '' }];
+
+  const segments = [];
+  let lastIdx    = 0;
+  // Reset lastIndex — the regex is module-level so we must reset it each call.
+  _LANG_TAG_RE.lastIndex = 0;
+
+  let m;
+  while ((m = _LANG_TAG_RE.exec(raw)) !== null) {
+    // Plain text before this tag
+    if (m.index > lastIdx) {
+      segments.push({ type:'text', text: raw.slice(lastIdx, m.index) });
+    }
+    // Language segment
+    segments.push({ type:'lang', lang: m[1], text: m[2] });
+    lastIdx = _LANG_TAG_RE.lastIndex;
+  }
+  // Trailing plain text after the last tag
+  if (lastIdx < raw.length) {
+    segments.push({ type:'text', text: raw.slice(lastIdx) });
+  }
+  return segments.length > 0 ? segments : [{ type:'text', text: raw }];
+}
+
+function renderWithLangTags(raw) {
+  if (!raw || typeof raw !== 'string') return '';
+
+  // Fast path — if no language tags, go straight to renderContent
+  _LANG_TAG_RE.lastIndex = 0;
+  if (!_LANG_TAG_RE.test(raw)) return renderContent(raw);
+
+  const segments = parseLangSegments(raw);
+
+  return segments.map(seg => {
+    if (seg.type === 'text') {
+      return renderContent(seg.text);
+    }
+    // Language segment: render text + inline speaker badge
+    const langName = LANG_NAMES[seg.lang] || seg.lang.toUpperCase();
+    const bcp47    = LANG_MAP[seg.lang]   || seg.lang;
+    const rendered = renderContent(seg.text);
+    const badge =
+      `<button class="lang-speak-btn"` +
+      ` data-lang="${esc(bcp47)}"` +
+      ` data-text="${esc(seg.text)}"` +
+      ` title="Click to hear pronunciation in ${esc(langName)}"` +
+      ` aria-label="Speak in ${esc(langName)}">${seg.lang.toUpperCase()}</button>`;
+    return `<span class="lang-segment">${rendered}</span>${badge}`;
+  }).join('');
+}
+
+
+// ════════════════════════════════════
+//  TEXT-TO-SPEECH  (Web Speech API)
+//
+//  Only one utterance chain runs at a time.
+//  stopTTS() cancels any in-progress speech and resets button visuals.
+//
+//  speakSingleLangSegment(text, bcp47, btn)
+//    — speaks one delimited segment; called by the inline lang badge.
+//
+//  speakQuestionSegments(rawText, readAll, btn)
+//    — reads a whole question field.
+//      readAll=true  → every segment (English in en-US, foreign in their lang)
+//      readAll=false → only the foreign-delimited chunks (user reads English)
+//      If no foreign chunks exist and readAll=false → falls back to full read.
+// ════════════════════════════════════
+let _ttsSpeakingBtn = null; // the btn currently showing the speaking animation
+
+function stopTTS() {
+  if (typeof window !== 'undefined' && window.speechSynthesis) {
+    window.speechSynthesis.cancel();
+  }
+  if (_ttsSpeakingBtn) {
+    _ttsSpeakingBtn.classList.remove('speaking');
+    _ttsSpeakingBtn = null;
+  }
+  // Also clear any lang-speak-btn speaking states left over
+  document.querySelectorAll('.lang-speak-btn.speaking, .tts-read-btn.speaking')
+    .forEach(b => b.classList.remove('speaking'));
+}
+
+function _ttsAvailable() {
+  if (typeof window === 'undefined' || !window.speechSynthesis) {
+    showToast('Text-to-speech is not supported in this browser');
+    return false;
+  }
+  return true;
+}
+
+function _bestVoice(bcp47) {
+  const voices = window.speechSynthesis.getVoices();
+  // Exact match first, then language prefix match
+  return voices.find(v => v.lang === bcp47)
+      || voices.find(v => v.lang.startsWith(bcp47.slice(0, 2)))
+      || null;
+}
+
+// Chain an array of {text, lang (bcp47)} items sequentially using the
+// SpeechSynthesis queue.  Calls onDone when all items have finished.
+function _speakChain(items, idx, onDone) {
+  if (idx >= items.length) { if (onDone) onDone(); return; }
+  const item  = items[idx];
+  const utter = new SpeechSynthesisUtterance(item.text);
+  utter.lang  = item.lang;
+  const voice = _bestVoice(item.lang);
+  if (voice) utter.voice = voice;
+  utter.onend   = () => _speakChain(items, idx + 1, onDone);
+  utter.onerror = () => _speakChain(items, idx + 1, onDone); // skip on error
+  window.speechSynthesis.speak(utter);
+}
+
+function speakSingleLangSegment(text, bcp47, btn) {
+  if (!_ttsAvailable()) return;
+
+  // Clicking an already-speaking badge stops it
+  if (btn && btn.classList.contains('speaking')) {
+    stopTTS();
+    return;
+  }
+
+  stopTTS();
+
+  if (btn) { btn.classList.add('speaking'); _ttsSpeakingBtn = btn; }
+
+  _speakChain([{ text, lang: bcp47 }], 0, () => {
+    if (btn) btn.classList.remove('speaking');
+    if (_ttsSpeakingBtn === btn) _ttsSpeakingBtn = null;
+  });
+}
+
+function speakQuestionSegments(rawText, readAll, btn) {
+  if (!_ttsAvailable()) return;
+
+  if (btn && btn.classList.contains('speaking')) {
+    stopTTS();
+    return;
+  }
+
+  stopTTS();
+
+  const segments = parseLangSegments(rawText);
+  const foreignOnly = segments.filter(s => s.type === 'lang');
+
+  // Decide what to speak
+  let items;
+  if (readAll) {
+    // Speak everything: plain text in English, tagged text in their language
+    items = segments
+      .filter(s => s.text.trim()) // skip empty segments
+      .map(s => ({
+        text: s.text,
+        lang: s.type === 'lang' ? (LANG_MAP[s.lang] || s.lang) : 'en-US',
+      }));
+  } else {
+    // Speak only foreign segments; fall back to full English read if none
+    if (foreignOnly.length === 0) {
+      items = [{ text: rawText.replace(/<[^>]+>/g, ''), lang: 'en-US' }];
+    } else {
+      items = foreignOnly.map(s => ({
+        text: s.text,
+        lang: LANG_MAP[s.lang] || s.lang,
+      }));
+    }
+  }
+
+  if (items.length === 0) { showToast('Nothing to speak'); return; }
+
+  if (btn) { btn.classList.add('speaking'); _ttsSpeakingBtn = btn; }
+
+  _speakChain(items, 0, () => {
+    if (btn) btn.classList.remove('speaking');
+    if (_ttsSpeakingBtn === btn) _ttsSpeakingBtn = null;
+  });
+}
+
+
+// ════════════════════════════════════
+//  TABLE VISIBILITY HELPERS
+// ════════════════════════════════════
+
+// Compute the effective visibility for a given row's Pkey.
+// Returns { content: bool, answer: bool }
+//   content:true  → row cells are shown
+//   answer:true   → answer cell text is shown (only relevant when content:true)
+function getRowVisibility(pkey) {
+  const override = state.tableToggles.rowOverrides[String(pkey)];
+  if (override === 'shown')  return { content: true,  answer: true  };
+  if (override === 'hidden') return { content: false, answer: false };
+  // No per-row override — use global state
+  const contentOk = !state.tableToggles.contentHidden;
+  const answerOk  = contentOk && !state.tableToggles.answersHidden;
+  return { content: contentOk, answer: answerOk };
+}
+
+// Toggle a single row's override. Smart logic:
+//   If content is currently shown → hide it (set override:'hidden')
+//   If content is currently hidden → show it (set override:'shown')
+// This always reflects the user's intent regardless of global state.
+function toggleSingleRow(pkey) {
+  const vis = getRowVisibility(pkey);
+  state.tableToggles.rowOverrides[String(pkey)] = vis.content ? 'hidden' : 'shown';
+  renderTable();
+}
+
+// Update the visual and aria state of a toolbar toggle button
+function _setToggleBtn(btn, active, labelOn, labelOff) {
+  btn.setAttribute('aria-pressed', String(active));
+  btn.classList.toggle('toggle-active', active);
+  btn.title = active ? labelOn : labelOff;
+}
+
+// ════════════════════════════════════
+//  HIGHLIGHT & ESCAPE
+// ════════════════════════════════════
 function esc(str) {
   return String(str)
     .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
@@ -1355,7 +1688,7 @@ function buildMediaHTML(card, idSuffix = '') {
     if (lines.length) {
       html += `<div class="media-info-section">` +
         `<div class="media-info-label">◈ Comment(s)</div>` +
-        lines.map(l => `<p>${renderContent(l)}</p>`).join('') +
+        lines.map(l => `<p>${renderWithLangTags(l)}</p>`).join('') +
         `</div>`;
     }
   }
@@ -1413,8 +1746,8 @@ function renderFlashcard() {
 
   const card = cards[i];
   dom.fcCounter.textContent = `Card ${i + 1} of ${cards.length}`;
-  dom.fcQuestion.innerHTML = renderContent(card.Question);
-  dom.fcAnswer.innerHTML   = renderContent(card.Answer);
+  dom.fcQuestion.innerHTML = renderWithLangTags(card.Question);
+  dom.fcAnswer.innerHTML   = renderWithLangTags(card.Answer);
   dom.fcMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -1474,7 +1807,7 @@ function renderQuizQuestion() {
 
   const card = q.cards[q.index];
   dom.quizQNum.textContent     = `Question ${q.index + 1} of ${q.cards.length}`;
-  dom.quizQuestion.innerHTML   = renderContent(card.Question);
+  dom.quizQuestion.innerHTML   = renderWithLangTags(card.Question);
   dom.quizMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -1498,7 +1831,7 @@ function submitQuizAnswer() {
   q.total++;
   if (isCorrect) q.correct++;
 
-  dom.quizRevealAnswer.innerHTML = renderContent(card.Answer);
+  dom.quizRevealAnswer.innerHTML = renderWithLangTags(card.Answer);
   dom.quizFeedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
   dom.quizFeedback.className   = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
   dom.quizReveal.hidden        = false;
@@ -1629,9 +1962,16 @@ function switchMode(mode) {
     sec.hidden = !active;
     sec.classList.toggle('active', active);
   });
-  forceHideTooltip(); // always dismiss tooltip (even if pinned) when switching modes
-  forceHideLocalImgPopup(); // same for the local image popup
+
+  // Show table-specific toolbar buttons only in table mode
+  const toolbar = document.querySelector('.toolbar');
+  if (toolbar) toolbar.classList.toggle('tbl-mode-active', mode === 'table');
+
+  forceHideTooltip();      // dismiss info tooltip
+  forceHideLocalImgPopup(); // dismiss local image popup
   stopCurrentAudio();       // stop any playing audio clip
+  stopTTS();                // stop any active TTS
+
   if (mode === 'stats')     renderStats();
   if (mode === 'flashcard') renderFlashcard();
   if (mode === 'quiz')      renderQuizQuestion();
@@ -1686,6 +2026,74 @@ function setupEventListeners() {
   // Column toggle
   dom.colToggleBtn.addEventListener('click', () => {
     dom.colPanel.hidden = !dom.colPanel.hidden;
+  });
+
+  // ── ReadAll TTS toggle ──
+  dom.readAllBtn.addEventListener('click', () => {
+    state.tts.readAll = !state.tts.readAll;
+    _setToggleBtn(
+      dom.readAllBtn,
+      state.tts.readAll,
+      'Read All ON — click to read foreign segments only',
+      'Read All OFF — click to read entire text with language switching'
+    );
+    stopTTS();
+    showToast(state.tts.readAll ? 'Read All: ON' : 'Read All: OFF');
+    // Re-render table to update TTS button tooltips
+    if (state.currentMode === 'table') renderTable();
+  });
+
+  // ── Toggle All Answers ──
+  dom.toggleAnswersBtn.addEventListener('click', () => {
+    state.tableToggles.answersHidden = !state.tableToggles.answersHidden;
+    _setToggleBtn(
+      dom.toggleAnswersBtn,
+      state.tableToggles.answersHidden,
+      'Answers hidden — click to reveal all answers',
+      'Toggle all answers — hide answer text across all rows'
+    );
+    renderTable();
+    showToast(state.tableToggles.answersHidden ? 'Answers hidden' : 'Answers visible');
+  });
+
+  // ── Toggle All Content ──
+  dom.toggleContentBtn.addEventListener('click', () => {
+    state.tableToggles.contentHidden = !state.tableToggles.contentHidden;
+    // When toggling global content, clear per-row overrides so the
+    // global state is uniformly applied across all rows.
+    state.tableToggles.rowOverrides = {};
+    _setToggleBtn(
+      dom.toggleContentBtn,
+      state.tableToggles.contentHidden,
+      'Content hidden — click to reveal all row content',
+      'Toggle all content — hide every cell across all rows'
+    );
+    renderTable();
+    showToast(state.tableToggles.contentHidden ? 'Content hidden' : 'Content visible');
+  });
+
+  // ── TTS read-question icon — event delegation on tableBody ──
+  dom.tableBody.addEventListener('click', e => {
+    const btn = e.target.closest('.tts-read-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    speakQuestionSegments(btn.dataset.rawtext, state.tts.readAll, btn);
+  });
+
+  // ── Inline language badge — document-level delegation ──
+  // Placed on document (not tableBody) so it also works in flashcard/quiz modes.
+  document.addEventListener('click', e => {
+    const btn = e.target.closest('.lang-speak-btn');
+    if (!btn) return;
+    speakSingleLangSegment(btn.dataset.text, btn.dataset.lang, btn);
+  });
+
+  // ── Row toggle button — event delegation on tableBody ──
+  dom.tableBody.addEventListener('click', e => {
+    const btn = e.target.closest('.row-toggle-btn');
+    if (!btn) return;
+    e.stopPropagation();
+    toggleSingleRow(btn.dataset.pkey);
   });
 
   // Pagination
@@ -1848,6 +2256,7 @@ function setupEventListeners() {
       forceHideTooltip();
       forceHideLocalImgPopup();
       stopCurrentAudio();
+      stopTTS();
     }
   });
   // Scroll: the panel is position:fixed so it doesn't move with the page.
