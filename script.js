@@ -29,7 +29,11 @@ const state = {
     { key: 'Section', label: 'Section', visible: true,  type: 'str' },
     // Info is intentionally hidden as a column — its content is shown
     // via the ⓘ tooltip widget on the Answer cell instead.
-    { key: 'Info',    label: 'Info',    visible: false, type: 'str' },
+    { key: 'Info',         label: 'Info',        visible: false, type: 'str' },
+    // AudioUrl and LocalImageUrl are hidden columns — surfaced only via
+    // their dedicated icons on the Question cell, never as table columns.
+    { key: 'AudioUrl',     label: 'Audio',       visible: false, type: 'str' },
+    { key: 'LocalImageUrl',label: 'Local Image', visible: false, type: 'str' },
   ],
 
   fc:   { cards: [], index: 0 },
@@ -75,6 +79,15 @@ const dom = {
   tooltipPinBtn:    $('tooltipPinBtn'),
   tooltipCloseBtn:  $('tooltipCloseBtn'),
   tooltipResizeHandle: $('tooltipResizeHandle'),
+
+  // Local image popup
+  localImgPopup:        $('localImgPopup'),
+  localImgPopupBody:    $('localImgPopupBody'),
+  localImgPopupImg:     $('localImgPopupImg'),
+  localImgPopupTitle:   $('localImgPopupTitle'),
+  localImgPinBtn:       $('localImgPinBtn'),
+  localImgCloseBtn:     $('localImgCloseBtn'),
+  localImgResizeHandle: $('localImgResizeHandle'),
 
   // Flashcard
   fcCounter:    $('fcCounter'),
@@ -354,7 +367,32 @@ function renderTable() {
 
       } else if (col.key === 'Question') {
         td.className = 'col-question';
-        td.innerHTML = search ? highlight(renderContent(val), search) : renderContent(val);
+        const qHtml      = search ? highlight(renderContent(val), search) : renderContent(val);
+        const audioUrl   = String(row.AudioUrl      || '').trim();
+        const localImgUrl= String(row.LocalImageUrl || '').trim();
+
+        if (audioUrl || localImgUrl) {
+          // Build icon buttons — only for keys that have a value
+          let iconHtml = '';
+          if (audioUrl) {
+            iconHtml +=
+              `<button class="audio-icon"` +
+              ` data-audio="${esc(audioUrl)}"` +
+              ` aria-label="Play audio clip" title="Play audio clip">♪</button>`;
+          }
+          if (localImgUrl) {
+            iconHtml +=
+              `<button class="local-img-icon"` +
+              ` data-localimg="${esc(localImgUrl)}"` +
+              ` aria-label="View image" title="View image">◫</button>`;
+          }
+          td.classList.add('col-question--has-icons');
+          td.innerHTML =
+            `<span class="q-text">${qHtml}</span>` +
+            `<span class="q-icons">${iconHtml}</span>`;
+        } else {
+          td.innerHTML = qHtml;
+        }
 
       } else {
         td.innerHTML = search ? highlight(esc(val), search) : esc(val);
@@ -455,6 +493,27 @@ let _tooltipHideTimer  = null;
 let _tooltipPinned     = false;
 let _tooltipAnchorIcon = null;
 let _tooltipDragged    = false;  // true after user manually drags the panel
+
+// ════════════════════════════════════
+//  AUDIO PLAYER — GLOBAL STATE
+//
+//  Only one clip plays at a time. _currentAudio is the active Audio object;
+//  _currentAudioIcon is the button that triggered it so we can reset its
+//  visual state when playback ends or is stopped by another icon.
+// ════════════════════════════════════
+let _currentAudio     = null;
+let _currentAudioIcon = null;
+
+// ════════════════════════════════════
+//  LOCAL IMAGE POPUP — GLOBAL STATE
+//
+//  Parallel to the info-tooltip state variables.
+//  _localImgAnchorIcon: the ◫ button that opened the popup, used to toggle
+//  it closed if clicked again and to restore .active state on close.
+// ════════════════════════════════════
+let _localImgPinned      = false;
+let _localImgAnchorIcon  = null;
+let _localImgDragged     = false;
 
 function showTooltip(iconEl, clientX, clientY) {
   // If pinned, the user has locked the panel — do not replace its content.
@@ -773,7 +832,285 @@ function _initTooltipResize() {
 
 
 // ════════════════════════════════════
-//  HIGHLIGHT & ESCAPE
+//  AUDIO PLAYER
+//
+//  A singleton HTML Audio element so only one clip plays at a time.
+//  The ♪ button on the Question cell toggles play / stop.
+//  When a new icon is clicked while audio is playing, the current
+//  clip stops first then the new one starts.
+//
+//  Visual states on the button:
+//    Default  (♪)  — idle, no clip playing from this button
+//    Playing  (■)  — clip is active; .playing class adds a pulsing ring
+// ════════════════════════════════════
+function stopCurrentAudio() {
+  if (_currentAudio) {
+    _currentAudio.pause();
+    _currentAudio.currentTime = 0;
+    _currentAudio = null;
+  }
+  if (_currentAudioIcon) {
+    _currentAudioIcon.textContent = '♪';
+    _currentAudioIcon.classList.remove('playing');
+    _currentAudioIcon.title = 'Play audio clip';
+    _currentAudioIcon.setAttribute('aria-label', 'Play audio clip');
+    _currentAudioIcon = null;
+  }
+}
+
+function playAudioClip(url, iconBtn) {
+  // Clicking the same button while playing → stop
+  if (_currentAudioIcon === iconBtn) {
+    stopCurrentAudio();
+    return;
+  }
+
+  // Stop any currently playing clip first
+  stopCurrentAudio();
+
+  // Create and play the new clip
+  const audio = new Audio(url);
+  _currentAudio     = audio;
+  _currentAudioIcon = iconBtn;
+
+  iconBtn.textContent = '■';
+  iconBtn.classList.add('playing');
+  iconBtn.title = 'Stop audio clip';
+  iconBtn.setAttribute('aria-label', 'Stop audio clip');
+
+  audio.play().catch(err => {
+    // Play failed (network error, format unsupported, etc.) — reset silently
+    console.warn('Audio play failed:', err.message);
+    stopCurrentAudio();
+    showToast('Could not play audio clip');
+  });
+
+  // When clip ends naturally, reset the button back to idle state
+  audio.addEventListener('ended', () => {
+    if (_currentAudio === audio) stopCurrentAudio();
+  }, { once: true });
+}
+
+
+// ════════════════════════════════════
+//  LOCAL IMAGE POPUP
+//
+//  A lightbox-style fixed panel displaying the LocalImageUrl image.
+//  Opened exclusively by the ◫ icon on the Question cell.
+//  Shares the same pin / close / drag / resize conventions as the
+//  info-tooltip but is a completely independent system.
+//
+//  Positioning: centres the popup in the lower portion of the viewport
+//  near the clicked icon, then clamps to keep it fully on-screen.
+// ════════════════════════════════════
+function showLocalImgPopup(iconEl, clientX, clientY) {
+  const url = iconEl.dataset.localimg || '';
+  if (!url) return;
+
+  // If pinned, don't replace until user unpins
+  if (_localImgPinned) return;
+
+  // Remove .active from any previously active icon
+  if (_localImgAnchorIcon && _localImgAnchorIcon !== iconEl) {
+    _localImgAnchorIcon.classList.remove('active');
+  }
+  _localImgAnchorIcon = iconEl;
+  iconEl.classList.add('active');
+
+  // Set popup title from question text (trimmed to 60 chars)
+  const row  = iconEl.closest('tr');
+  const qCell = row ? row.querySelector('.q-text') : null;
+  const label = qCell ? (qCell.textContent.trim().slice(0, 60) + (qCell.textContent.length > 60 ? '…' : '')) : 'Image';
+  dom.localImgPopupTitle.textContent = label;
+
+  // Load image — reset src first so the browser fires load/error for repeated URLs
+  const img = dom.localImgPopupImg;
+  img.src   = '';
+  img.alt   = 'Question image';
+  img.src   = url;
+
+  // Reset drag flag and pin state for fresh open
+  _localImgDragged = false;
+  _setLocalImgPinned(false);
+
+  // Default size — wide enough for a proper image view
+  dom.localImgPopup.style.width  = '560px';
+  dom.localImgPopup.style.height = '';
+
+  // Show first, then position (need offsetWidth/Height for clamping)
+  dom.localImgPopup.classList.add('visible');
+  dom.localImgPopup.setAttribute('aria-hidden', 'false');
+
+  _positionLocalImgPopup(clientX, clientY);
+}
+
+function _positionLocalImgPopup(clientX, clientY) {
+  const GAP    = 14;
+  const MARGIN = 8;
+  const popup  = dom.localImgPopup;
+  const popW   = popup.offsetWidth  || 560;
+  const popH   = popup.offsetHeight || 400;
+  const vw     = window.innerWidth;
+  const vh     = window.innerHeight;
+
+  const px = (clientX != null) ? clientX : vw / 2;
+  const py = (clientY != null) ? clientY : vh / 2;
+
+  // Prefer opening below the click point
+  let top  = py + GAP;
+  let left = px - popW / 2; // centre under pointer horizontally
+
+  // Flip above if it would overflow the bottom
+  if (top + popH > vh - MARGIN) top = py - GAP - popH;
+
+  // Clamp to viewport edges
+  left = Math.max(MARGIN, Math.min(left, vw - popW - MARGIN));
+  top  = Math.max(MARGIN, top);
+
+  popup.style.left = `${left}px`;
+  popup.style.top  = `${top}px`;
+}
+
+function forceHideLocalImgPopup() {
+  _setLocalImgPinned(false);
+  _doHideLocalImg();
+}
+
+function _doHideLocalImg() {
+  if (_localImgAnchorIcon) {
+    _localImgAnchorIcon.classList.remove('active');
+    _localImgAnchorIcon = null;
+  }
+  _localImgDragged = false;
+  dom.localImgPopup.classList.remove('visible');
+  dom.localImgPopup.setAttribute('aria-hidden', 'true');
+  // Clear the image src so the browser releases memory
+  dom.localImgPopupImg.src = '';
+}
+
+function _setLocalImgPinned(pinned) {
+  _localImgPinned = pinned;
+  const btn = dom.localImgPinBtn;
+  if (!btn) return;
+  btn.setAttribute('aria-pressed', String(pinned));
+  btn.classList.toggle('pinned', pinned);
+  btn.title = pinned
+    ? 'Pinned — click to unpin and allow auto-close'
+    : 'Pin open — click to keep this panel visible';
+  const label = btn.querySelector('.pin-label');
+  if (label) label.textContent = pinned ? 'Pinned' : 'Pin';
+  dom.localImgPopup.classList.toggle('pinned', pinned);
+}
+
+// ── Drag (Pointer Events) ──
+function _initLocalImgDrag() {
+  const popup  = dom.localImgPopup;
+  const header = popup.querySelector('.local-img-popup-header');
+
+  let dragging = false;
+  let startPtrX, startPtrY, startLeft, startTop;
+
+  header.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    e.preventDefault();
+    header.setPointerCapture(e.pointerId);
+
+    const rect = popup.getBoundingClientRect();
+    startLeft  = rect.left;
+    startTop   = rect.top;
+    startPtrX  = e.clientX;
+    startPtrY  = e.clientY;
+
+    dragging = true;
+    popup.classList.add('is-dragging');
+  });
+
+  header.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    e.preventDefault();
+
+    const MARGIN = 8;
+    const dx     = e.clientX - startPtrX;
+    const dy     = e.clientY - startPtrY;
+    const vw     = window.innerWidth;
+    const vh     = window.innerHeight;
+    const popW   = popup.offsetWidth;
+
+    const newLeft = Math.max(MARGIN, Math.min(startLeft + dx, vw - popW - MARGIN));
+    const newTop  = Math.max(MARGIN, Math.min(startTop  + dy, vh - 40));
+
+    popup.style.left = `${newLeft}px`;
+    popup.style.top  = `${newTop}px`;
+  });
+
+  header.addEventListener('pointerup', e => {
+    if (!dragging) return;
+    dragging         = false;
+    _localImgDragged = true;
+    popup.classList.remove('is-dragging');
+    header.releasePointerCapture(e.pointerId);
+  });
+
+  header.addEventListener('pointercancel', e => {
+    if (!dragging) return;
+    dragging = false;
+    popup.classList.remove('is-dragging');
+    header.releasePointerCapture(e.pointerId);
+  });
+}
+
+// ── Resize (Pointer Events) ──
+function _initLocalImgResize() {
+  const popup  = dom.localImgPopup;
+  const handle = dom.localImgResizeHandle;
+
+  let resizing = false;
+  let startPtrX, startPtrY, startW, startH;
+
+  handle.addEventListener('pointerdown', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    handle.setPointerCapture(e.pointerId);
+
+    startPtrX = e.clientX;
+    startPtrY = e.clientY;
+    startW    = popup.offsetWidth;
+    startH    = popup.offsetHeight;
+
+    resizing = true;
+    popup.classList.add('is-resizing');
+  });
+
+  handle.addEventListener('pointermove', e => {
+    if (!resizing) return;
+    e.preventDefault();
+
+    const MIN_W = 280;
+    const MIN_H = 160;
+    const MAX_W = window.innerWidth  - 16;
+    const MAX_H = window.innerHeight - 16;
+
+    const newW = Math.max(MIN_W, Math.min(startW + (e.clientX - startPtrX), MAX_W));
+    const newH = Math.max(MIN_H, Math.min(startH + (e.clientY - startPtrY), MAX_H));
+
+    popup.style.width  = `${newW}px`;
+    popup.style.height = `${newH}px`;
+  });
+
+  handle.addEventListener('pointerup', e => {
+    if (!resizing) return;
+    resizing = false;
+    popup.classList.remove('is-resizing');
+    handle.releasePointerCapture(e.pointerId);
+  });
+
+  handle.addEventListener('pointercancel', e => {
+    if (!resizing) return;
+    resizing = false;
+    popup.classList.remove('is-resizing');
+    handle.releasePointerCapture(e.pointerId);
+  });
+}
 // ════════════════════════════════════
 function esc(str) {
   return String(str)
@@ -1290,6 +1627,8 @@ function switchMode(mode) {
     sec.classList.toggle('active', active);
   });
   forceHideTooltip(); // always dismiss tooltip (even if pinned) when switching modes
+  forceHideLocalImgPopup(); // same for the local image popup
+  stopCurrentAudio();       // stop any playing audio clip
   if (mode === 'stats')     renderStats();
   if (mode === 'flashcard') renderFlashcard();
   if (mode === 'quiz')      renderQuizQuestion();
@@ -1435,6 +1774,58 @@ function setupEventListeners() {
   // ── Resize — custom handle, pointer events, all devices ──
   _initTooltipResize();
 
+  // ────────────────────────────────────
+  // AUDIO ICON — event delegation on tableBody
+  // A single click listener handles play/stop for all ♪ buttons across
+  // all paginated renders without re-attaching after each render.
+  // ────────────────────────────────────
+  dom.tableBody.addEventListener('click', e => {
+    const audioBtn = e.target.closest('.audio-icon');
+    if (!audioBtn) return;
+    e.stopPropagation(); // don't bubble into the row or other listeners
+    playAudioClip(audioBtn.dataset.audio, audioBtn);
+  });
+
+  // ────────────────────────────────────
+  // LOCAL IMAGE ICON — event delegation on tableBody
+  // Same-icon tap toggles the popup open/closed.
+  // Different-icon tap closes the current popup and opens the new one.
+  // ────────────────────────────────────
+  dom.tableBody.addEventListener('click', e => {
+    const imgBtn = e.target.closest('.local-img-icon');
+    if (!imgBtn) return;
+    e.stopPropagation();
+
+    if (dom.localImgPopup.classList.contains('visible') && _localImgAnchorIcon === imgBtn) {
+      // Same icon clicked again → close (or pin/unpin if pinned)
+      if (_localImgPinned) forceHideLocalImgPopup();
+      else forceHideLocalImgPopup();
+    } else {
+      // Different icon, or popup was hidden → open fresh
+      showLocalImgPopup(imgBtn, e.clientX, e.clientY);
+      // Auto-pin on touch so panel doesn't vanish immediately
+      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+        _setLocalImgPinned(true);
+      }
+    }
+  });
+
+  // ── Local image popup: pin button ──
+  dom.localImgPinBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    _setLocalImgPinned(!_localImgPinned);
+  });
+
+  // ── Local image popup: close button ──
+  dom.localImgCloseBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    forceHideLocalImgPopup();
+  });
+
+  // ── Local image popup: drag + resize ──
+  _initLocalImgDrag();
+  _initLocalImgResize();
+
   // Keyboard accessibility: show on focus, hide on blur.
   // No pointer coordinates available for keyboard focus — positionAtPointer
   // will fall back to viewport centre, which is always reachable.
@@ -1450,7 +1841,11 @@ function setupEventListeners() {
   });
   // Press Escape to force-dismiss tooltip (works even when pinned)
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') forceHideTooltip();
+    if (e.key === 'Escape') {
+      forceHideTooltip();
+      forceHideLocalImgPopup();
+      stopCurrentAudio();
+    }
   });
   // Scroll: the panel is position:fixed so it doesn't move with the page.
   // All we need to do is hide it if the user scrolls the anchor icon
