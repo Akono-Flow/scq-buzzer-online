@@ -2900,7 +2900,7 @@
     "Question": "What volume will 2 moles of gas occupy at Standard Temperature and Pressure?",
     "Answer": "44.8 dm^3",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Number of moles } n = 2 \\text{ mol, at STP} \\\\[10pt]&\\textbf{Step 1: Recall the Conditions at STP} \\\\[4pt]&\\text{Temperature } T = 273.15 \\text{ K } (0^{\\circ}\\text{C}) \\\\[4pt]&\\text{Pressure } P = 101.325 \\text{ kPa } (1 \\text{ atm}) \\\\[10pt]&\\textbf{Step 2: Recall the Molar Volume at STP} \\\\[4pt]&\\text{One mole of any ideal gas occupies } 22.4 \\text{ dm}^3 \\text{ at STP} \\\\[10pt]&\\textbf{Step 3: State the Volume Formula} \\\\[4pt]&V = n \\times V_m \\\\[4pt]&\\text{where } V_m = 22.4 \\text{ dm}^3 \\text{ mol}^{-1} \\\\[10pt]&\\textbf{Step 4: Substitute Known Values} \\\\[4pt]&V = 2 \\times 22.4 \\\\[10pt]&\\textbf{Step 5: Verify Using the Ideal Gas Law} \\\\[4pt]&PV = nRT \\\\[4pt]&V = \\dfrac{nRT}{P} = \\dfrac{2 \\times 8.314 \\times 273.15}{101325} \\times 1000 \\\\[4pt]&V = \\dfrac{4540.86}{101325} \\times 1000 = 44.8 \\text{ dm}^3 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&V = 44.8 \\text{ dm}^3\\end{aligned}$$"
   },
   {
     "Pkey": "238",
@@ -2998,7 +2998,7 @@
     "Question": "Which fuel is primarily produced by the fermentation of glucose?",
     "Answer": "Ethanol",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Question:} \\text{ Which fuel is produced by fermentation of glucose?} \\\\[10pt]&\\textbf{Step 1: Identify the Process} \\\\[4pt]&\\text{Fermentation is an anaerobic process carried out by yeast} \\\\[4pt]&\\text{Yeast contains the enzyme } \\textit{zymase} \\text{ which catalyses the reaction} \\\\[10pt]&\\textbf{Step 2: Identify the Reactant} \\\\[4pt]&\\text{Glucose } \\ce{C6H12O6} \\text{ is the starting material} \\\\[10pt]&\\textbf{Step 3: Identify the Products} \\\\[4pt]&\\text{Ethanol } \\ce{C2H5OH} \\text{ is the primary fuel produced} \\\\[4pt]&\\text{Carbon dioxide } \\ce{CO2} \\text{ is also produced as a byproduct} \\\\[10pt]&\\textbf{Step 4: Write the Unbalanced Equation} \\\\[4pt]&\\ce{C6H12O6_{(aq)} -> C2H5OH_{(l)} + CO2_{(g)}} \\\\[10pt]&\\textbf{Step 5: Balance the Equation} \\\\[4pt]&\\text{Balance } \\ce{C}: \\text{ 6 on left, need 6 on right } \\rightarrow \\text{ multiply } \\ce{C2H5OH} \\text{ and } \\ce{CO2} \\text{ by 2} \\\\[4pt]&\\text{Balance } \\ce{H}: \\text{ 12 on left, } 2 \\times 6 = 12 \\text{ on right } \\checkmark \\\\[4pt]&\\text{Balance } \\ce{O}: \\text{ 6 on left, } 2(1) + 2(2) = 6 \\text{ on right } \\checkmark \\\\[10pt]&\\textbf{Step 6: Write the Balanced Equation} \\\\[4pt]&\\ce{C6H12O6_{(aq)} ->[ zymase ] 2C2H5OH_{(l)} + 2CO2_{(g)}} \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\text{Ethanol } \\ce{C2H5OH} \\text{ is the fuel primarily produced by fermentation} \\\\[4pt]&\\text{It is also known as bioethanol when used as a fuel}\\end{aligned}$$"
   },
   {
     "Pkey": "246",
