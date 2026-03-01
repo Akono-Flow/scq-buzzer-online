@@ -386,10 +386,13 @@ function renderTable() {
               ` data-localimg="${esc(localImgUrl)}"` +
               ` aria-label="View image" title="View image">◫</button>`;
           }
-          td.classList.add('col-question--has-icons');
+          // Use an inner div for flex — never apply display:flex directly to a <td>
+          // as it disrupts the browser's table layout engine and misaligns adjacent cells.
           td.innerHTML =
+            `<div class="q-cell-inner">` +
             `<span class="q-text">${qHtml}</span>` +
-            `<span class="q-icons">${iconHtml}</span>`;
+            `<span class="q-icons">${iconHtml}</span>` +
+            `</div>`;
         } else {
           td.innerHTML = qHtml;
         }
