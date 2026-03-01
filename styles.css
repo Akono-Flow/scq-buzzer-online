@@ -35,6 +35,16 @@
   --info-bg:       rgba(56,189,248,0.08);
   --info-border:   rgba(56,189,248,0.25);
 
+  /* Audio icon / player */
+  --audio-accent:  #10b981;
+  --audio-bg:      rgba(16,185,129,0.09);
+  --audio-border:  rgba(16,185,129,0.28);
+
+  /* Local image icon / popup */
+  --localimg-accent: #a78bfa;
+  --localimg-bg:     rgba(167,139,250,0.09);
+  --localimg-border: rgba(167,139,250,0.28);
+
   --shadow-sm:     0 2px 8px rgba(0,0,0,0.4);
   --shadow-md:     0 4px 20px rgba(0,0,0,0.5);
   --shadow-lg:     0 8px 40px rgba(0,0,0,0.6);
@@ -79,6 +89,14 @@
   --info-accent:   #0284c7;
   --info-bg:       rgba(2,132,199,0.07);
   --info-border:   rgba(2,132,199,0.22);
+
+  --audio-accent:  #059669;
+  --audio-bg:      rgba(5,150,105,0.07);
+  --audio-border:  rgba(5,150,105,0.22);
+
+  --localimg-accent: #7c3aed;
+  --localimg-bg:     rgba(124,58,237,0.07);
+  --localimg-border: rgba(124,58,237,0.22);
 }
 
 /* ── RESET & BASE ── */
@@ -321,6 +339,207 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   border-color: var(--info-accent);
   transform: scale(1.15);
   box-shadow: 0 0 0 3px var(--info-bg);
+}
+
+/* ── QUESTION CELL WITH ICONS ── */
+/*
+  When a question row has AudioUrl or LocalImageUrl the td gets this class.
+  We use flex so the question text flows naturally on the left and the icon
+  cluster sits at the top-right without overlapping the text.
+*/
+.col-question--has-icons {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.q-text {
+  flex: 1;
+  min-width: 0; /* allow text to shrink and wrap */
+}
+.q-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding-top: 1px; /* optical alignment with first line of text */
+}
+
+/* ── AUDIO ICON BUTTON ── */
+.audio-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--audio-bg);
+  border: 1px solid var(--audio-border);
+  color: var(--audio-accent);
+  font-size: 0.72rem; font-family: var(--font-mono); font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  line-height: 1;
+  padding: 0; appearance: none;
+  position: relative; z-index: 1;
+}
+.audio-icon:hover,
+.audio-icon:focus-visible {
+  background: var(--audio-accent);
+  color: var(--text-inverse);
+  border-color: var(--audio-accent);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px var(--audio-bg);
+}
+/* Playing state — pulsing ring to signal active playback */
+.audio-icon.playing {
+  background: var(--audio-accent);
+  color: var(--text-inverse);
+  border-color: var(--audio-accent);
+  animation: audioPulse 1.4s ease-in-out infinite;
+}
+@keyframes audioPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--audio-border); }
+  50%       { box-shadow: 0 0 0 5px transparent; }
+}
+
+/* ── LOCAL IMAGE ICON BUTTON ── */
+.local-img-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--localimg-bg);
+  border: 1px solid var(--localimg-border);
+  color: var(--localimg-accent);
+  font-size: 0.72rem; font-family: var(--font-mono); font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  line-height: 1;
+  padding: 0; appearance: none;
+  position: relative; z-index: 1;
+}
+.local-img-icon:hover,
+.local-img-icon:focus-visible {
+  background: var(--localimg-accent);
+  color: var(--text-inverse);
+  border-color: var(--localimg-accent);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px var(--localimg-bg);
+}
+/* Active state — when popup is open for this icon */
+.local-img-icon.active {
+  background: var(--localimg-accent);
+  color: var(--text-inverse);
+  border-color: var(--localimg-accent);
+}
+
+/* ── LOCAL IMAGE POPUP ── */
+/*
+  A lightbox-style fixed panel. Shares the same header/pin/close/drag/resize
+  conventions as the info-tooltip but is wider and designed around displaying
+  a single image at a comfortable viewport-relative size with no scrolling.
+*/
+.local-img-popup {
+  position: fixed;
+  z-index: 9999;
+  width: 560px;
+  min-width: 280px;
+  min-height: 120px;
+  max-width: calc(100vw - 16px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--localimg-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-tooltip);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.97);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.local-img-popup.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.local-img-popup.is-dragging,
+.local-img-popup.is-resizing {
+  transition: none !important;
+}
+.local-img-popup.is-dragging { cursor: grabbing !important; }
+.local-img-popup.is-resizing { cursor: se-resize !important; }
+.local-img-popup.pinned {
+  border-color: var(--localimg-accent);
+  box-shadow: var(--shadow-tooltip), 0 0 0 2px var(--localimg-bg);
+}
+
+.local-img-popup-header {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px 8px 14px;
+  border-bottom: 1px solid var(--localimg-border);
+  background: var(--localimg-bg);
+  cursor: grab;
+  flex-shrink: 0;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.local-img-popup-header:active { cursor: grabbing; }
+.local-img-popup-icon {
+  font-size: 0.9rem; color: var(--localimg-accent); flex-shrink: 0;
+}
+.local-img-popup-title {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.12em; color: var(--localimg-accent);
+  font-weight: 500; flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.local-img-popup-actions {
+  display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-left: auto;
+}
+
+/* The popup body fills available height between header and resize handle */
+.local-img-popup-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+
+/* The image itself — fills the popup without requiring scroll */
+.local-img-popup-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(75vh - 64px); /* 64px ≈ header + resize handle */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+}
+
+/* Reuse tooltip-resize-handle styles but as a separate class for the popup */
+.local-img-resize-handle {
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  cursor: se-resize;
+  touch-action: none;
+  user-select: none; -webkit-user-select: none;
+  opacity: 0.5;
+  transition: opacity var(--transition), color var(--transition);
+  border-radius: 0 0 var(--radius-md) 0;
+  z-index: 1;
+}
+.local-img-resize-handle:hover,
+.local-img-popup.is-resizing .local-img-resize-handle {
+  opacity: 1;
+  color: var(--localimg-accent);
 }
 
 /* ── INFO TOOLTIP (global floating widget) ── */
