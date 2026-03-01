@@ -321,7 +321,7 @@
     "Match": "2",
     "Subject": "Spanish",
     "Question": "What is the Spanish for the light bulb?",
-    "Answer": "la bombilla",
+    "Answer": "<es>la bombilla</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1132,7 +1132,7 @@
     "Match": "6",
     "Subject": "Spanish",
     "Question": "What is the Spanish word for a thunderstorm?",
-    "Answer": "una tormenta",
+    "Answer": "<es>una tormenta</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1501,7 +1501,7 @@
     "Match": "7",
     "Subject": "Spanish",
     "Question": "Give the Spanish translation for Maria is tall but her brother is short.",
-    "Answer": "María es alta pero su hermano es bajo.",
+    "Answer": "<es>María es alta pero su hermano es bajo.</es>",
     "Section": "buzzer",
     "Info": ""
   },
