@@ -282,6 +282,32 @@
     <div class="tooltip-resize-handle" id="tooltipResizeHandle" title="Drag to resize" aria-hidden="true">⤡</div>
   </div>
 
+  <!--
+    ════════════════════ LOCAL IMAGE POPUP ════════════════════
+    A lightbox-style floating panel for LocalImageUrl images.
+    Triggered exclusively by the ⊡ icon on the Question cell.
+    Shares the same drag / resize / pin / close behaviour as
+    the info-tooltip but is a completely separate system.
+    Hidden by default (opacity:0, pointer-events:none).
+  -->
+  <div class="local-img-popup" id="localImgPopup" role="dialog" aria-hidden="true">
+    <div class="local-img-popup-header">
+      <span class="local-img-popup-icon">◫</span>
+      <span class="local-img-popup-title" id="localImgPopupTitle">Image</span>
+      <div class="local-img-popup-actions">
+        <button class="tooltip-pin-btn" id="localImgPinBtn" title="Pin open" aria-label="Pin panel open" aria-pressed="false">
+          <span class="pin-icon">📌</span>
+          <span class="pin-label">Pin</span>
+        </button>
+        <button class="tooltip-close-btn" id="localImgCloseBtn" title="Close" aria-label="Close panel">✕</button>
+      </div>
+    </div>
+    <div class="local-img-popup-body" id="localImgPopupBody">
+      <img id="localImgPopupImg" class="local-img-popup-img" src="" alt="Question image" />
+    </div>
+    <div class="local-img-resize-handle" id="localImgResizeHandle" title="Drag to resize" aria-hidden="true">⤡</div>
+  </div>
+
   <!-- ════════════════════ TOAST ════════════════════ -->
   <div class="toast" id="toast"></div>
 
