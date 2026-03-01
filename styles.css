@@ -45,6 +45,11 @@
   --localimg-bg:     rgba(167,139,250,0.09);
   --localimg-border: rgba(167,139,250,0.28);
 
+  /* TTS / language badges */
+  --tts-accent:    #f59e0b;
+  --tts-bg:        rgba(245,158,11,0.09);
+  --tts-border:    rgba(245,158,11,0.28);
+
   --shadow-sm:     0 2px 8px rgba(0,0,0,0.4);
   --shadow-md:     0 4px 20px rgba(0,0,0,0.5);
   --shadow-lg:     0 8px 40px rgba(0,0,0,0.6);
@@ -97,6 +102,10 @@
   --localimg-accent: #7c3aed;
   --localimg-bg:     rgba(124,58,237,0.07);
   --localimg-border: rgba(124,58,237,0.22);
+
+  --tts-accent:    #d97706;
+  --tts-bg:        rgba(217,119,6,0.07);
+  --tts-border:    rgba(217,119,6,0.22);
 }
 
 /* ── RESET & BASE ── */
@@ -191,6 +200,31 @@ body {
 }
 .action-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
 .action-btn:active { transform: scale(0.97); }
+
+/* Thin vertical divider between toolbar button groups */
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--border-strong);
+  align-self: center;
+  flex-shrink: 0;
+}
+
+/* Buttons that only make sense in table mode */
+.tbl-only-btn { display: none; }
+.tbl-mode-active .tbl-only-btn { display: flex; }
+
+/* Active / toggled-on state for toolbar toggle buttons */
+.action-btn.toggle-active {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.action-btn#readAllBtn.toggle-active {
+  background: var(--tts-bg);
+  border-color: var(--tts-accent);
+  color: var(--tts-accent);
+}
 
 
 /* ═══════════════════════════════════
@@ -541,6 +575,174 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
 .local-img-popup.is-resizing .local-img-resize-handle {
   opacity: 1;
   color: var(--localimg-accent);
+}
+
+/* ══════════════════════════════════════
+   LANGUAGE TAGS & TTS
+   ══════════════════════════════════════ */
+
+/*
+  Inline language segment — the text inside <fr>…</fr> etc.
+  A subtle underline distinguishes it from surrounding English text
+  without being visually noisy.
+*/
+.lang-segment {
+  border-bottom: 1.5px dotted var(--tts-border);
+  padding-bottom: 1px;
+}
+
+/*
+  Language speaker badge — appears immediately after a delimited segment.
+  Styled as a small pill with the 2-letter language code (FR, ES, PT …).
+  Clicking speaks only that segment in its language.
+*/
+.lang-speak-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 16px; padding: 0 5px;
+  border-radius: 999px;
+  background: var(--tts-bg);
+  border: 1px solid var(--tts-border);
+  color: var(--tts-accent);
+  font-size: 0.58rem; font-family: var(--font-mono); font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  line-height: 1;
+  margin-left: 3px;
+  vertical-align: middle;
+  position: relative; z-index: 1;
+  /* Reset default button styles */
+  appearance: none;
+}
+.lang-speak-btn:hover,
+.lang-speak-btn:focus-visible {
+  background: var(--tts-accent);
+  color: var(--text-inverse);
+  border-color: var(--tts-accent);
+  transform: scale(1.1);
+}
+/* Speaking state — amber pulse */
+.lang-speak-btn.speaking {
+  background: var(--tts-accent);
+  color: var(--text-inverse);
+  border-color: var(--tts-accent);
+  animation: ttsPulse 1.2s ease-in-out infinite;
+}
+
+/*
+  TTS read-question icon — sits in q-icons cluster alongside ♪ and ◫.
+  Reads the entire question (or just foreign segments, depending on ReadAll state).
+*/
+.tts-read-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--tts-bg);
+  border: 1px solid var(--tts-border);
+  color: var(--tts-accent);
+  font-size: 0.65rem; font-family: var(--font-mono); font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  line-height: 1;
+  padding: 0; appearance: none;
+  position: relative; z-index: 1;
+}
+.tts-read-btn:hover,
+.tts-read-btn:focus-visible {
+  background: var(--tts-accent);
+  color: var(--text-inverse);
+  border-color: var(--tts-accent);
+  transform: scale(1.15);
+  box-shadow: 0 0 0 3px var(--tts-bg);
+}
+.tts-read-btn.speaking {
+  background: var(--tts-accent);
+  color: var(--text-inverse);
+  border-color: var(--tts-accent);
+  animation: ttsPulse 1.2s ease-in-out infinite;
+}
+@keyframes ttsPulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--tts-border); }
+  50%       { box-shadow: 0 0 0 5px transparent; }
+}
+
+/* ══════════════════════════════════════
+   ROW TOGGLE COLUMN
+   ══════════════════════════════════════ */
+
+/*
+  A narrow fixed column prepended to every row in table mode.
+  Not in state.columns — handled separately in buildTableHead/renderTable.
+  Contains a small circular toggle button that controls per-row visibility.
+*/
+.row-toggle-th {
+  width: 28px;
+  padding: 8px 4px !important;
+  text-align: center;
+  cursor: default !important;
+  user-select: none;
+}
+.row-toggle-cell {
+  width: 28px;
+  padding: 6px 4px !important;
+  text-align: center;
+  vertical-align: middle;
+}
+.row-toggle-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-size: 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  outline: none;
+  padding: 0; appearance: none;
+  flex-shrink: 0;
+}
+.row-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+/* When the row is explicitly hidden by this button */
+.row-toggle-btn.row-is-hidden {
+  background: var(--incorrect-bg);
+  border-color: var(--incorrect);
+  color: var(--incorrect);
+}
+
+/* ══════════════════════════════════════
+   ROW CONTENT/ANSWER HIDING
+   ══════════════════════════════════════ */
+
+/*
+  When content is hidden for a row, everything except the row-toggle-cell
+  is visually hidden. The row retains its height so the layout doesn't jump.
+  pointer-events:none prevents accidental interaction with hidden elements.
+*/
+tr.row-content-hidden td:not(.row-toggle-cell) {
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+/* Ensure the toggle button itself stays interactive even when content is hidden */
+tr.row-content-hidden td.row-toggle-cell {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/*
+  Answer-only hiding: hides just the answer text span.
+  The ⓘ info icon remains visible so the user can still open the tooltip.
+*/
+tr.row-answer-hidden td.col-answer > span:first-child {
+  visibility: hidden;
+  user-select: none;
 }
 
 /* ── INFO TOOLTIP (global floating widget) ── */
