@@ -49,6 +49,19 @@
       </div>
     </div>
     <div class="toolbar-right">
+      <!-- Table-only toggle controls (hidden in other modes via JS class) -->
+      <button class="action-btn tbl-only-btn" id="toggleAnswersBtn"
+        title="Toggle all answers — show or hide answer text across all rows"
+        aria-pressed="false">◉ Answers</button>
+      <button class="action-btn tbl-only-btn" id="toggleContentBtn"
+        title="Toggle all content — hide or reveal every cell across all rows"
+        aria-pressed="false">⊟ Content</button>
+      <div class="toolbar-divider tbl-only-btn"></div>
+      <!-- ReadAll TTS toggle — available in table, flashcard and quiz modes -->
+      <button class="action-btn" id="readAllBtn"
+        title="Read All Text — OFF: speaks only foreign-delimited segments · ON: speaks entire text with language switching"
+        aria-pressed="false">▶ Read All</button>
+      <div class="toolbar-divider"></div>
       <button class="action-btn" id="exportBtn" title="Export filtered data to CSV">↓ Export CSV</button>
       <button class="action-btn" id="colToggleBtn" title="Toggle column visibility">⊟ Columns</button>
     </div>
