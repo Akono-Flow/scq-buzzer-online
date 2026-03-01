@@ -858,7 +858,7 @@
     "Match": "4",
     "Subject": "Chemistry",
     "Question": "What is the hybridisation of carbon in ethene?",
-    "Answer": "sp2",
+    "Answer": "sp^2",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2068,7 +2068,7 @@
     "Question": "At 25 degrees Celsius, what is the pH of a 1.0 x 10^-4 mol per cubic decimeter solution of hydrochloric acid, assuming complete dissolution?",
     "Answer": "4",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ } [\\ce{HCl}] = 1.0 \\times 10^{-4} \\text{ mol dm}^{-3} \\text{ at } 25^{\\circ}\\text{C} \\\\[10pt]&\\textbf{Step 1: Write the Dissociation Equation} \\\\[4pt]&\\ce{HCl_{(aq)} -> H^+_{(aq)} + Cl^-_{(aq)}} \\\\[10pt]&\\textbf{Step 2: State the Assumption} \\\\[4pt]&\\text{Since } \\ce{HCl} \\text{ is a strong acid it dissociates completely} \\\\[4pt]&\\therefore [\\ce{H^+}] = [\\ce{HCl}] = 1.0 \\times 10^{-4} \\text{ mol dm}^{-3} \\\\[10pt]&\\textbf{Step 3: Recall the pH Formula} \\\\[4pt]&\\text{pH} = -\\log_{10}[\\ce{H^+}] \\\\[10pt]&\\textbf{Step 4: Substitute Known Values} \\\\[4pt]&\\text{pH} = -\\log_{10}(1.0 \\times 10^{-4}) \\\\[10pt]&\\textbf{Step 5: Apply the Log Rule} \\\\[4pt]&\\log_{10}(1.0 \\times 10^{-4}) = \\log_{10}(1.0) + \\log_{10}(10^{-4}) = 0 + (-4) = -4 \\\\[10pt]&\\textbf{Step 6: Apply the Negative Sign} \\\\[4pt]&\\text{pH} = -(-4) \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\text{pH} = 4\\end{aligned}$$"
   },
   {
     "Pkey": "170",
