@@ -95,7 +95,7 @@
     "Round": "1",
     "Match": "1",
     "Subject": "French",
-    "Question": "What is the English translation for: Je vais acheter une veste",
+    "Question": "What is the English translation for: <fr>Je vais acheter une veste</fr>",
     "Answer": "I am going to buy a jacket",
     "Section": "buzzer",
     "Info": "Je vais: I am going to (near future tense)\nacheter: to buy\nune veste: a jacket/blazer"
@@ -728,7 +728,7 @@
     "Round": "1",
     "Match": "4",
     "Subject": "French",
-    "Question": "What is the English translation for the French word imperméable?",
+    "Question": "What is the English translation for the French word <fr>imperméable?</fr>",
     "Answer": "Raincoat",
     "Section": "buzzer",
     "Info": ""
@@ -1255,7 +1255,7 @@
     "Round": "1",
     "Match": "6",
     "Subject": "French",
-    "Question": "How do you say le parapluie in English?",
+    "Question": "How do you say <fr>le parapluie</fr> in English?",
     "Answer": "The umbrella",
     "Section": "buzzer",
     "Info": ""
@@ -1352,7 +1352,7 @@
     "Round": "1",
     "Match": "7",
     "Subject": "French",
-    "Question": "Translate to English j'apprends le français.",
+    "Question": "Translate to English <fr>j'apprends le français.</fr>",
     "Answer": "I am learning French",
     "Section": "buzzer",
     "Info": ""
@@ -1733,8 +1733,8 @@
     "Round": "1",
     "Match": "8",
     "Subject": "French",
-    "Question": "What is the first person plural form of the verb être in the present subjunctive?",
-    "Answer": "que nous soyons.",
+    "Question": "What is the first person plural form of the verb <fr>être</fr> in the present subjunctive?",
+    "Answer": "<fr>que nous soyons.</fr>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1842,7 +1842,7 @@
     "Round": "1",
     "Match": "9",
     "Subject": "French",
-    "Question": "What is the English translation for Ils étaient déjà partis?",
+    "Question": "What is the English translation for <fr>Ils étaient déjà partis?</fr>",
     "Answer": "They had already left",
     "Section": "buzzer",
     "Info": ""
@@ -2235,7 +2235,7 @@
     "Round": "1",
     "Match": "10",
     "Subject": "French",
-    "Question": "What is the English translation for Si j'avais su, je serais parti plus tôt?",
+    "Question": "What is the English translation for <fr>Si j'avais su, je serais parti plus tôt?</fr>",
     "Answer": "If I had known I would have left earlier",
     "Section": "buzzer",
     "Info": ""
