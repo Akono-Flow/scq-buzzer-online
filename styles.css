@@ -343,11 +343,12 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
 
 /* ── QUESTION CELL WITH ICONS ── */
 /*
-  When a question row has AudioUrl or LocalImageUrl the td gets this class.
-  We use flex so the question text flows naturally on the left and the icon
-  cluster sits at the top-right without overlapping the text.
+  The <td> itself stays as a normal table cell — applying display:flex
+  directly to a <td> disrupts the browser's table layout engine and causes
+  adjacent cells to visually shift. Instead, an inner <div class="q-cell-inner">
+  carries the flex layout so the td boundary is never disturbed.
 */
-.col-question--has-icons {
+.q-cell-inner {
   display: flex;
   align-items: flex-start;
   gap: 8px;
