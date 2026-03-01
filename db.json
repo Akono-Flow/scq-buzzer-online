@@ -3426,7 +3426,7 @@
     "Question": "What gas is produced when ethanoic acid reacts with sodium carbonate?",
     "Answer": "Carbon dioxide",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Ethanoic acid reacts with sodium carbonate} \\\\[10pt]&\\textbf{Step 1: Identify the Reactants} \\\\[4pt]&\\text{Ethanoic acid (acetic acid): } \\ce{CH3COOH} \\\\[4pt]&\\text{Sodium carbonate: } \\ce{Na2CO3} \\\\[10pt]&\\textbf{Step 2: Identify the Type of Reaction} \\\\[4pt]&\\text{This is an acid-carbonate reaction} \\\\[4pt]&\\text{Acid} + \\text{Carbonate} \\rightarrow \\text{Salt} + \\text{Water} + \\text{Carbon dioxide} \\\\[10pt]&\\textbf{Step 3: Identify the Products} \\\\[4pt]&\\text{Salt: Sodium ethanoate } \\ce{CH3COONa} \\\\[4pt]&\\text{Water: } \\ce{H2O} \\\\[4pt]&\\text{Gas produced: Carbon dioxide } \\ce{CO2} \\\\[10pt]&\\textbf{Step 4: Write the Unbalanced Equation} \\\\[4pt]&\\ce{CH3COOH_{(aq)} + Na2CO3_{(aq)} -> CH3COONa_{(aq)} + H2O_{(l)} + CO2_{(g)}} \\\\[10pt]&\\textbf{Step 5: Balance the Equation} \\\\[4pt]&\\text{Balance } \\ce{Na}: \\text{ 2 on left, need 2 on right } \\rightarrow \\text{ multiply } \\ce{CH3COOH} \\text{ and } \\ce{CH3COONa} \\text{ by 2} \\\\[4pt]&\\text{Balance } \\ce{C}: \\text{ } 2(2) + 1 = 5 \\text{ on left, } 2(2) + 1 = 5 \\text{ on right } \\checkmark \\\\[4pt]&\\text{Balance } \\ce{H}: \\text{ } 2(4) = 8 \\text{ on left, } 2(3) + 2 = 8 \\text{ on right } \\checkmark \\\\[4pt]&\\text{Balance } \\ce{O}: \\text{ } 2(2) + 3 = 7 \\text{ on left, } 2(2) + 1 + 2 = 7 \\text{ on right } \\checkmark \\\\[10pt]&\\textbf{Step 6: Write the Balanced Equation} \\\\[4pt]&\\ce{2CH3COOH_{(aq)} + Na2CO3_{(aq)} -> 2CH3COONa_{(aq)} + H2O_{(l)} + CO2_{(g)}} \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\text{Carbon dioxide } \\ce{CO2} \\text{ gas is produced in this reaction}\\end{aligned}$$"
   },
   {
     "Pkey": "281",
@@ -3902,7 +3902,7 @@
     "Question": "In the full chemical formula for gyypsum, how many molecules of water are present?",
     "Answer": "2",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Question:} \\text{ How many molecules of water are present in gypsum?} \\\\[10pt]&\\textbf{Step 1: Identify the Substance} \\\\[4pt]&\\text{Gypsum is a naturally occurring mineral widely used in construction} \\\\[4pt]&\\text{and as a setting agent in cement and plaster} \\\\[10pt]&\\textbf{Step 2: State the Chemical Name} \\\\[4pt]&\\text{Chemical name: Calcium sulphate dihydrate} \\\\[10pt]&\\textbf{Step 3: Identify the Component Parts} \\\\[4pt]&\\text{Calcium sulphate: } \\ce{CaSO4} \\\\[4pt]&\\text{Water of crystallisation: } \\ce{2H2O} \\\\[10pt]&\\textbf{Step 4: Write the Full Chemical Formula} \\\\[4pt]&\\ce{CaSO4 * 2H2O} \\\\[10pt]&\\textbf{Step 5: Identify the Water Molecules} \\\\[4pt]&\\text{The prefix } \\textit{di} \\text{ in dihydrate indicates } 2 \\text{ molecules of water} \\\\[4pt]&\\text{These are known as } \\textit{water of crystallisation} \\\\[10pt]&\\textbf{Step 6: Verify the Molar Mass} \\\\[4pt]&M(\\ce{CaSO4 * 2H2O}) = 40 + 32 + 4(16) + 2(18) \\\\[4pt]&= 40 + 32 + 64 + 36 = 172 \\text{ g mol}^{-1} \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&\\text{Gypsum } \\ce{CaSO4 * 2H2O} \\text{ contains } \\textbf{2} \\text{ molecules of water of crystallisation}\\end{aligned}$$"
   },
   {
     "Pkey": "320",
@@ -4415,7 +4415,7 @@
     "Question": "If the mass number for cadmium is 112 and its atomic number is 48, then what is its neutron number?",
     "Answer": "64",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Mass number of } \\ce{Cd} = 112, \\text{ Atomic number of } \\ce{Cd} = 48 \\\\[10pt]&\\textbf{Step 1: Recall the Definitions} \\\\[4pt]&\\text{Mass number } (A) = \\text{Total number of protons and neutrons in the nucleus} \\\\[4pt]&\\text{Atomic number } (Z) = \\text{Number of protons in the nucleus} \\\\[4pt]&\\text{Neutron number } (N) = \\text{Number of neutrons in the nucleus} \\\\[10pt]&\\textbf{Step 2: State the Relationship} \\\\[4pt]&A = Z + N \\\\[10pt]&\\textbf{Step 3: Rearrange for Neutron Number} \\\\[4pt]&N = A - Z \\\\[10pt]&\\textbf{Step 4: Substitute Known Values} \\\\[4pt]&N = 112 - 48 \\\\[10pt]&\\textbf{Step 5: Write the Nuclear Symbol} \\\\[4pt]&\\ce{^{112}_{48}Cd} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&N = 64 \\text{ neutrons}\\end{aligned}$$"
   },
   {
     "Pkey": "362",
@@ -4550,7 +4550,7 @@
     "Question": "Steam methane reforming is a common industrial method used to produce which gas?",
     "Answer": "Hydrogen",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Question:} \\text{ What gas is produced by Steam Methane Reforming (SMR)?} \\\\[10pt]&\\textbf{Step 1: Identify the Process} \\\\[4pt]&\\text{Steam Methane Reforming (SMR) is the most widely used} \\\\[4pt]&\\text{industrial method for producing hydrogen gas } \\ce{H2} \\\\[10pt]&\\textbf{Step 2: Identify the Reactants} \\\\[4pt]&\\text{Methane (natural gas): } \\ce{CH4_{(g)}} \\\\[4pt]&\\text{Steam (water vapour): } \\ce{H2O_{(g)}} \\\\[10pt]&\\textbf{Step 3: Identify the Products} \\\\[4pt]&\\text{Hydrogen gas: } \\ce{H2_{(g)}} \\\\[4pt]&\\text{Carbon monoxide: } \\ce{CO_{(g)}} \\text{ (syngas)} \\\\[10pt]&\\textbf{Step 4: Write the Primary Reforming Equation} \\\\[4pt]&\\ce{CH4_{(g)} + H2O_{(g)} ->[ Ni catalyst ][ 700 - 1000^{\\circ}C ] CO_{(g)} + 3H2_{(g)}} \\\\[10pt]&\\textbf{Step 5: Write the Water-Gas Shift Reaction} \\\\[4pt]&\\text{The } \\ce{CO} \\text{ produced reacts further with steam to yield more } \\ce{H2} \\\\[4pt]&\\ce{CO_{(g)} + H2O_{(g)} -> CO2_{(g)} + H2_{(g)}} \\\\[10pt]&\\textbf{Step 6: Write the Overall Equation} \\\\[4pt]&\\ce{CH4_{(g)} + 2H2O_{(g)} -> CO2_{(g)} + 4H2_{(g)}} \\\\[10pt]&\\textbf{Step 7: State the Energy Requirement} \\\\[4pt]&\\text{SMR is highly endothermic: } \\Delta H = +206 \\text{ kJ mol}^{-1} \\\\[4pt]&\\text{requiring significant external heating} \\\\[10pt]&\\textbf{Step 8: Answer} \\\\[4pt]&\\text{Steam Methane Reforming primarily produces hydrogen gas } \\ce{H2} \\\\[4pt]&\\text{accounting for approximately } 95\\% \\text{ of global } \\ce{H2} \\text{ production}\\end{aligned}$$"
   },
   {
     "Pkey": "373",
