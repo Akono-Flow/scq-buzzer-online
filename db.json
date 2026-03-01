@@ -2350,7 +2350,7 @@
     "Question": "What is the oxidation number of sulphur in Na2SO3?",
     "Answer": "(+4)",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find the oxidation number of } \\ce{S} \\text{ in } \\ce{Na2SO3} \\\\[10pt]&\\textbf{Step 1: State the Oxidation Number Rules Applied} \\\\[4pt]&\\text{The oxidation number of } \\ce{Na} = +1 \\\\[4pt]&\\text{The oxidation number of } \\ce{O} = -2 \\\\[4pt]&\\text{The sum of all oxidation numbers in a neutral compound } = 0 \\\\[10pt]&\\textbf{Step 2: Assign Known Oxidation Numbers} \\\\[4pt]&\\ce{Na2SO3} \\text{ contains: } 2 \\times \\ce{Na}, \\text{ } 1 \\times \\ce{S}, \\text{ } 3 \\times \\ce{O} \\\\[10pt]&\\textbf{Step 3: Set Up the Equation} \\\\[4pt]&\\text{Let the oxidation number of } \\ce{S} = x \\\\[4pt]&2(+1) + x + 3(-2) = 0 \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&2 + x - 6 = 0 \\\\[4pt]&x - 4 = 0 \\\\[10pt]&\\textbf{Step 5: Solve for } x \\\\[4pt]&x = +4 \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\text{The oxidation number of } \\ce{S} \\text{ in } \\ce{Na2SO3} \\text{ is } \\overset{+4}{\\ce{S}}\\end{aligned}$$"
   },
   {
     "Pkey": "193",
@@ -2692,7 +2692,7 @@
     "Question": "What is produced when Hydrogen sulphide gas burns in air?",
     "Answer": "Water and sulphur dioxide",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Hydrogen sulphide gas } \\ce{H2S} \\text{ burns in air} \\\\[10pt]&\\textbf{Step 1: Identify the Reactants} \\\\[4pt]&\\text{Fuel: Hydrogen sulphide } \\ce{H2S_{(g)}} \\\\[4pt]&\\text{Oxidant: Oxygen } \\ce{O2_{(g)}} \\text{ from air} \\\\[10pt]&\\textbf{Step 2: Identify the Products} \\\\[4pt]&\\text{Sulphur in } \\ce{H2S} \\text{ is oxidised to form sulphur dioxide } \\ce{SO2} \\\\[4pt]&\\text{Hydrogen in } \\ce{H2S} \\text{ is oxidised to form water } \\ce{H2O} \\\\[10pt]&\\textbf{Step 3: Write the Unbalanced Equation} \\\\[4pt]&\\ce{H2S_{(g)} + O2_{(g)} -> SO2_{(g)} + H2O_{(l)}} \\\\[10pt]&\\textbf{Step 4: Balance the Equation} \\\\[4pt]&\\text{Balance } \\ce{H}: \\text{ 2 on left, need 2 on right } \\checkmark \\\\[4pt]&\\text{Balance } \\ce{S}: \\text{ 1 on left, 1 on right } \\checkmark \\\\[4pt]&\\text{Balance } \\ce{O}: \\text{ 2 on left, 3 on right — multiply } \\ce{H2S} \\text{ and } \\ce{H2O} \\text{ by 2} \\\\[10pt]&\\textbf{Step 5: Write the Balanced Equation} \\\\[4pt]&\\ce{2H2S_{(g)} + 3O2_{(g)} -> 2SO2_{(g)} + 2H2O_{(l)}} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\text{Burning } \\ce{H2S} \\text{ in air produces sulphur dioxide } \\ce{SO2} \\text{ and water } \\ce{H2O}\\end{aligned}$$"
   },
   {
     "Pkey": "221",
