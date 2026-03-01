@@ -5491,7 +5491,7 @@
     "Question": "What is the name for a solution that resists changes in pH when small amounts of acid or base are added?",
     "Answer": "Buffer solution",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Buffer solutions are prepared by mixing a weak acid with its conjugate base (e.g., acetic acid and sodium acetate) or a weak base with its conjugate acid (e.g., ammonia and ammonium chloride) in water. They are designed to maintain a stable pH by resisting changes when small amounts of acid or base are added."
   },
   {
     "Pkey": "450",
@@ -5600,7 +5600,7 @@
     "Question": "What is the most common name for CH4 based on the locations where it was first identified?",
     "Answer": "Marsh gas",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Based on the locations where it was first identified, the most common name for (methane) is marsh gas. \n Identification Location: The gas was scientifically identified by Italian physicist Alessandro Volta in November 1776, who found it in the bubbles rising from the marshes of Lake Maggiore in Italy. \n Alternative Name: Due to this discovery, it became known as 'marsh gas' or 'swamp gas' \n Other Related Names: It is also referred to as 'firedamp' (when found in coal mines) or simply the main component of 'natural gas'. \n The official name 'methane' was not coined until 1866 by August Wilhelm von Hofmann, derived from 'methanol'."
   },
   {
     "Pkey": "459",
