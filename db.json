@@ -296,6 +296,7 @@
     "Question": "Listen to the clip and identify the singer.",
     "Answer": "Julio Iglesias (To All the Girls I've Loved Before)",
     "YoutubeUrl": "https://www.youtube.com/watch?v=rVq0ONrSH-Q",
+    "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/To-All-the-Girls-I've-Loved-Before-Julio-Iglesias-and-Willie-Nelson.mp3",
     "Section": "buzzer",
     "Info": ""
   },
@@ -494,6 +495,7 @@
     "Question": "Listen to this clip and give the title of the song.",
     "Answer": "All Shook Up (Elvis Presley)",
     "YoutubeUrl": "https://www.youtube.com/watch?v=23zLefwiii4",
+    "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/All-Shook-Up-Elvis-Presley.mp3",
     "Section": "buzzer",
     "Info": ""
   },
@@ -703,6 +705,7 @@
     "Question": "Listen to the following clip and give the title of the song.",
     "Answer": "Princess Black (Edi Fitzroy)",
     "YoutubeUrl": "https://www.youtube.com/watch?v=I3OxqyGnMUA",
+    "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/Princess-Black-Edi-Fitzroy.mp3",
     "Section": "buzzer",
     "Info": ""
   },
@@ -947,6 +950,7 @@
     "Question": "Listen to the following clip and give the title of the song.",
     "Answer": "Princess Black (Edi Fitzroy)",
     "YoutubeUrl": "https://www.youtube.com/watch?v=I3OxqyGnMUA",
+    "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/We-Dont-Need-Another-Hero-Tina-Turner.mp3",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1179,6 +1183,7 @@
     "Question": "Listen to the following clip and give the title of the song.",
     "Answer": "Try Jah Love (Third World)",
     "YoutubeUrl": "https://www.youtube.com/watch?v=HdQqlj4GNgc",
+    "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/We-Dont-Need-Another-Hero-Tina-Turner.mp3",
     "Section": "buzzer",
     "Info": ""
   },
