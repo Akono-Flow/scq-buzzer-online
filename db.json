@@ -530,7 +530,7 @@
     "Round": "1",
     "Match": "3",
     "Subject": "Spanish",
-    "Question": "What is the equivalent English proverb for: Cada oveja con su pareja?",
+    "Question": "What is the equivalent English proverb for: <es>Cada oveja con su pareja</es>?",
     "Answer": "Birds of a feather flock together",
     "Section": "buzzer",
     "Info": ""
@@ -1022,7 +1022,7 @@
     "Round": "1",
     "Match": "5",
     "Subject": "Spanish",
-    "Question": "Give one English word which means the same as a duras penas.",
+    "Question": "Give one English word which means the same as <es>a duras penas.</es>",
     "Answer": "Barely",
     "Section": "buzzer",
     "Info": ""
@@ -2003,7 +2003,7 @@
     "Round": "1",
     "Match": "9",
     "Subject": "Spanish",
-    "Question": "What is the English translation for el medio ambiente?",
+    "Question": "What is the English translation for <es>el medio ambiente?</es>",
     "Answer": "The environment",
     "Section": "buzzer",
     "Info": ""
