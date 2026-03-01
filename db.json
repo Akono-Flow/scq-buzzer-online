@@ -3983,7 +3983,7 @@
     "Match": "19",
     "Subject": "Sports",
     "Question": "Look at the monitor and identify this person.",
-    "Answer": "Jonas Vingegaard Hansen (Danish Cyclist)",
+    "Answer": "<da>Jonas Vingegaard Hansen</da> (Danish Cyclist)",
     "ImageUrl": "https://r.testifier.nl/Acbs8526SDKI/resizing_type:fit/watermark:Picture:%20Sirotti/width:3840/height:2560/plain/https://s3-newsifier.ams3.digitaloceanspaces.com/cyclinguptodatecom/images/2025-06/jonasvingegaard-2-684c4fc6b7f05.jpg@webp",
     "Section": "buzzer",
     "Info": ""
