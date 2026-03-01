@@ -5332,7 +5332,7 @@
     "Question": "What is the name of the quantum number which describes the shape of an electron's orbital and its orbital angular momentum?",
     "Answer": "Azimuthal quantum number",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Here are the four quantum numbers and their functions: \n Principal Quantum Number (): Describes the main energy level or shell of the electron, determining the size and energy of the orbital. \n Azimuthal Quantum Number (): Determines the shape of the orbital (angular momentum) and the subshell (0 = s, 1 = p, 2 = d, 3 = f) \n Magnetic Quantum Number (): Determines the spatial orientation of the orbital, ranging from to -l to +l \n Spin Quantum Number (): Describes the spin direction of the electron, which can be either $+\\dfrac{1}{2}$ or $-\\dfrac{1}{2}$"
   },
   {
     "Pkey": "437",
