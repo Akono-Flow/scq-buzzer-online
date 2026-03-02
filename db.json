@@ -2513,7 +2513,7 @@
     "Round": "1",
     "Match": "12",
     "Subject": "French",
-    "Question": "Translate to English Nous avons gagné le match.",
+    "Question": "Translate to English <fr>Nous avons gagné le match.</fr>",
     "Answer": "We won the match",
     "Section": "buzzer",
     "Info": ""
@@ -2601,7 +2601,7 @@
     "Round": "1",
     "Match": "13",
     "Subject": "French",
-    "Question": "Translate to English Je ne retirerai pas mon chapeau.",
+    "Question": "Translate to English <fr>Je ne retirerai pas mon chapeau.</fr>",
     "Answer": "I will not take my hat off.",
     "Section": "buzzer",
     "Info": ""
@@ -2837,7 +2837,7 @@
     "Round": "1",
     "Match": "14",
     "Subject": "French",
-    "Question": "Translate to English: je viens d'arriver.",
+    "Question": "Translate to English: <fr>je viens d'arriver.</fr>",
     "Answer": "I have just arrived",
     "Section": "buzzer",
     "Info": ""
@@ -3249,7 +3249,7 @@
     "Round": "1",
     "Match": "16",
     "Subject": "French",
-    "Question": "Translate to English j'adore les pommes.",
+    "Question": "Translate to English <fr>j'adore les pommes.</fr>",
     "Answer": "I love apples",
     "Section": "buzzer",
     "Info": ""
@@ -3621,7 +3621,7 @@
     "Round": "1",
     "Match": "17",
     "Subject": "French",
-    "Question": "Give the English translation for this sentence J'ai envie de dormir.",
+    "Question": "Give the English translation for this sentence <fr>J'ai envie de dormir.</fr>",
     "Answer": "I want to sleep",
     "Section": "buzzer",
     "Info": ""
@@ -3721,7 +3721,7 @@
     "Round": "1",
     "Match": "18",
     "Subject": "French",
-    "Question": "What is the English translation for Il a plu toute la nuit?",
+    "Question": "What is the English translation for <fr>Il a plu toute la nuit?</fr>",
     "Answer": "It rained all night",
     "Section": "buzzer",
     "Info": ""
@@ -4093,7 +4093,7 @@
     "Round": "1",
     "Match": "19",
     "Subject": "French",
-    "Question": "What is the English translation for the phrase À bien y réfléchir?",
+    "Question": "What is the English translation for the phrase <fr>À bien y réfléchir?</fr>",
     "Answer": "On second thought (come to think of it)",
     "Section": "buzzer",
     "Info": ""
@@ -4243,8 +4243,8 @@
     "Round": "1",
     "Match": "20",
     "Subject": "French",
-    "Question": "What is the opposite of chaud in French?",
-    "Answer": "froid",
+    "Question": "What is the opposite of <fr>chaud</fr> in French?",
+    "Answer": "<fr>froid</fr>",
     "Section": "buzzer",
     "Info": ""
   },
