@@ -1630,7 +1630,7 @@
     "Match": "8",
     "Subject": "Spanish",
     "Question": "What is the four letter Spanish word for scholarship?",
-    "Answer": "beca",
+    "Answer": "<es>beca</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2153,7 +2153,7 @@
     "Round": "1",
     "Match": "10",
     "Subject": "Spanish",
-    "Question": "What is the English translation for: nos dieron las gracias por nuestra ayuda?",
+    "Question": "What is the English translation for: <es>nos dieron las gracias por nuestra ayuda?</es>",
     "Answer": "They thanked us for our help",
     "Section": "buzzer",
     "Info": ""
@@ -2413,7 +2413,7 @@
     "Round": "1",
     "Match": "12",
     "Subject": "Spanish",
-    "Question": "Translate to English por si acaso, trae tu identificación.",
+    "Question": "Translate to English <es>por si acaso, trae tu identificación.</es>",
     "Answer": "Just in case, bring your ID",
     "Section": "buzzer",
     "Info": ""
@@ -3087,7 +3087,7 @@
     "Round": "1",
     "Match": "15",
     "Subject": "Spanish",
-    "Question": "What is the English translation for te llamarán cuando lleguen?",
+    "Question": "What is the English translation for <es>te llamarán cuando lleguen?</es>",
     "Answer": "They will call you when they arrive",
     "Section": "buzzer",
     "Info": ""
@@ -3385,7 +3385,7 @@
     "Round": "1",
     "Match": "16",
     "Subject": "Spanish",
-    "Question": "Translate into English No olvides tu pasaporte.",
+    "Question": "Translate into English <es>No olvides tu pasaporte.</es>",
     "Answer": "Don't Forget your passport",
     "Section": "buzzer",
     "Info": ""
@@ -3509,7 +3509,7 @@
     "Round": "1",
     "Match": "17",
     "Subject": "Spanish",
-    "Question": "What is the English translation for the Spanish command in this traffic sign prohibido girar a la izquierda?",
+    "Question": "What is the English translation for the Spanish command in this traffic sign <es>prohibido girar a la izquierda?</es>",
     "Answer": "No left turns",
     "Section": "buzzer",
     "Info": ""
@@ -3857,7 +3857,7 @@
     "Round": "1",
     "Match": "18",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Si lo hubiera sabido no habría ido?",
+    "Question": "What is the English translation for <es>Si lo hubiera sabido no habría ido?</es>",
     "Answer": "Had I known, I would not have gone.",
     "Section": "buzzer",
     "Info": ""
@@ -4007,7 +4007,7 @@
     "Round": "1",
     "Match": "19",
     "Subject": "Spanish",
-    "Question": "How do you say No todo lo que brilla es oro in English?",
+    "Question": "How do you say <es>No todo lo que brilla es oro in English?</es>",
     "Answer": "Not all that glitters is gold",
     "Section": "buzzer",
     "Info": ""
@@ -4141,7 +4141,7 @@
     "Round": "1",
     "Match": "20",
     "Subject": "Spanish",
-    "Question": "Translate to English Necesitamos una persona que tenga experiencia.",
+    "Question": "Translate to English <es>Necesitamos una persona que tenga experiencia.</es>",
     "Answer": "We need a person who has experience",
     "Section": "buzzer",
     "Info": ""
@@ -4515,7 +4515,7 @@
     "Round": "1",
     "Match": "21",
     "Subject": "Spanish",
-    "Question": "What is the English translation for No tengo suficiente dinero?",
+    "Question": "What is the English translation for <es>No tengo suficiente dinero?</es>",
     "Answer": "I don't have enough money",
     "Section": "buzzer",
     "Info": ""
@@ -4653,7 +4653,7 @@
     "Round": "1",
     "Match": "22",
     "Subject": "Spanish",
-    "Question": "Translate to English: dudaron antes de responder.",
+    "Question": "Translate to English: <es>dudaron antes de responder.</es>",
     "Answer": "They hesitated before answering",
     "Section": "buzzer",
     "Info": ""
@@ -5001,8 +5001,8 @@
     "Round": "2",
     "Match": "24",
     "Subject": "Spanish",
-    "Question": "What is the past participle of the verb Hacer?",
-    "Answer": "Hecho",
+    "Question": "What is the past participle of the verb <es>Hacer?</es>",
+    "Answer": "<es>Hecho</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5213,7 +5213,7 @@
     "Round": "2",
     "Match": "25",
     "Subject": "Spanish",
-    "Question": "Translate to English Se me olvidó.",
+    "Question": "Translate to English <es>Se me olvidó.</es>",
     "Answer": "I forgot it (or I forgot)",
     "Section": "buzzer",
     "Info": ""
@@ -5611,7 +5611,7 @@
     "Round": "2",
     "Match": "26",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Es importante que digas la verdad?",
+    "Question": "What is the English translation for <es>Es importante que digas la verdad?</es>",
     "Answer": "It is important that you tell the truth",
     "Section": "buzzer",
     "Info": ""
@@ -5721,7 +5721,7 @@
     "Round": "2",
     "Match": "27",
     "Subject": "Spanish",
-    "Question": "What is the English translation for the expression A pesar de?",
+    "Question": "What is the English translation for the expression <es>A pesar de?</es>",
     "Answer": "Inspite of",
     "Section": "buzzer",
     "Info": ""
@@ -6369,7 +6369,7 @@
     "Round": "2",
     "Match": "29",
     "Subject": "Spanish",
-    "Question": "Translate to English El huracán Melissa destruyó partes de Jamaica.",
+    "Question": "Translate to English <es>El huracán Melissa destruyó partes de Jamaica.</es>",
     "Answer": "Hurricane Melissa destroyed parts of Jamaica",
     "Section": "buzzer",
     "Info": ""
@@ -6381,7 +6381,7 @@
     "Round": "2",
     "Match": "30",
     "Subject": "Spanish",
-    "Question": "What is the equivalent English proverb for: el tiempo lo cura todo?",
+    "Question": "What is the equivalent English proverb for: <es>el tiempo lo cura todo?</es>",
     "Answer": "Time heals all wounds",
     "Section": "buzzer",
     "Info": ""
@@ -6743,7 +6743,7 @@
     "Round": "2",
     "Match": "31",
     "Subject": "Spanish",
-    "Question": "Translate into English: Dudo que entiendan el problema.",
+    "Question": "Translate into English: <es>Dudo que entiendan el problema.</es>",
     "Answer": "I doubt that they understand the problem",
     "Section": "buzzer",
     "Info": ""
@@ -6869,7 +6869,7 @@
     "Round": "2",
     "Match": "32",
     "Subject": "Spanish",
-    "Question": "The teacher stated siempre tengo razon. What is the English translation of what she stated?",
+    "Question": "The teacher stated <es>siempre tengo razon</es>. What is the English translation of what she stated?",
     "Answer": "I am always right",
     "Section": "buzzer",
     "Info": ""
@@ -7095,7 +7095,7 @@
     "Round": "2",
     "Match": "33",
     "Subject": "Spanish",
-    "Question": "Give the English translation for: Yo compré el pan.",
+    "Question": "Give the English translation for: <es>Yo compré el pan.</es>",
     "Answer": "I bought bread",
     "Section": "buzzer",
     "Info": ""
@@ -7257,7 +7257,7 @@
     "Round": "2",
     "Match": "34",
     "Subject": "Spanish",
-    "Question": "Translate into English: Las chicas ganaron el premio.",
+    "Question": "Translate into English: <es>Las chicas ganaron el premio.</es>",
     "Answer": "The girls won the prize or the award",
     "Section": "buzzer",
     "Info": ""
@@ -7653,7 +7653,7 @@
     "Round": "2",
     "Match": "35",
     "Subject": "Spanish",
-    "Question": "Translate into English La camisa todavía estaba mojada.",
+    "Question": "Translate into English <es>La camisa todavía estaba mojada.</es>",
     "Answer": "The shirt was still wet",
     "Section": "buzzer",
     "Info": ""
@@ -7815,7 +7815,7 @@
     "Round": "2",
     "Match": "36",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Dieron marcha atrás?",
+    "Question": "What is the English translation for <es>Dieron marcha atrás?</es>",
     "Answer": "They backed down; turned away or retreated",
     "Section": "buzzer",
     "Info": ""
@@ -7952,7 +7952,7 @@
     "Match": "37",
     "Subject": "Spanish",
     "Question": "What is the Spanish for \"I am going to the cinema tonight\"?",
-    "Answer": "Voy al cine esta noche",
+    "Answer": "<es>Voy al cine esta noche</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -8101,7 +8101,7 @@
     "Round": "2",
     "Match": "37",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Dejé el teléfono en la mesa?",
+    "Question": "What is the English translation for <es>Dejé el teléfono en la mesa?</es>",
     "Answer": "I left the telephone on the table.",
     "Section": "buzzer",
     "Info": ""
@@ -8474,7 +8474,7 @@
     "Round": "3",
     "Match": "39",
     "Subject": "Spanish",
-    "Question": "Which specific relative is la prima segunda?",
+    "Question": "Which specific relative is <es>la prima segunda?</es>",
     "Answer": "The second female cousin",
     "Section": "buzzer",
     "Info": ""
@@ -8548,7 +8548,7 @@
     "Match": "40",
     "Subject": "Spanish",
     "Question": "What is the Spanish translation for: She doubts that he is telling the truth?",
-    "Answer": "Ella duda que él esté diciendo la verdad",
+    "Answer": "<es>Ella duda que él esté diciendo la verdad</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -8834,7 +8834,7 @@
     "Round": "3",
     "Match": "41",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Ella duda que él sepa la respuesta?",
+    "Question": "What is the English translation for <es>Ella duda que él sepa la respuesta?</es>",
     "Answer": "She doubts that he knows the answer.",
     "Section": "buzzer",
     "Info": ""
@@ -8956,7 +8956,7 @@
     "Round": "3",
     "Match": "42",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Son las dos y media tarde?",
+    "Question": "What is the English translation for <es>Son las dos y media tarde?</es>",
     "Answer": "It's two thirty in the afternoon",
     "Section": "buzzer",
     "Info": ""
