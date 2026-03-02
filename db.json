@@ -4753,7 +4753,7 @@
     "Round": "1",
     "Match": "22",
     "Subject": "French",
-    "Question": "What is the English translation for nous sommes arrivés sains et saufs?",
+    "Question": "What is the English translation for <fr>nous sommes arrivés sains et saufs?</fr>",
     "Answer": "We arrived safely",
     "Section": "buzzer",
     "Info": ""
@@ -4853,7 +4853,7 @@
     "Round": "2",
     "Match": "23",
     "Subject": "French",
-    "Question": "What is the English translation for this statement: je suis d'accord avec toi",
+    "Question": "What is the English translation for this statement: <fr>je suis d'accord avec toi</fr>",
     "Answer": "I agree with you",
     "Section": "buzzer",
     "Info": ""
@@ -5189,7 +5189,7 @@
     "Round": "2",
     "Match": "24",
     "Subject": "French",
-    "Question": "What is the English translation for Je ne peux pas m'empêcher de rire?",
+    "Question": "What is the English translation for <fr>Je ne peux pas m'empêcher de rire?</fr>",
     "Answer": "I can't help but laugh",
     "Section": "buzzer",
     "Info": ""
@@ -5340,7 +5340,7 @@
     "Match": "25",
     "Subject": "French",
     "Question": "What is the French word for Traffic jam?",
-    "Answer": "Embouteillage",
+    "Answer": "<fr>Embouteillage</fr>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5450,7 +5450,7 @@
     "Match": "26",
     "Subject": "French",
     "Question": "What is the French term for Pedestrian crossing or crosswalk?",
-    "Answer": "passage piétons",
+    "Answer": "<fr>passage piétons</fr>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5921,7 +5921,7 @@
     "Round": "2",
     "Match": "27",
     "Subject": "French",
-    "Question": "Translate to English Elle a l'habitude de se réveiller tôt.",
+    "Question": "Translate to English <fr>Elle a l'habitude de se réveiller tôt.</fr>",
     "Answer": "She is used to waking up early",
     "Section": "buzzer",
     "Info": ""
@@ -6033,7 +6033,7 @@
     "Round": "2",
     "Match": "28",
     "Subject": "French",
-    "Question": "Translate into English je mange des bananes.",
+    "Question": "Translate into English <fr>je mange des bananes.</fr>",
     "Answer": "I eat bananas",
     "Section": "buzzer",
     "Info": ""
@@ -6181,7 +6181,7 @@
     "Round": "2",
     "Match": "29",
     "Subject": "French",
-    "Question": "Translate to English Il pleut depuis trois jours.",
+    "Question": "Translate to English <fr>Il pleut depuis trois jours.</fr>",
     "Answer": "It has been raining for three days",
     "Section": "buzzer",
     "Info": ""
@@ -6507,7 +6507,7 @@
     "Round": "2",
     "Match": "30",
     "Subject": "French",
-    "Question": "What is the English translation for Professeur de chimie?",
+    "Question": "What is the English translation for <fr>Professeur de chimie?</fr>",
     "Answer": "Chemistry teacher",
     "Section": "buzzer",
     "Info": ""
