@@ -8401,6 +8401,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip and give the title of the song.",
     "Answer": "Waiting In Vain (Bob Marley and The Wailers)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=IWxbhC44p2w",
     "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/Waiting-In-Vain-Bob-Marley-and-The-Wailers.mp3",
     "Section": "buzzer",
     "Info": ""
@@ -8611,6 +8612,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, give the title of the song.",
     "Answer": "Wanna Be Startin Somethin (Michael Jackson)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=1XMvPTFzgVU",
     "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/Wanna-Be-Startin-Somethin-Michael-Jackson.mp3",
     "Section": "buzzer",
     "Info": ""
@@ -8820,6 +8822,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, identify the group.",
     "Answer": "Boyz II Men (End Of The Road)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=zDKO6XYXioc",
     "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/End-Of-The-Road-Boyz-II-Men.mp3",
     "Section": "buzzer",
     "Info": ""
@@ -9017,6 +9020,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, give the title of the song.",
     "Answer": "I Feel For You (Chaka Khan)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=YW0sxgYAmLM",
     "AudioUrl": "https://akono-flow.github.io/scq-buzzer-online/audio/2026/I-Feel-For-You-Chaka-Khan.mp3",
     "Section": "buzzer",
     "Info": ""
