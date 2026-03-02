@@ -9131,6 +9131,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor, identify this person.",
     "Answer": "Quentin Sampson (Guyanese Cricketer)",
+    "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSmElksIjKwZScRsT9bsOAC_mDGThBhnjzJConqXO2Jw7F9MweH",
     "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Quentin-Sampson.jpeg",
     "Section": "buzzer",
     "Info": ""
@@ -9144,7 +9145,8 @@
     "Subject": "Biology",
     "Question": "Which specific part of the human brain, located behind the forehead, is called the brain CEO - responsible for executive functions like planning and decision-making?",
     "Answer": "Prefrontal cortex",
+    "ImageUrl": "https://cdn.flintrehab.com/uploads/2020/08/prefrontal-cortex-damage.png",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "The prefrontal cortex (PFC), located directly behind the forehead, is the brain's executive center responsible for complex cognitive behavior, personality expression, decision-making, and moderating social behavior. It acts as a 'mental sketchpad' for working memory, planning, and focusing attention. As the last part of the brain to mature (completing in the mid-20s), it governs impulse control and understanding consequences."
   }
 ]
