@@ -8512,9 +8512,10 @@
     "Subject": "Sports",
     "Question": "Look at the monitor, identify this person.",
     "Answer": "Adam Zampa (Australian cricketer)",
+    "ImageUrl": "https://resources.cricket-australia.pulselive.com/cricket-australia/photo/2023/12/08/3822644f-ab87-424b-bb4c-3618f93542c6/8zampa-aus-celebrations-16x9.jpg",
     "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Adam-Zampa.jpeg",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Adam Zampa (born 31 March 1992) is an Australian cricketer who plays for the Australia national cricket team in both One Day International (ODI) and Twenty20 International (T20I) cricket. He also plays for New South Wales in domestic cricket and the Melbourne Renegades in the Big Bash League."
   },
   {
     "Pkey": "685",
