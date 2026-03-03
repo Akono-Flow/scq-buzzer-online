@@ -9246,7 +9246,8 @@
     "Subject": "Art",
     "Question": "Which Italian Renaissance  technique starting with \"S\" uses subtle gradation of tone to blur edges?",
     "Answer": "Sfumato",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "Definition: Derived from the Italian word fumo ('smoke'), sfumato means to 'vanish' or 'evaporate like smoke'. \n Method: It involves applying multiple, extremely thin, and translucent layers of paint (glazes) to create a seamless, gradual transition between colors and tones. \n Creator: The technique was pioneered and popularized by Leonardo da Vinci, who used it to create a hazy, atmospheric effect, most famously in the Mona Lisa and The Virgin of the Rocks. \n Purpose: By removing distinct outlines, sfumato allows for a more naturalistic, lifelike, and three-dimensional appearance. \n Sfumato is considered one of the four, canonical painting modes of the Italian High Renaissance, alongside chiaroscuro (strong contrast), cangiante (color change), and unione (unification)."
   },
   {
     "Pkey": "744",
