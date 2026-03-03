@@ -9161,6 +9161,7 @@
     "Subject": "Mathematics",
     "Question": "What is the square root of (3^2 + 4^2)?",
     "Answer": "5",
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find } \\sqrt{3^2 + 4^2} \\\\[10pt]&\\textbf{Step 1: Evaluate the Indices} \\\\[4pt]&3^2 = 9 \\\\[4pt]&4^2 = 16 \\\\[10pt]&\\textbf{Step 2: Add the Results} \\\\[4pt]&3^2 + 4^2 = 9 + 16 = 25 \\\\[10pt]&\\textbf{Step 3: Take the Square Root} \\\\[4pt]&\\sqrt{25} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&\\sqrt{3^2 + 4^2} = 5\\end{aligned}$$"
     "Section": "buzzer"
   },
   {
@@ -9172,6 +9173,7 @@
     "Subject": "Physics",
     "Question": "A projectile is launched horizontally at 20 meters per second from a cliff 45 meters high. How far from the cliff base does it land, assuming g = 10 meters per second squared?",
     "Answer": "60 meters",
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Horizontal velocity } u_x = 20 \\text{ m s}^{-1}, \\text{ Height } h = 45 \\text{ m, } g = 10 \\text{ m s}^{-2} \\\\[10pt]&\\textbf{Step 1: Recognise the Two Independent Motions} \\\\[4pt]&\\text{Horizontal: constant velocity, no acceleration} \\\\[4pt]&\\text{Vertical: starts from rest, accelerates under gravity} \\\\[10pt]&\\textbf{Step 2: Analyse the Vertical Motion to Find Time} \\\\[4pt]&\\text{Using } h = u_y t + \\dfrac{1}{2}gt^2 \\\\[4pt]&\\text{Since the projectile is launched horizontally, } u_y = 0 \\\\[4pt]&\\therefore h = \\dfrac{1}{2}gt^2 \\\\[10pt]&\\textbf{Step 3: Substitute Known Values} \\\\[4pt]&45 = \\dfrac{1}{2} \\times 10 \\times t^2 \\\\[4pt]&45 = 5t^2 \\\\[10pt]&\\textbf{Step 4: Solve for } t \\\\[4pt]&t^2 = \\dfrac{45}{5} = 9 \\\\[4pt]&t = \\sqrt{9} = 3 \\text{ s} \\\\[10pt]&\\textbf{Step 5: Analyse the Horizontal Motion} \\\\[4pt]&\\text{Using } x = u_x \\times t \\\\[10pt]&\\textbf{Step 6: Substitute Known Values} \\\\[4pt]&x = 20 \\times 3 \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&x = 60 \\text{ m from the base of the cliff}\\end{aligned}$$"
     "Section": "buzzer"
   },
   {
