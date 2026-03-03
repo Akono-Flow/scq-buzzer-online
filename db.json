@@ -9161,7 +9161,7 @@
     "Subject": "Mathematics",
     "Question": "What is the square root of (3^2 + 4^2)?",
     "Answer": "5",
-    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find } \\sqrt{3^2 + 4^2} \\\\[10pt]&\\textbf{Step 1: Evaluate the Indices} \\\\[4pt]&3^2 = 9 \\\\[4pt]&4^2 = 16 \\\\[10pt]&\\textbf{Step 2: Add the Results} \\\\[4pt]&3^2 + 4^2 = 9 + 16 = 25 \\\\[10pt]&\\textbf{Step 3: Take the Square Root} \\\\[4pt]&\\sqrt{25} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&\\sqrt{3^2 + 4^2} = 5\\end{aligned}$$"
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Find } \\sqrt{3^2 + 4^2} \\\\[10pt]&\\textbf{Step 1: Evaluate the Indices} \\\\[4pt]&3^2 = 9 \\\\[4pt]&4^2 = 16 \\\\[10pt]&\\textbf{Step 2: Add the Results} \\\\[4pt]&3^2 + 4^2 = 9 + 16 = 25 \\\\[10pt]&\\textbf{Step 3: Take the Square Root} \\\\[4pt]&\\sqrt{25} \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&\\sqrt{3^2 + 4^2} = 5\\end{aligned}$$",
     "Section": "buzzer"
   },
   {
