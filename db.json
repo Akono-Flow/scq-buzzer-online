@@ -8973,8 +8973,9 @@
     "Subject": "Information Technology",
     "Question": "What networking method involves breaking data into small packets that are sent independently across a network and reassembled at the destination?",
     "Answer": "Packet switching",
+    "ImageUrl": "https://miro.medium.com/v2/resize:fit:1400/1*TZ5H4pI1JJxuNqXYeYT6sg.png",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Packet switching is the networking method that breaks data into small packets (containing a header and payload) sent independently across a network via various routes and reassembled at the destination. This technique optimizes network resources, enabling efficient data transmission, such as on the internet."
   },
   {
     "Pkey": "722",
@@ -8986,7 +8987,7 @@
     "Question": "How many moles of sodium hydroxide are required to neutralize 25.0 cm^3 of 0.20 moles of hydrochloric acid?",
     "Answer": "0.005 moles",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ } V(\\ce{HCl}) = 25.0 \\text{ cm}^3, \\text{ } [\\ce{HCl}] = 0.20 \\text{ mol dm}^{-3} \\\\[10pt]&\\textbf{Step 1: Write the Balanced Equation} \\\\[4pt]&\\ce{HCl_{(aq)} + NaOH_{(aq)} -> NaCl_{(aq)} + H2O_{(l)}} \\\\[10pt]&\\textbf{Step 2: Identify the Mole Ratio} \\\\[4pt]&\\ce{HCl} : \\ce{NaOH} = 1:1 \\\\[4pt]&\\therefore \\text{ moles of } \\ce{NaOH} \\text{ required} = \\text{moles of } \\ce{HCl} \\text{ present} \\\\[10pt]&\\textbf{Step 3: Recall the Moles Formula} \\\\[4pt]&n = C \\times V \\\\[4pt]&\\text{where } C \\text{ is concentration in mol dm}^{-3} \\text{ and } V \\text{ is volume in dm}^3 \\\\[10pt]&\\textbf{Step 4: Convert Volume of } \\ce{HCl} \\text{ to dm}^3 \\\\[4pt]&V(\\ce{HCl}) = \\dfrac{25.0}{1000} = 0.025 \\text{ dm}^3 \\\\[10pt]&\\textbf{Step 5: Calculate Moles of } \\ce{HCl} \\\\[4pt]&n(\\ce{HCl}) = 0.20 \\times 0.025 = 0.005 \\text{ mol} \\\\[10pt]&\\textbf{Step 6: State Moles of } \\ce{NaOH} \\text{ Required} \\\\[4pt]&n(\\ce{NaOH}) = n(\\ce{HCl}) = 0.005 \\text{ mol} \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&n(\\ce{NaOH}) = 5.0 \\times 10^{-3} \\text{ mol}\\end{aligned}$$"
   },
   {
     "Pkey": "723",
