@@ -9199,7 +9199,8 @@
     "Question": "Look at the following clip and identify this person.",
     "Answer": "Kim Jong Un (President of North Korea)",
     "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSad0qfDnZy_lJrOlemo6lGcwV8ufu6_LAuFebY7bGEx-Fgqkip",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "Like his father and grandfather before him, Kim Jong Un rules North Korea, and his leadership has maintained the Kim family cult of personality. State media often refer to him as 'Respected Comrade' or 'Marshal'."
   },
   {
     "Pkey": "740",
@@ -9233,7 +9234,8 @@
     "Subject": "French",
     "Question": "What is the past participle of the verb <fr>s'asseoir</fr>?",
     "Answer": "<fr>Assis</fr>",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "The past participle of the French reflexive verb s'asseoir ('to sit down') is assis. As a reflexive verb, it uses être as an auxiliary verb in compound tenses, meaning the past participle must agree with the subject (e.g., elle s'est assise) \n Past Participle: Assis (masc.), Assise (fem.), Assis (masc. pl.), Assises (fem. pl.) \n Examples: \n Je me suis assis. (I sat down.) \n Elle est assise. (She is seated/sitting.) \n Key Notes: \n The verb s'asseoir is irregular and has two main conjugation forms (based on assey- or assoi-), but both use assis as the past participle. \n It is used to describe both the action of sitting and the state of being seated."
   },
   {
     "Pkey": "743",
