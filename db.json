@@ -9194,6 +9194,7 @@
     "Subject": "Local and International Affairs",
     "Question": "Look at the following clip and identify this person.",
     "Answer": "Kim Jong Un (President of North Korea)",
+    "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSad0qfDnZy_lJrOlemo6lGcwV8ufu6_LAuFebY7bGEx-Fgqkip",
     "Section": "buzzer"
   },
   {
@@ -9216,6 +9217,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip and identify the singer.",
     "Answer": "Sabrina Carpenter (Espresso)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=eVli-tstM5E",
     "Section": "buzzer"
   },
   {
@@ -9225,8 +9227,8 @@
     "Round": "3",
     "Match": "43",
     "Subject": "French",
-    "Question": "What is the past participle of the verb s'asseoir?",
-    "Answer": "Assis",
+    "Question": "What is the past participle of the verb <fr>s'asseoir?</fr>",
+    "Answer": "<fr>Assis</fr>",
     "Section": "buzzer"
   },
   {
@@ -9260,6 +9262,7 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip, identify this actor.",
     "Answer": "Andrew Garfield",
+    "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Andrew_Garfield_82nd_Venice_Film_Festival_(cropped).jpg",
     "Section": "buzzer"
   },
   {
@@ -9269,7 +9272,7 @@
     "Round": "3",
     "Match": "43",
     "Subject": "Spanish",
-    "Question": "Translate to English: Yo moriré por mi país",
+    "Question": "Translate to English: <es>Yo moriré por mi país</es>",
     "Answer": "I will die for my country",
     "Section": "buzzer"
   },
@@ -9315,6 +9318,7 @@
     "Subject": "Sports",
     "Question": "Look at the monitor, identify this person.",
     "Answer": "Kirsty Coventry (President of the International Olympic Committee [IOC])",
+    "ImageUrl": "https://www.tribuneindia.com/sortd-service/imaginary/v22-01/jpg/large/high?url=dGhldHJpYnVuZS1zb3J0ZC1wcm8tcHJvZC1zb3J0ZC9tZWRpYTdiYjQ4YzgwLTA1YTgtMTFmMC1hOTk3LWUzYWEyZTRhMzM5Ni5qcGc=",
     "Section": "buzzer"
   },
   {
