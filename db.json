@@ -840,7 +840,7 @@
     "Question": "Using the lens formula, what is the focal length of a lens with u = 20cm and v = 12.5cm?",
     "Answer": "Approximately 7.7cm",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Object distance } u = 20 \\text{ cm, Image distance } v = 12.5 \\text{ cm} \\\\[10pt]&\\textbf{Step 1: Recall the Lens Formula} \\\\[4pt]&\\dfrac{1}{f} = \\dfrac{1}{u} + \\dfrac{1}{v} \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&\\dfrac{1}{f} = \\dfrac{1}{20} + \\dfrac{1}{12.5} \\\\[10pt]&\\textbf{Step 3: Convert } \\dfrac{1}{12.5} \\text{ to a Fraction} \\\\[4pt]&\\dfrac{1}{12.5} = \\dfrac{2}{25} \\\\[10pt]&\\textbf{Step 4: Find a Common Denominator} \\\\[4pt]&\\dfrac{1}{f} = \\dfrac{1}{20} + \\dfrac{2}{25} \\\\[4pt]&\\dfrac{1}{f} = \\dfrac{5}{100} + \\dfrac{8}{100} \\\\[10pt]&\\textbf{Step 5: Add the Fractions} \\\\[4pt]&\\dfrac{1}{f} = \\dfrac{13}{100} \\\\[10pt]&\\textbf{Step 6: Solve for } f \\\\[4pt]&f = \\dfrac{100}{13} \\\\[10pt]&\\textbf{Step 7: Answer} \\\\[4pt]&f \\approx 7.69 \\text{ cm}\\end{aligned}$$"
   },
   {
     "Pkey": "68",
