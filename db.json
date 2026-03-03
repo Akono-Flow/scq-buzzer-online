@@ -9292,7 +9292,8 @@
     "Subject": "Geography",
     "Question": "What is the name starting with \"H\" for a map which uses colours to show height?",
     "Answer": "Hypsometric map",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "A hypsometric map is one that explicitly presents and describes elevations continuously across a landscape, using changes in colors or the shades of colors. Very similar to isarithmic maps, with the exception perhaps of the absence of drawn lines, the term hypsometric relates to the measurement of heights."
   },
   {
     "Pkey": "748",
@@ -9303,6 +9304,7 @@
     "Subject": "Bible Knowledge",
     "Question": "Which of the following is/are not true about Luke of the New Testament: He was a medical doctor, a Jew, a companion of the apostle Paul?",
     "Answer": "He was not a Jew",
+    "Info": "While there is some minor academic debate, the overwhelming historical and biblical consensus is that Luke was a Gentile (non-Jew). \n EXPLANATION \n Non-Jewish Identity: In Colossians 4:10–14, Paul lists several companions who are 'of the circumcision' (Jews), then separately lists Luke and Demas. This distinction strongly implies Luke was a Gentile, making him the only non-Jewish author of the New Testament.\n WHY OTHER OPTIONS ARE INCORRECT \n He was a medical doctor: This is true. Paul explicitly refers to him as 'the beloved physician' in Colossians 4:14. His writings in the Gospel of Luke and the Book of Acts also show a high level of interest in medical details and healing. \n He was a companion of the apostle Paul: This is true. Luke is frequently mentioned as a 'fellow worker' and traveler with Paul. His presence is further supported by the 'we-passages' in the Book of Acts, where the narrator uses first-person plural pronouns during Paul's journeys.",
     "Section": "buzzer"
   },
   {
