@@ -1072,9 +1072,24 @@ tr.row-answer-hidden td.col-answer > span:first-child {
 .flashcard-container { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 .fc-header { display: flex; align-items: center; justify-content: space-between; }
 .fc-counter { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary); }
-.fc-controls { display: flex; gap: 8px; }
+.fc-controls { display: flex; gap: 8px; align-items: center; }
+
+/* ── Flashcard pin button — inherits tooltip-pin-btn base, slight size tweak ── */
+.fc-pin-btn {
+  font-size: 0.62rem;
+  padding: 4px 10px;
+}
+
 .flashcard { height: 360px; perspective: 1200px; cursor: pointer; outline: none; }
 .flashcard:focus { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: var(--radius-lg); }
+
+/* ── Pinned state — cursor changes to default, accent ring signals lock ── */
+.flashcard.fc-pinned { cursor: default; }
+.flashcard.fc-pinned .fc-front,
+.flashcard.fc-pinned .fc-back {
+  border-color: var(--info-accent);
+  box-shadow: var(--shadow-md), 0 0 0 2px var(--info-bg);
+}
 .fc-inner {
   width: 100%; height: 100%; position: relative;
   transform-style: preserve-3d;
