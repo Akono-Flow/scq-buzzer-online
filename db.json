@@ -9343,7 +9343,7 @@
     "Answer": "Kruskal's algorithm",
     "ImageUrl": "https://miro.medium.com/1*F7nGVH-SVrfhlpPNJ5JpEg.jpeg",
     "Section": "buzzer",
-    "Info": "Kruskal's algorithm is a greedy method for determining a linked, undirected graph's minimum spanning tree (MST). The MST is a subgraph that, without creating any cycles, joins all of the vertices with the lowest possible total edge weight. \n Kruskal's Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree. Algorithm Steps: Sort the graph edges with respect to their weights."
+    "Info": "Kruskal's algorithm is a greedy method for determining a linked, undirected graph's minimum spanning tree (MST). The MST is a subgraph that, without creating any cycles, joins all of the vertices with the lowest possible total edge weight. \n Kruskal's Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree. Algorithm Steps: \n 1. Sort the graph edges with respect to their weights. \n 2. Pick: Select the smallest edge. \n 3. Check: Check if the edge forms a cycle using DSU. If not, include it; otherwise, discard it. \n 4. Loop: Repeat until there are V-1 edges in the MST, where V is the number of vertices."
   },
   {
     "Pkey": "752",
