@@ -116,6 +116,7 @@ const dom = {
   fcCounter:    $('fcCounter'),
   fcShuffle:    $('fcShuffle'),
   fcReset:      $('fcReset'),
+  fcPinBtn:     $('fcPinBtn'),
   flashcard:    $('flashcard'),
   fcInner:      $('fcInner'),
   fcMeta:       $('fcMeta'),
@@ -578,6 +579,15 @@ let _localImgPinned      = false;
 let _localImgAnchorIcon  = null;
 let _localImgDragged     = false;
 
+// ════════════════════════════════════
+//  FLASHCARD PIN STATE
+//
+//  When _fcPinned is true the card does not flip on click or Space/Enter.
+//  The user can freely interact with language badges and Info content
+//  without accidentally triggering the flip animation.
+// ════════════════════════════════════
+let _fcPinned = false;
+
 function showTooltip(iconEl, clientX, clientY) {
   // If pinned, the user has locked the panel — do not replace its content.
   if (_tooltipPinned) return;
@@ -637,7 +647,7 @@ function showTooltip(iconEl, clientX, clientY) {
     const lines = rawInfo.split('\n').map(l => l.trim()).filter(Boolean);
     if (lines.length) {
       html += `<div class="tooltip-info-section">` +
-        lines.map(l => `<p>${renderContent(l)}</p>`).join('') +
+        lines.map(l => `<p>${renderWithLangTags(l)}</p>`).join('') +
         `</div>`;
     }
   }
@@ -1746,7 +1756,44 @@ function exportCSV() {
 // ════════════════════════════════════
 //  FLASHCARDS
 // ════════════════════════════════════
-function syncFlashcards() {
+
+// Toggle or set the flashcard pin state.
+// Pinned → card will not flip; user can safely interact with Info content.
+function _setFcPinned(pinned) {
+  _fcPinned = pinned;
+  const btn = dom.fcPinBtn;
+  if (!btn) return;
+
+  btn.setAttribute('aria-pressed', String(pinned));
+  btn.classList.toggle('pinned', pinned);
+  btn.title = pinned
+    ? 'Pinned — click to unpin and re-enable flipping'
+    : 'Pin card — click to stop flipping while you interact with content';
+  const label = btn.querySelector('.pin-label');
+  if (label) label.textContent = pinned ? 'Pinned' : 'Pin';
+
+  // Visual: mark flashcard element so CSS can change cursor + add border signal
+  dom.flashcard.classList.toggle('fc-pinned', pinned);
+
+  // Update aria-label so screen readers know state
+  dom.flashcard.setAttribute('aria-label',
+    pinned ? 'Flashcard pinned — flipping disabled' : 'Flashcard, click to flip');
+
+  // Update hint text on both faces to guide the user
+  _updateFcHints();
+}
+
+// Refresh the hint text on both card faces to match current pin state.
+function _updateFcHints() {
+  const hints = dom.flashcard.querySelectorAll('.fc-hint');
+  hints.forEach(h => {
+    h.textContent = _fcPinned
+      ? '📌 Pinned — click Pin to re-enable flipping'
+      : (h.closest('.fc-front') ? 'Click to reveal answer' : 'Click to flip back');
+  });
+}
+
+
   state.fc.cards = [...state.filteredData];
   state.fc.index = 0;
   if (state.currentMode === 'flashcard') renderFlashcard();
@@ -1792,6 +1839,9 @@ function renderFlashcard() {
 
   const sections = [...new Set(cards.map(c => c.Section))].join(', ');
   dom.fcFooter.textContent = `Section: ${sections} · Press Space or click to flip`;
+
+  // Refresh hint text to reflect current pin state
+  _updateFcHints();
 }
 
 
@@ -2294,11 +2344,25 @@ function setupEventListeners() {
   }, { passive: true });
 
   // ── Flashcard ──
-  dom.flashcard.addEventListener('click', () => dom.flashcard.classList.toggle('flipped'));
+  dom.flashcard.addEventListener('click', e => {
+    // If the click originated from a button or interactive element inside
+    // the card (e.g. a language badge, TTS button), don't flip.
+    if (e.target.closest('button, a, [role="button"]')) return;
+    // If pinned, suppress flip entirely.
+    if (_fcPinned) return;
+    dom.flashcard.classList.toggle('flipped');
+  });
   dom.flashcard.addEventListener('keydown', e => {
-    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); dom.flashcard.classList.toggle('flipped'); }
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      if (!_fcPinned) dom.flashcard.classList.toggle('flipped');
+    }
     if (e.key === 'ArrowLeft')  { dom.flashcard.classList.remove('flipped'); fcNav(-1); }
     if (e.key === 'ArrowRight') { dom.flashcard.classList.remove('flipped'); fcNav(1); }
+  });
+  dom.fcPinBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    _setFcPinned(!_fcPinned);
   });
   dom.fcShuffle.addEventListener('click', () => {
     shuffleArray(state.fc.cards); state.fc.index = 0;
