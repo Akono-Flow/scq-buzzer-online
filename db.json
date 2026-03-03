@@ -95,7 +95,7 @@
     "Round": "1",
     "Match": "1",
     "Subject": "French",
-    "Question": "What is the English translation for: <fr>Je vais acheter une veste</fr>",
+    "Question": "What is the English translation for: <fr>Je vais acheter une veste</fr>?",
     "Answer": "I am going to buy a jacket",
     "Section": "buzzer",
     "Info": "Je vais: I am going to (near future tense)\nacheter: to buy\nune veste: a jacket/blazer"
@@ -737,7 +737,7 @@
     "Round": "1",
     "Match": "4",
     "Subject": "French",
-    "Question": "What is the English translation for the French word <fr>imperméable?</fr>",
+    "Question": "What is the English translation for the French word <fr>imperméable</fr>?",
     "Answer": "Raincoat",
     "Section": "buzzer",
     "Info": ""
@@ -1369,7 +1369,7 @@
     "Round": "1",
     "Match": "7",
     "Subject": "French",
-    "Question": "Translate to English <fr>j'apprends le français.</fr>",
+    "Question": "Translate to English <fr>j'apprends le français</fr>.",
     "Answer": "I am learning French",
     "Section": "buzzer",
     "Info": ""
@@ -1756,7 +1756,7 @@
     "Match": "8",
     "Subject": "French",
     "Question": "What is the first person plural form of the verb <fr>être</fr> in the present subjunctive?",
-    "Answer": "<fr>que nous soyons.</fr>",
+    "Answer": "<fr>que nous soyons</fr>.",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1865,7 +1865,7 @@
     "Round": "1",
     "Match": "9",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Ils étaient déjà partis?</fr>",
+    "Question": "What is the English translation for <fr>Ils étaient déjà partis</fr>?",
     "Answer": "They had already left",
     "Section": "buzzer",
     "Info": ""
@@ -2265,7 +2265,7 @@
     "Round": "1",
     "Match": "10",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Si j'avais su, je serais parti plus tôt?</fr>",
+    "Question": "What is the English translation for <fr>Si j'avais su, je serais parti plus tôt</fr>?",
     "Answer": "If I had known I would have left earlier",
     "Section": "buzzer",
     "Info": ""
