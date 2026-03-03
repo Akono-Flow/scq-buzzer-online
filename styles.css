@@ -501,7 +501,7 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   transition: none !important;
 }
 .local-img-popup.is-dragging { cursor: grabbing !important; }
-.local-img-popup.is-resizing { cursor: se-resize !important; }
+.local-img-popup.is-resizing { cursor: crosshair !important; }
 .local-img-popup.pinned {
   border-color: var(--localimg-accent);
   box-shadow: var(--shadow-tooltip), 0 0 0 2px var(--localimg-bg);
@@ -555,27 +555,7 @@ th.sort-asc .sort-indicator, th.sort-desc .sort-indicator { opacity: 1; color: v
   border-radius: var(--radius-sm);
 }
 
-/* Reuse tooltip-resize-handle styles but as a separate class for the popup */
-.local-img-resize-handle {
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 28px; height: 28px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  cursor: se-resize;
-  touch-action: none;
-  user-select: none; -webkit-user-select: none;
-  opacity: 0.5;
-  transition: opacity var(--transition), color var(--transition);
-  border-radius: 0 0 var(--radius-md) 0;
-  z-index: 1;
-}
-.local-img-resize-handle:hover,
-.local-img-popup.is-resizing .local-img-resize-handle {
-  opacity: 1;
-  color: var(--localimg-accent);
-}
+/* Reuse shared .resize-corner styles for the local image popup */
 
 /* ══════════════════════════════════════
    LANGUAGE TAGS & TTS
@@ -784,7 +764,7 @@ tr.row-answer-hidden td.col-answer > span:first-child {
   transition: none !important;
 }
 .info-tooltip.is-dragging  { cursor: grabbing !important; }
-.info-tooltip.is-resizing  { cursor: se-resize !important; }
+.info-tooltip.is-resizing  { cursor: crosshair !important; }
 
 .info-tooltip-header {
   display: flex; align-items: center; gap: 8px;
@@ -870,36 +850,72 @@ tr.row-answer-hidden td.col-answer > span:first-child {
   overflow-y: auto;
 }
 
-/* ── Custom resize handle (bottom-right corner) ──
-   Works on all devices via Pointer Events in JS.
-   touch-action:none prevents browser scroll/zoom from consuming the gesture.
-   The ⤡ glyph is a visual affordance that works at any size/DPI.
+/* ── Custom four-corner resize handles ──
+   Each corner is a small hit-target positioned absolutely.
+   The L-shaped visual is drawn via ::before / ::after pseudo-elements
+   so the handle looks like a corner bracket on hover.
+   touch-action:none hands the gesture entirely to JS on touch devices.
 */
-.tooltip-resize-handle {
+.resize-corner {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  cursor: se-resize;
-  touch-action: none;        /* critical — hands pointer control to JS */
+  width: 22px;
+  height: 22px;
+  touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-  opacity: 0.5;
-  transition: opacity var(--transition), color var(--transition);
-  border-radius: 0 0 var(--radius-md) 0;
-  z-index: 1;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity var(--transition);
 }
-.tooltip-resize-handle:hover,
-.info-tooltip.is-resizing .tooltip-resize-handle {
+.resize-corner:hover,
+.info-tooltip.is-resizing .resize-corner,
+.local-img-popup.is-resizing .resize-corner {
   opacity: 1;
-  color: var(--info-accent);
 }
+
+/* Corner-specific positions and cursors */
+.tl-corner { top: 0;    left: 0;  cursor: nw-resize; border-radius: var(--radius-md) 0 0 0; }
+.tr-corner { top: 0;    right: 0; cursor: ne-resize; border-radius: 0 var(--radius-md) 0 0; }
+.bl-corner { bottom: 0; left: 0;  cursor: sw-resize; border-radius: 0 0 0 var(--radius-md); }
+.br-corner { bottom: 0; right: 0; cursor: se-resize; border-radius: 0 0 var(--radius-md) 0; }
+
+/* L-shaped bracket drawn with two pseudo-elements — 2 px thick, colour matches accent */
+.resize-corner::before,
+.resize-corner::after {
+  content: '';
+  position: absolute;
+  background: var(--info-accent);
+  border-radius: 1px;
+  transition: background var(--transition);
+}
+/* The two arms of the bracket differ per corner orientation */
+/* TL — horizontal arm along top, vertical arm along left */
+.tl-corner::before { top: 4px; left: 4px; width: 10px; height: 2px; }
+.tl-corner::after  { top: 4px; left: 4px; width: 2px;  height: 10px; }
+/* TR — horizontal arm along top, vertical arm along right */
+.tr-corner::before { top: 4px; right: 4px; width: 10px; height: 2px; }
+.tr-corner::after  { top: 4px; right: 4px; width: 2px;  height: 10px; }
+/* BL — horizontal arm along bottom, vertical arm along left */
+.bl-corner::before { bottom: 4px; left: 4px; width: 10px; height: 2px; }
+.bl-corner::after  { bottom: 4px; left: 4px; width: 2px;  height: 10px; }
+/* BR — horizontal arm along bottom, vertical arm along right */
+.br-corner::before { bottom: 4px; right: 4px; width: 10px; height: 2px; }
+.br-corner::after  { bottom: 4px; right: 4px; width: 2px;  height: 10px; }
+
+/* Make bracket arms visible at rest (dimmed) and bright on hover/resize */
+.resize-corner::before,
+.resize-corner::after {
+  opacity: 0.45;
+}
+.resize-corner:hover::before,
+.resize-corner:hover::after,
+.info-tooltip.is-resizing .resize-corner::before,
+.info-tooltip.is-resizing .resize-corner::after,
+.local-img-popup.is-resizing .resize-corner::before,
+.local-img-popup.is-resizing .resize-corner::after {
+  opacity: 1;
+}
+
 
 /* ── Tooltip: image section ── */
 .tooltip-media-wrap {
