@@ -95,7 +95,10 @@ const dom = {
   infoTooltipIcon:  $('infoTooltipIcon'),
   tooltipPinBtn:    $('tooltipPinBtn'),
   tooltipCloseBtn:  $('tooltipCloseBtn'),
-  tooltipResizeHandle: $('tooltipResizeHandle'),
+  tooltipResizeTL:  $('tooltipResizeTL'),
+  tooltipResizeTR:  $('tooltipResizeTR'),
+  tooltipResizeBL:  $('tooltipResizeBL'),
+  tooltipResizeBR:  $('tooltipResizeBR'),
 
   // Local image popup
   localImgPopup:        $('localImgPopup'),
@@ -104,7 +107,10 @@ const dom = {
   localImgPopupTitle:   $('localImgPopupTitle'),
   localImgPinBtn:       $('localImgPinBtn'),
   localImgCloseBtn:     $('localImgCloseBtn'),
-  localImgResizeHandle: $('localImgResizeHandle'),
+  localImgResizeTL:     $('localImgResizeTL'),
+  localImgResizeTR:     $('localImgResizeTR'),
+  localImgResizeBL:     $('localImgResizeBL'),
+  localImgResizeBR:     $('localImgResizeBR'),
 
   // Flashcard
   fcCounter:    $('fcCounter'),
@@ -824,33 +830,50 @@ function _initTooltipDrag() {
 
 
 // ════════════════════════════════════
-//  TOOLTIP RESIZE  (Pointer Events — mouse, touch, stylus, all devices)
+//  TOOLTIP RESIZE  — four-corner (Pointer Events, all devices)
 //
-//  The custom .tooltip-resize-handle div sits at the bottom-right corner.
-//  On pointerdown we capture the tooltip's current width/height and the
-//  pointer's viewport position, then on pointermove we compute the delta
-//  and apply it as new dimensions, clamped to sensible min/max bounds.
+//  Four small hit-targets are positioned at each corner of the panel.
+//  Each corner knows which edges it controls:
+//    TL → moves top  + left  edges (adjusts top/left position too)
+//    TR → moves top  + right edges (adjusts top position)
+//    BL → moves bottom + left edges (adjusts left position)
+//    BR → moves bottom + right edges (position unchanged — original behaviour)
 //
-//  touch-action:none on the handle element (in CSS) is essential — without
-//  it the browser intercepts the touch gesture for page scrolling before JS
-//  ever sees the pointermove events.
+//  For corners that move the top or left edge, the panel's CSS position
+//  is updated alongside the dimension so the opposite edge stays fixed.
 // ════════════════════════════════════
 function _initTooltipResize() {
-  const tip    = dom.infoTooltip;
-  const handle = dom.tooltipResizeHandle;
+  const tip = dom.infoTooltip;
+  _initCornerResize(tip, dom.tooltipResizeTL, 'tl');
+  _initCornerResize(tip, dom.tooltipResizeTR, 'tr');
+  _initCornerResize(tip, dom.tooltipResizeBL, 'bl');
+  _initCornerResize(tip, dom.tooltipResizeBR, 'br');
+}
+
+// ── Shared corner resize handler ──────────────────────────────────────────
+//  tip    — the floating panel element (position:fixed)
+//  handle — the corner div element
+//  corner — 'tl' | 'tr' | 'bl' | 'br'
+// ─────────────────────────────────────────────────────────────────────────
+function _initCornerResize(tip, handle, corner) {
+  if (!handle) return;
 
   let resizing = false;
-  let startPtrX, startPtrY, startW, startH;
+  let startPtrX, startPtrY, startW, startH, startLeft, startTop;
 
   handle.addEventListener('pointerdown', e => {
     e.preventDefault();
     e.stopPropagation(); // don't bubble to header drag listener
+
     handle.setPointerCapture(e.pointerId);
 
-    startPtrX = e.clientX;
-    startPtrY = e.clientY;
-    startW    = tip.offsetWidth;
-    startH    = tip.offsetHeight;
+    const rect  = tip.getBoundingClientRect();
+    startPtrX   = e.clientX;
+    startPtrY   = e.clientY;
+    startW      = rect.width;
+    startH      = rect.height;
+    startLeft   = rect.left;
+    startTop    = rect.top;
 
     resizing = true;
     tip.classList.add('is-resizing');
@@ -860,32 +883,76 @@ function _initTooltipResize() {
     if (!resizing) return;
     e.preventDefault();
 
-    const MIN_W = 240;
-    const MIN_H = 120;
-    const MAX_W = window.innerWidth  - 16;
-    const MAX_H = window.innerHeight - 16;
+    const MIN_W  = 240,  MIN_H  = 120;
+    const MAX_W  = window.innerWidth  - 16;
+    const MAX_H  = window.innerHeight - 16;
+    const MARGIN = 8;
 
-    const newW = Math.max(MIN_W, Math.min(startW + (e.clientX - startPtrX), MAX_W));
-    const newH = Math.max(MIN_H, Math.min(startH + (e.clientY - startPtrY), MAX_H));
+    const dx = e.clientX - startPtrX;
+    const dy = e.clientY - startPtrY;
+
+    // ── Compute raw new dimensions and position ──
+    //
+    // Right edge moves  (tr / br):  width grows with +dx
+    // Left  edge moves  (tl / bl):  width grows with -dx, left shifts by +dx
+    // Bottom edge moves (bl / br):  height grows with +dy
+    // Top   edge moves  (tl / tr):  height grows with -dy, top shifts by +dy
+
+    let newW    = startW;
+    let newH    = startH;
+    let newLeft = startLeft;
+    let newTop  = startTop;
+
+    if (corner === 'tr' || corner === 'br') {
+      newW = startW + dx;
+    } else {                            // tl or bl — left edge moves
+      newW    = startW - dx;
+      newLeft = startLeft + dx;
+    }
+
+    if (corner === 'bl' || corner === 'br') {
+      newH = startH + dy;
+    } else {                            // tl or tr — top edge moves
+      newH   = startH - dy;
+      newTop = startTop + dy;
+    }
+
+    // ── Clamp dimensions to min/max ──
+    // If we're at MIN_W while moving the left edge, stop the left edge too
+    // so the panel doesn't slide around while clamped.
+    if (newW < MIN_W) {
+      newW = MIN_W;
+      if (corner === 'tl' || corner === 'bl') newLeft = startLeft + (startW - MIN_W);
+    }
+    if (newW > MAX_W) newW = MAX_W;
+
+    if (newH < MIN_H) {
+      newH = MIN_H;
+      if (corner === 'tl' || corner === 'tr') newTop = startTop + (startH - MIN_H);
+    }
+    if (newH > MAX_H) newH = MAX_H;
+
+    // ── Clamp position so panel stays on screen ──
+    newLeft = Math.max(MARGIN, Math.min(newLeft, window.innerWidth  - newW - MARGIN));
+    newTop  = Math.max(MARGIN, Math.min(newTop,  window.innerHeight - newH - MARGIN));
 
     tip.style.width  = `${newW}px`;
     tip.style.height = `${newH}px`;
+    tip.style.left   = `${newLeft}px`;
+    tip.style.top    = `${newTop}px`;
   });
 
-  handle.addEventListener('pointerup', e => {
+  const endResize = e => {
     if (!resizing) return;
     resizing = false;
     tip.classList.remove('is-resizing');
     handle.releasePointerCapture(e.pointerId);
-  });
+  };
 
-  handle.addEventListener('pointercancel', e => {
-    if (!resizing) return;
-    resizing = false;
-    tip.classList.remove('is-resizing');
-    handle.releasePointerCapture(e.pointerId);
-  });
+  handle.addEventListener('pointerup',     endResize);
+  handle.addEventListener('pointercancel', endResize);
 }
+
 
 
 // ════════════════════════════════════
@@ -1118,55 +1185,11 @@ function _initLocalImgDrag() {
 
 // ── Resize (Pointer Events) ──
 function _initLocalImgResize() {
-  const popup  = dom.localImgPopup;
-  const handle = dom.localImgResizeHandle;
-
-  let resizing = false;
-  let startPtrX, startPtrY, startW, startH;
-
-  handle.addEventListener('pointerdown', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    handle.setPointerCapture(e.pointerId);
-
-    startPtrX = e.clientX;
-    startPtrY = e.clientY;
-    startW    = popup.offsetWidth;
-    startH    = popup.offsetHeight;
-
-    resizing = true;
-    popup.classList.add('is-resizing');
-  });
-
-  handle.addEventListener('pointermove', e => {
-    if (!resizing) return;
-    e.preventDefault();
-
-    const MIN_W = 280;
-    const MIN_H = 160;
-    const MAX_W = window.innerWidth  - 16;
-    const MAX_H = window.innerHeight - 16;
-
-    const newW = Math.max(MIN_W, Math.min(startW + (e.clientX - startPtrX), MAX_W));
-    const newH = Math.max(MIN_H, Math.min(startH + (e.clientY - startPtrY), MAX_H));
-
-    popup.style.width  = `${newW}px`;
-    popup.style.height = `${newH}px`;
-  });
-
-  handle.addEventListener('pointerup', e => {
-    if (!resizing) return;
-    resizing = false;
-    popup.classList.remove('is-resizing');
-    handle.releasePointerCapture(e.pointerId);
-  });
-
-  handle.addEventListener('pointercancel', e => {
-    if (!resizing) return;
-    resizing = false;
-    popup.classList.remove('is-resizing');
-    handle.releasePointerCapture(e.pointerId);
-  });
+  const popup = dom.localImgPopup;
+  _initCornerResize(popup, dom.localImgResizeTL, 'tl');
+  _initCornerResize(popup, dom.localImgResizeTR, 'tr');
+  _initCornerResize(popup, dom.localImgResizeBL, 'bl');
+  _initCornerResize(popup, dom.localImgResizeBR, 'br');
 }
 // ════════════════════════════════════
 //  LANGUAGE TAG SYSTEM
