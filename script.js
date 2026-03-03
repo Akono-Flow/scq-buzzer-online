@@ -1797,6 +1797,7 @@ function _updateFcHints() {
   state.fc.cards = [...state.filteredData];
   state.fc.index = 0;
   if (state.currentMode === 'flashcard') renderFlashcard();
+}
 
 function syncFlashcards() {
   state.fc.cards = [...state.filteredData];
@@ -2350,9 +2351,12 @@ function setupEventListeners() {
 
   // ── Flashcard ──
   dom.flashcard.addEventListener('click', e => {
-    // If the click originated from a button or interactive element inside
-    // the card (e.g. a language badge, TTS button), don't flip.
-    if (e.target.closest('button, a, [role="button"]')) return;
+    // If the click originated from a button or link *inside* the card
+    // (e.g. a language badge, TTS button), don't flip.
+    // We exclude the flashcard element itself because it carries role="button"
+    // for accessibility — matching it would block every click.
+    const inner = e.target.closest('button, a, [role="button"]');
+    if (inner && inner !== dom.flashcard) return;
     // If pinned, suppress flip entirely.
     if (_fcPinned) return;
     dom.flashcard.classList.toggle('flipped');
