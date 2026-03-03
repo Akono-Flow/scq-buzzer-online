@@ -2513,7 +2513,7 @@
     "Round": "1",
     "Match": "12",
     "Subject": "French",
-    "Question": "Translate to English <fr>Nous avons gagné le match.</fr>",
+    "Question": "Translate to English <fr>Nous avons gagné le match</fr>.",
     "Answer": "We won the match",
     "Section": "buzzer",
     "Info": ""
@@ -2601,7 +2601,7 @@
     "Round": "1",
     "Match": "13",
     "Subject": "French",
-    "Question": "Translate to English <fr>Je ne retirerai pas mon chapeau.</fr>",
+    "Question": "Translate to English <fr>Je ne retirerai pas mon chapeau</fr>.",
     "Answer": "I will not take my hat off.",
     "Section": "buzzer",
     "Info": ""
@@ -2837,7 +2837,7 @@
     "Round": "1",
     "Match": "14",
     "Subject": "French",
-    "Question": "Translate to English: <fr>je viens d'arriver.</fr>",
+    "Question": "Translate to English: <fr>je viens d'arriver</fr>.",
     "Answer": "I have just arrived",
     "Section": "buzzer",
     "Info": ""
@@ -3249,7 +3249,7 @@
     "Round": "1",
     "Match": "16",
     "Subject": "French",
-    "Question": "Translate to English <fr>j'adore les pommes.</fr>",
+    "Question": "Translate to English <fr>j'adore les pommes</fr>.",
     "Answer": "I love apples",
     "Section": "buzzer",
     "Info": ""
@@ -3621,7 +3621,7 @@
     "Round": "1",
     "Match": "17",
     "Subject": "French",
-    "Question": "Give the English translation for this sentence <fr>J'ai envie de dormir.</fr>",
+    "Question": "Give the English translation for this sentence <fr>J'ai envie de dormir</fr>.",
     "Answer": "I want to sleep",
     "Section": "buzzer",
     "Info": ""
@@ -3721,7 +3721,7 @@
     "Round": "1",
     "Match": "18",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Il a plu toute la nuit?</fr>",
+    "Question": "What is the English translation for <fr>Il a plu toute la nuit</fr>?",
     "Answer": "It rained all night",
     "Section": "buzzer",
     "Info": ""
@@ -4093,7 +4093,7 @@
     "Round": "1",
     "Match": "19",
     "Subject": "French",
-    "Question": "What is the English translation for the phrase <fr>À bien y réfléchir?</fr>",
+    "Question": "What is the English translation for the phrase <fr>À bien y réfléchir</fr>?",
     "Answer": "On second thought (come to think of it)",
     "Section": "buzzer",
     "Info": ""
@@ -4753,7 +4753,7 @@
     "Round": "1",
     "Match": "22",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>nous sommes arrivés sains et saufs?</fr>",
+    "Question": "What is the English translation for <fr>nous sommes arrivés sains et saufs</fr>?",
     "Answer": "We arrived safely",
     "Section": "buzzer",
     "Info": ""
@@ -4853,7 +4853,7 @@
     "Round": "2",
     "Match": "23",
     "Subject": "French",
-    "Question": "What is the English translation for this statement: <fr>je suis d'accord avec toi</fr>",
+    "Question": "What is the English translation for this statement: <fr>je suis d'accord avec toi</fr>?",
     "Answer": "I agree with you",
     "Section": "buzzer",
     "Info": ""
@@ -5189,7 +5189,7 @@
     "Round": "2",
     "Match": "24",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Je ne peux pas m'empêcher de rire?</fr>",
+    "Question": "What is the English translation for <fr>Je ne peux pas m'empêcher de rire</fr>?",
     "Answer": "I can't help but laugh",
     "Section": "buzzer",
     "Info": ""
@@ -5921,7 +5921,7 @@
     "Round": "2",
     "Match": "27",
     "Subject": "French",
-    "Question": "Translate to English <fr>Elle a l'habitude de se réveiller tôt.</fr>",
+    "Question": "Translate to English <fr>Elle a l'habitude de se réveiller tôt</fr>.",
     "Answer": "She is used to waking up early",
     "Section": "buzzer",
     "Info": ""
@@ -6033,7 +6033,7 @@
     "Round": "2",
     "Match": "28",
     "Subject": "French",
-    "Question": "Translate into English <fr>je mange des bananes.</fr>",
+    "Question": "Translate into English <fr>je mange des bananes</fr>.",
     "Answer": "I eat bananas",
     "Section": "buzzer",
     "Info": ""
@@ -6181,7 +6181,7 @@
     "Round": "2",
     "Match": "29",
     "Subject": "French",
-    "Question": "Translate to English <fr>Il pleut depuis trois jours.</fr>",
+    "Question": "Translate to English <fr>Il pleut depuis trois jours</fr>.",
     "Answer": "It has been raining for three days",
     "Section": "buzzer",
     "Info": ""
@@ -6507,7 +6507,7 @@
     "Round": "2",
     "Match": "30",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Professeur de chimie?</fr>",
+    "Question": "What is the English translation for <fr>Professeur de chimie</fr>?",
     "Answer": "Chemistry teacher",
     "Section": "buzzer",
     "Info": ""
@@ -6931,7 +6931,7 @@
     "Round": "2",
     "Match": "32",
     "Subject": "French",
-    "Question": "What is the English translation of the expression <fr>Tirer le meilleur parti d'une mauvaise situation?</fr>",
+    "Question": "What is the English translation of the expression <fr>Tirer le meilleur parti d'une mauvaise situation</fr>?",
     "Answer": "To make the best of a bad situation",
     "Section": "buzzer",
     "Info": ""
@@ -7369,7 +7369,7 @@
     "Round": "2",
     "Match": "34",
     "Subject": "French",
-    "Question": "Give the English translation for <fr>Nous n'avons plus de temps.</fr>",
+    "Question": "Give the English translation for <fr>Nous n'avons plus de temps</fr>.",
     "Answer": "We are out of time",
     "Section": "buzzer",
     "Info": ""
@@ -7441,7 +7441,7 @@
     "Round": "2",
     "Match": "35",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Il fait chaud aujourd'hui?</fr>",
+    "Question": "What is the English translation for <fr>Il fait chaud aujourd'hui</fr>?",
     "Answer": "It is hot today",
     "Section": "buzzer",
     "Info": ""
@@ -7765,7 +7765,7 @@
     "Round": "2",
     "Match": "36",
     "Subject": "French",
-    "Question": "What is the English translation for <fr>Il faut que j’y aille tout de suite?</fr>",
+    "Question": "What is the English translation for <fr>Il faut que j’y aille tout de suite</fr>?",
     "Answer": "I have to go right away or I need to go right away",
     "Section": "buzzer",
     "Info": ""
@@ -8040,7 +8040,7 @@
     "Match": "37",
     "Subject": "French",
     "Question": "How would you say \"It's not my fault\" in French?",
-    "Answer": "<fr>Ce n'est pas ma faute</fr>",
+    "Answer": "<fr>Ce n'est pas ma faute</fr>.",
     "Section": "buzzer",
     "Info": ""
   },
@@ -8325,7 +8325,7 @@
     "Round": "2",
     "Match": "38",
     "Subject": "French",
-    "Question": "Translate into English <fr>Elle préférerait rester a la maison.</fr>",
+    "Question": "Translate into English <fr>Elle préférerait rester a la maison</fr>.",
     "Answer": "She would prefer to stay home.",
     "Section": "buzzer",
     "Info": ""
@@ -8674,7 +8674,7 @@
     "Round": "3",
     "Match": "40",
     "Subject": "French",
-    "Question": "What is the English translation for the sentence: <fr>Elle vient de finir ses devoirs?</fr>",
+    "Question": "What is the English translation for the sentence: <fr>Elle vient de finir ses devoirs</fr>?",
     "Answer": "She has just finished her homework",
     "Section": "buzzer",
     "Info": ""
@@ -9229,7 +9229,7 @@
     "Round": "3",
     "Match": "43",
     "Subject": "French",
-    "Question": "What is the past participle of the verb <fr>s'asseoir?</fr>",
+    "Question": "What is the past participle of the verb <fr>s'asseoir</fr>?",
     "Answer": "<fr>Assis</fr>",
     "Section": "buzzer"
   },
