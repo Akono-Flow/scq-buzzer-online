@@ -9341,6 +9341,7 @@
     "Subject": "Information Technology",
     "Question": "What is the seven-letter name starting with \"K\" for the edge-based greedy algorithm that builds a minimum spanning tree by adding the smallest available edges that do not form a cycle?",
     "Answer": "Kruskal's algorithm",
+    "ImageUrl": "https://miro.medium.com/1*F7nGVH-SVrfhlpPNJ5JpEg.jpeg",
     "Section": "buzzer",
     "Info": "Kruskal's algorithm is a greedy method for determining a linked, undirected graph's minimum spanning tree (MST). The MST is a subgraph that, without creating any cycles, joins all of the vertices with the lowest possible total edge weight. \n Kruskal's Algorithm builds the spanning tree by adding edges one by one into a growing spanning tree. Kruskal's algorithm follows greedy approach as in each iteration it finds an edge which has least weight and add it to the growing spanning tree. Algorithm Steps: Sort the graph edges with respect to their weights."
   },
