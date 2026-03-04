@@ -9431,6 +9431,7 @@
     "Subject": "Local and International Affairs",
     "Question": "Look at the following clip, identify this person.",
     "Answer": "Aleksandr Lukashenko",
+    "ImageUrl": "https://www.reuters.com/resizer/v2/FFR4VAHSUBK25JDMRDHJFYZFSU.jpg?auth=ef5e39d92248bd124e30b9740987c07ff97c7a80caef925f5d4ccb1b20bfa162",
     "Section": "buzzer"
   },
   {
@@ -9497,7 +9498,9 @@
     "Subject": "Theatre and Cinema",
     "Question": "Look at the following clip, identify the actor.",
     "Answer": "Ian McKellen",
-    "Section": "buzzer"
+    "ImageUrl": "https://independenttalent.b-cdn.net/wp-content/uploads/2015/12/McKellen-Ian.jpg",
+    "Section": "buzzer",
+    "Info": "FILMOGRAPHY: \n > The Lord of the Rings Trilogy (2001-2003): Gandalf \n > The Hobbit Trilogy (2012-2014): Gandalf \n > X-Men Series (2000-2014): Magneto (X-Men, X2, The Last Stand, Days of Future Past) \n > Gods and Monsters (1998): James Whale \n > Apt Pupil (1998): Kurt Dussander \n > The Da Vinci Code (2006): Sir Leigh Teabing \n > Mr. Holmes (2015): Sherlock Holmes \n > Beauty and the Beast (2017): Cogsworth \n > The Good Liar (2019): Roy Courtnay \n > Cats (2019): Gus the Theatre Cat"
   },
   {
     "Pkey": "765",
@@ -9552,7 +9555,9 @@
     "Subject": "Sports",
     "Question": "Look at the monitor, identify this person.",
     "Answer": "Quinton de Kock",
-    "Section": "buzzer"
+    "ImageUrl": "https://i.cdn.newsbytesapp.com/images/l67220231003000456.jpeg",
+    "Section": "buzzer",
+    "Info": "> Former Captain of South African Cricket Team in All three formats \n He currently plays for Titans at the domestic level \n He plays for South Africa in white ball cricket"
   },
   {
     "Pkey": "770",
