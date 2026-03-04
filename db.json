@@ -8784,7 +8784,7 @@
     "Round": "3",
     "Match": "41",
     "Subject": "Principles of Business",
-    "Question": "A business sells a product for \\$75 per unit. Variable cost per unit is \\$45 and fixed cost total \\$180, 0000 per year. What is the Break-Even output?",
+    "Question": "$$\\text{A business sells a product for } \\$75 \\text{ per unit. Variable cost per unit is } \\$45 \\text{ and fixed costs total } \\$180{,}000 \\text{ per year. What is the Break-Even output?}$$",
     "Answer": "6000 units",
     "Section": "buzzer",
     "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Selling price} = \\$75 \\text{ per unit, Variable cost} = \\$45 \\text{ per unit} \\\\[4pt]&\\text{Fixed costs} = \\$180{,}000 \\text{ per year} \\\\[10pt]&\\textbf{Step 1: Recall the Break-Even Formula} \\\\[4pt]&\\text{Break-Even Output} = \\dfrac{\\text{Fixed Costs}}{\\text{Selling Price} - \\text{Variable Cost per Unit}} \\\\[10pt]&\\textbf{Step 2: Calculate the Contribution per Unit} \\\\[4pt]&\\text{Contribution per unit} = \\text{Selling Price} - \\text{Variable Cost} \\\\[4pt]&\\text{Contribution per unit} = \\$75 - \\$45 = \\$30 \\\\[10pt]&\\textbf{Step 3: Substitute Known Values} \\\\[4pt]&\\text{Break-Even Output} = \\dfrac{180{,}000}{30} \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&\\text{Break-Even Output} = 6{,}000 \\text{ units} \\\\[10pt]&\\textbf{Step 5: Verify} \\\\[4pt]&\\text{Total Revenue} = 6{,}000 \\times \\$75 = \\$450{,}000 \\\\[4pt]&\\text{Total Costs} = \\$180{,}000 + (6{,}000 \\times \\$45) = \\$180{,}000 + \\$270{,}000 = \\$450{,}000 \\checkmark \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&\\text{Break-Even Output} = 6{,}000 \\text{ units per year}\\end{aligned}$$"
