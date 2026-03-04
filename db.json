@@ -8760,10 +8760,10 @@
     "Round": "3",
     "Match": "41",
     "Subject": "Chemistry",
-    "Question": "How many moles of electrons are transferred when 0.25 moles of Zn^2+ forms?",
+    "Question": "How many moles of electrons are transferred when 0.25 moles of \\ce{Zn^2+} forms?",
     "Answer": "0.5 moles",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Moles of } \\ce{Zn^{2+}} \\text{ formed} = 0.25 \\text{ mol} \\\\[10pt]&\\textbf{Step 1: Write the Half Equation for Zinc} \\\\[4pt]&\\ce{Zn_{(s)} -> Zn^{2+}_{(aq)} + 2e^-} \\\\[10pt]&\\textbf{Step 2: Identify the Mole Ratio} \\\\[4pt]&\\ce{Zn} : \\ce{Zn^{2+}} : e^- = 1 : 1 : 2 \\\\[4pt]&\\therefore \\text{ 1 mole of } \\ce{Zn^{2+}} \\text{ requires the transfer of 2 moles of } e^- \\\\[10pt]&\\textbf{Step 3: Calculate Moles of Electrons Transferred} \\\\[4pt]&n(e^-) = n(\\ce{Zn^{2+}}) \\times 2 \\\\[10pt]&\\textbf{Step 4: Substitute Known Values} \\\\[4pt]&n(e^-) = 0.25 \\times 2 \\\\[10pt]&\\textbf{Step 5: Verify Using Faraday} \\\\[4pt]&\\text{Charge transferred} = n(e^-) \\times F = 0.50 \\times 96500 = 48250 \\text{ C} \\\\[10pt]&\\textbf{Step 6: Answer} \\\\[4pt]&n(e^-) = 0.50 \\text{ mol of electrons transferred}\\end{aligned}$$"
   },
   {
     "Pkey": "705",
