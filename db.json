@@ -9116,7 +9116,7 @@
     "Question": "What is the equation of a line with a gradient of 5 passing through the point (1, 10)?",
     "Answer": "y = 5x + 5",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Gradient } m = 5, \\text{ Point } (x_1, y_1) = (1, 10) \\\\[10pt]&\\textbf{Step 1: Recall the Point-Slope Formula} \\\\[4pt]&y - y_1 = m(x - x_1) \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&y - 10 = 5(x - 1) \\\\[10pt]&\\textbf{Step 3: Expand the Bracket} \\\\[4pt]&y - 10 = 5x - 5 \\\\[10pt]&\\textbf{Step 4: Rearrange} \\\\[4pt]&y = 5x - 5 + 10 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&y = 5x + 5\\end{aligned}$$"
   },
   {
     "Pkey": "733",
