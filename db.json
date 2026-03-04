@@ -8797,11 +8797,11 @@
     "Match": "41",
     "Subject": "Local and International Affairs",
     "Question": "Look at the monitor, identify this person.",
-    "Answer": "Chuck Schumer (Minority Leader of the United States Senate)",
-    "ImageUrl": "",
+    "Answer": "Chuck Schumer",
+    "ImageUrl": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ41290gNoiI5YzFLrVltF2OFtbn7Q6YYVsdDvj7Wdj4S1ZiuTH",
     "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Chuck-Schumer.jpeg",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Minority Leader of the United States Senate \n He has served as the senior United States Senator for New York since 1999. \n He is a member of the Democratic Party and has played a significant role in legislative efforts and party strategy."
   },
   {
     "Pkey": "708",
