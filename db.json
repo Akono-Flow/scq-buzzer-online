@@ -8959,7 +8959,7 @@
     "Round": "3",
     "Match": "42",
     "Subject": "Spanish",
-    "Question": "What is the English translation for <es>Son las dos y media tarde?</es>",
+    "Question": "What is the English translation for <es>Son las dos y media tarde</es>?",
     "Answer": "It's two thirty in the afternoon",
     "Section": "buzzer",
     "Info": ""
@@ -8997,11 +8997,11 @@
     "Match": "42",
     "Subject": "Local and International Affairs",
     "Question": "Look at the clip, identify this person.",
-    "Answer": "Courtney Williams (Fiscal Commissioner of Jamaica)",
+    "Answer": "Courtney Williams",
     "ImageUrl": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTcEM0l_ybdLaGwTuHrGJoBtMXBRIK9CwDLvqbdiYvIz9xDas3Z",
     "LocalImageUrl": "https://akono-flow.github.io/scq-buzzer-online/images/2026/buzzer/Courtney-H.-Williams.jpeg",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "FISCAL COMMISSIONER OF JAMAICA \n He became the first Fiscal Commissioner of Jamaica in March 2023."
   },
   {
     "Pkey": "724",
@@ -9013,7 +9013,7 @@
     "Question": "What is the literary term starting with \"S\" used to describe the blending of sensory imagery?",
     "Answer": "Synesthesia or synaesthesia",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "Synesthesia is a neurological trait where stimulation of one sense (e.g., hearing) involuntarily triggers sensations in a different, unconnected sense (e.g., seeing colors). Considered a 'blending of the senses', it is often genetic, permanent, and unique to each individual. Common forms include seeing colors for letters/numbers (grapheme-color) or tasting words."
   },
   {
     "Pkey": "725",
@@ -9039,7 +9039,8 @@
     "Question": "Which major deity in ancient Egyptian mythology was the falcon-headed god of the sky, sun, kingship and protection?",
     "Answer": "Horus",
     "Section": "buzzer",
-    "Info": ""
+    "ImageUrl": "https://www.booksfact.com/images/2016/01/horus_egyptian_god.jpg",
+    "Info": "Horus was a major falcon-headed deity in Egyptian mythology, representing the sky, kingship, and protection. Known as the son of Isis and Osiris, he was the divine protector and earthly embodiment of the pharaohs. He is best known for battling his uncle, Seth, to avenge his father's murder, in which he lost an eye—symbolized as the Eye of Horus—which became a powerful emblem of healing and protection. "
   },
   {
     "Pkey": "727",
@@ -9050,8 +9051,9 @@
     "Subject": "Geography",
     "Question": "Which body of water separates Europe from Africa, connecting to the Atlantic via the strait of Gibraltar?",
     "Answer": "Mediterranean Sea",
+    "ImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcPuhiFpQXHZSQSRw0Z18jTmZ5fowWhWYPw6M1_a-voRYUtNmS",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "The Mediterranean Sea is the body of water that separates Europe from Africa. It connects to the Atlantic Ocean through the Strait of Gibraltar, which is a narrow passageway located between Spain to the north and Morocco to the south."
   },
   {
     "Pkey": "728",
