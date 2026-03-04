@@ -9432,7 +9432,8 @@
     "Question": "Look at the following clip, identify this person.",
     "Answer": "Aleksandr Lukashenko",
     "ImageUrl": "https://www.reuters.com/resizer/v2/FFR4VAHSUBK25JDMRDHJFYZFSU.jpg?auth=ef5e39d92248bd124e30b9740987c07ff97c7a80caef925f5d4ccb1b20bfa162",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "PRESIDENT OF BELARUS \n > President of Belarus since 1994 \n > First and only president of Belarus since the establishment of the office \n > Currently he is the longest-serving European leader"
   },
   {
     "Pkey": "759",
@@ -9557,7 +9558,7 @@
     "Answer": "Quinton de Kock",
     "ImageUrl": "https://i.cdn.newsbytesapp.com/images/l67220231003000456.jpeg",
     "Section": "buzzer",
-    "Info": "> Former Captain of South African Cricket Team in All three formats \n He currently plays for Titans at the domestic level \n He plays for South Africa in white ball cricket"
+    "Info": "> Former Captain of South African Cricket Team in All three formats \n > He currently plays for Titans at the domestic level \n > He plays for South Africa in white ball cricket"
   },
   {
     "Pkey": "770",
