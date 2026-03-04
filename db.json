@@ -9398,7 +9398,9 @@
     "Subject": "Art",
     "Question": "What is the name for the famous ancient Greek statue created between 130 and 100 BC, likely depicting Aphrodite, the goddess, without her arms?",
     "Answer": "Venus de Milo",
-    "Section": "buzzer"
+     "ImageUrl": "https://images.pexels.com/photos/12603730/pexels-photo-12603730.jpeg?cs=srgb&dl=pexels-oliveiratp-12603730.jpg&fm=jpg",
+    "Section": "buzzer",
+     "Info": "The famous ancient Greek statue created between 130 and 100 BC that depicts Aphrodite without her arms is the Venus de Milo, also known as the Aphrodite of Milos. \n Description: It is a larger-than-life (over 2 meters high) marble statue, often interpreted as the goddess Aphrodite or the sea-goddess Amphitrite, known for its missing arms and 'S-curve' pose. \n Creation & Artist: While originally attributed to Praxiteles, it is now largely believed to be the work of Alexandros of Antioch, created during the Hellenistic period. \n Discovery: It was discovered in 1820 on the Aegean island of Milos (or Melos) by a Greek farmer and subsequently acquired for the Louvre Museum in Paris, where it is still displayed. \n Details: The sculpture is made of Parian marble and was found in pieces, with the arms never recovered."
   },
   {
     "Pkey": "756",
@@ -9419,8 +9421,9 @@
     "Match": "44",
     "Subject": "Chemistry",
     "Question": "What is the oxidation state of chlorine in hypochlorous acid?",
-    "Answer": "1",
-    "Section": "buzzer"
+    "Answer": "+1",
+    "Section": "buzzer",
+    "Info": "Formula: HClO \n Hypochlorous acid (HOCl) is a powerful, non-toxic, and naturally occurring antimicrobial molecule produced by human white blood cells to fight infections. As a weak acid with strong oxidizing properties, it effectively kills pathogens (bacteria, viruses, fungi) by breaking down cell membranes. It is widely used in wound care, dermatology for acne/eczema, and as a safe, residue-free disinfectant."
   },
   {
     "Pkey": "758",
@@ -9444,7 +9447,8 @@
     "Subject": "General Knowledge",
     "Question": "What is the name for the unique order of mammals that lay eggs instead of giving birth to live young, yet possess fur and produce milk?",
     "Answer": "Monotremes",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "The unique order of mammals that lay eggs instead of giving birth to live young, yet possess fur and produce milk, is Monotremata (commonly known as monotremes). \n Key details about monotremes include: \n > Species: There are only five extant species: the platypus and four species of echidna (spiny anteaters). \n > Reproduction: They are oviparous, meaning they lay soft-shelled eggs. \n > Lactation: They produce milk to nourish their young but lack teats or nipples; instead, the young lap milk from patches on the mother's skin. \n > Habitat: All living monotremes are found in Australia and New Guinea. \n > Name Origin: The name 'monotreme' comes from the Greek words for 'single hole' (cloaca), referring to the shared opening for waste and reproductive systems. \n > Monotremes are considered the most primitive living mammals and are the only survivors of the Prototheria subclass."
   },
   {
     "Pkey": "760",
