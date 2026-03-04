@@ -9274,7 +9274,8 @@
     "Question": "Look at the following clip, identify this actor.",
     "Answer": "Andrew Garfield",
     "ImageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/53/Andrew_Garfield_82nd_Venice_Film_Festival_(cropped).jpg",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "Andrew Garfield is a critically acclaimed actor best known for playing Spider-Man in The Amazing Spider-Man (2012) and The Amazing Spider-Man 2 (2014), and for his Oscar-nominated roles in Hacksaw Ridge (2016) and Tick, Tick... Boom! (2021). He also starred in The Social Network (2010), Silence (2016), Never Let Me Go (2010), and We Live in Time (2024)."
   },
   {
     "Pkey": "746",
@@ -9320,7 +9321,8 @@
     "Subject": "Biology",
     "Question": "To which order in the animal kingdom do bats belong?",
     "Answer": "Chiroptera",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "Insects are classified into roughly 26 to 30 distinct orders based primarily on their wing structure, mouthparts, and metamorphosis, with about 1 million species described. "
   },
   {
     "Pkey": "750",
