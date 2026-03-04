@@ -9212,7 +9212,8 @@
     "Subject": "Jamaican Heritage",
     "Question": "Complete the Jamaican proverb: Ef fish deh a river bottom an tell yu seh alligator",
     "Answer": "have gum boil, believe him",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "This Jamaican proverb means you should trust the advice or information given by someone who has direct, first-hand experience with a situation, even if the information sounds unlikely. It emphasizes respecting the 'voice of experience' to avoid unnecessary, dangerous, or detrimental mistakes."
   },
   {
     "Pkey": "741",
@@ -9259,7 +9260,9 @@
     "Subject": "General Knowledge",
     "Question": "Which number is known as the additive identity?",
     "Answer": "Zero",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "ImageUrl": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQHpy4PARs-4JnyUo-P02DIrOp1o5EwG92Uyn31Dc-8_2lw4zuH",
+    "Info": "The number 0 (zero) is known as the additive identity because adding it to any number does not change the value of that number (a + 0 = a). It is a fundamental property in mathematics, applicable to real, complex, and rational numbers. "
   },
   {
     "Pkey": "745",
