@@ -240,6 +240,19 @@
     "Info": "A monopoly is a structure in which a single supplier produces and sells a given product or service. If there is a single seller in a certain market and there are no close substitutes for the product, then the market structure is that of a 'pure monopoly'"
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "2",
+    "Subject": "TVJ Buzzer",
+    "Question": "Camperdown-Decarteret",
+    "Answer": "Camperdown-Decarteret",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/002-Camperdown-Decarteret.mp4",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "19",
     "Qkey": "1",
     "Year": "2026",
@@ -439,6 +452,19 @@
     "Subject": "Jamaican Heritage",
     "Question": "Using the word \"hog\", give a Jamaican proverb that means to each his own.",
     "Answer": "Hog nyam weh him mind gi him fah",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "3",
+    "Subject": "TVJ Buzzer",
+    "Question": "MeadowBrook-Hampton",
+    "Answer": "MeadowBrook-Hampton",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/003-MeadowBrook-Hampton.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -651,6 +677,19 @@
     "Subject": "Jamaican Heritage",
     "Question": "Complete the Jamaican proverb: yuh caan sidong pan cow back.",
     "Answer": "And cus cow kin",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "4",
+    "Subject": "TVJ Buzzer",
+    "Question": "Westwood-Ardenne",
+    "Answer": "Westwood-Ardenne",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/004-Westwood-Ardenne.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -900,6 +939,19 @@
     "Subject": "General Knowledge",
     "Question": "Which scientist developed the laws of planetary motion?",
     "Answer": "Johannes Kepler",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "5",
+    "Subject": "TVJ Buzzer",
+    "Question": "Maggotty-Oberlin",
+    "Answer": "Maggotty-Oberlin",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/005-Maggotty-Oberlin.mp4",
     "Section": "buzzer",
     "Info": ""
   },
