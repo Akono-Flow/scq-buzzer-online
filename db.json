@@ -9593,7 +9593,9 @@
     "Subject": "Literature",
     "Question": "Which Indian author wrote the novel \"The God of Small Things\"?",
     "Answer": "Arundhati Roy",
-    "Section": "buzzer"
+    "ImageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRudOvDynnm5Fl-nl5SBXRr3yBMtNoAkDKV-w&s",
+    "Section": "buzzer",
+    "Info": "Published in 1997, this landmark book, which is set in Kerala, India, won the prestigious Booker Prize that same year. It is known for its lyrical prose and exploration of themes like the caste system, social restrictions, and family."
   },
   {
     "Pkey": "772",
@@ -9602,9 +9604,10 @@
     "Round": "3",
     "Match": "44",
     "Subject": "Bible Knowledge",
-    "Question": "In which city did Paul raise Uticus from the dead?",
+    "Question": "In which city did Paul raise Eutychus from the dead?",
     "Answer": "Troas",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "> Paul raised Eutychus from the dead in the city of Troas (specifically Alexandria Troas), as recorded in Acts 20:7-12. \n > The incident occurred during a long, late-night preaching session on the third floor of a house, where Eutychus fell asleep, fell from a window, and was subsequently restored to life by Paul."
   },
   {
     "Pkey": "773",
@@ -9615,6 +9618,8 @@
     "Subject": "Biology",
     "Question": "The femur, the tibia and the patella all meet at which part of the human body?",
     "Answer": "The knee joint",
-    "Section": "buzzer"
+    "ImageUrl": "https://alainelbazmd.com/wp-content/uploads/2024/01/407289.jpg",
+    "Section": "buzzer",
+    "Info": "> The femur (thigh bone), tibia (shin bone), and patella (kneecap) all meet at the knee joint. This structure, which also includes the fibula (not part of the main joint) and articular cartilage, acts as a hinge joint enabling leg movement like bending and straightening. \n > Femur: Connects at the top of the knee. \n > Tibia: Connects at the bottom of the knee. \n > Patella: Sits in front of the knee within a tendon. \n > Specifically, the tibia and femur form the tibiofemoral joint, while the patella sits in a groove on the femur, forming the patellofemoral joint."
   }
 ]
