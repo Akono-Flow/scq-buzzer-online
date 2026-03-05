@@ -1925,14 +1925,11 @@ function _updateFcHints() {
 }
 
 
-  state.fc.cards = [...state.filteredData];
-  state.fc.index = 0;
-  if (state.currentMode === 'flashcard') renderFlashcard();
-
 function syncFlashcards() {
   state.fc.cards = [...state.filteredData];
   state.fc.index = 0;
   if (state.currentMode === 'flashcard') renderFlashcard();
+}
 
 function renderFlashcard() {
   const cards = state.fc.cards;
@@ -2537,6 +2534,7 @@ function setupEventListeners() {
   };
   dom.quizRestart.addEventListener('click',  quizRestartFn);
   dom.quizRestart2.addEventListener('click', quizRestartFn);
+}
 
 function fcNav(dir) {
   const cards = state.fc.cards;
@@ -2545,9 +2543,8 @@ function fcNav(dir) {
   renderFlashcard();
 }
 
+
 // ════════════════════════════════════
 //  KICK OFF
 // ════════════════════════════════════
 document.addEventListener('DOMContentLoaded', init);
-}
-}
