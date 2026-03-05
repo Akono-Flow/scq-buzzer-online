@@ -34,6 +34,9 @@ const state = {
     // their dedicated icons on the Question cell, never as table columns.
     { key: 'AudioUrl',     label: 'Audio',       visible: false, type: 'str' },
     { key: 'LocalImageUrl',label: 'Local Image', visible: false, type: 'str' },
+    // LocalVideoUrl is hidden — surfaced via a ▶ icon on the Question cell
+    // and also rendered inline in the floating div, flashcard, and quiz.
+    { key: 'LocalVideoUrl',label: 'Local Video', visible: false, type: 'str' },
   ],
 
   fc:   { cards: [], index: 0 },
@@ -401,10 +404,11 @@ function renderTable() {
 
       } else if (col.key === 'Answer') {
         td.className = 'col-answer';
-        const info     = String(row.Info       || '').trim();
-        const imageUrl = String(row.ImageUrl   || '').trim();
-        const ytUrl    = String(row.YoutubeUrl || '').trim();
-        const hasMedia = info || imageUrl || ytUrl;
+        const info      = String(row.Info          || '').trim();
+        const imageUrl  = String(row.ImageUrl      || '').trim();
+        const ytUrl     = String(row.YoutubeUrl    || '').trim();
+        const videoUrl  = String(row.LocalVideoUrl || '').trim();
+        const hasMedia  = info || imageUrl || ytUrl || videoUrl;
         const renderedAnswer = search
           ? highlight(renderFull(val, false), search)
           : renderFull(val, false);
@@ -416,6 +420,7 @@ function renderTable() {
             ` data-info="${esc(info)}"` +
             ` data-image="${esc(imageUrl)}"` +
             ` data-youtube="${esc(ytUrl)}"` +
+            ` data-video="${esc(videoUrl)}"` +
             ` aria-label="Details — hover to view" tabindex="0">ⓘ</button>`;
         } else {
           td.innerHTML = `<span>${renderedAnswer}</span>`;
@@ -430,6 +435,7 @@ function renderTable() {
         const qHtml       = search ? highlight(renderFull(val, false), search) : renderFull(val, false);
         const audioUrl    = String(row.AudioUrl      || '').trim();
         const localImgUrl = String(row.LocalImageUrl || '').trim();
+        const localVidUrl = String(row.LocalVideoUrl || '').trim();
         const hasLangTags = _LANG_TAG_RE.test(val);
 
         // Build the icon cluster — TTS read button always included;
@@ -458,6 +464,12 @@ function renderTable() {
             `<button class="local-img-icon"` +
             ` data-localimg="${esc(localImgUrl)}"` +
             ` aria-label="View image" title="View image">◫</button>`;
+        }
+        if (localVidUrl) {
+          iconHtml +=
+            `<button class="local-vid-icon"` +
+            ` data-localvid="${esc(localVidUrl)}"` +
+            ` aria-label="View video" title="View video">▶</button>`;
         }
 
         td.innerHTML =
@@ -606,21 +618,25 @@ function showTooltip(iconEl, clientX, clientY) {
   const rawInfo  = iconEl.dataset.info    || '';
   const imageUrl = (iconEl.dataset.image  || '').trim();
   const ytUrl    = (iconEl.dataset.youtube|| '').trim();
+  const videoUrl = (iconEl.dataset.video  || '').trim();
 
   const hasInfo  = rawInfo.trim().length > 0;
   const hasImage = imageUrl.length > 0;
   const hasYT    = ytUrl.length > 0;
+  const hasVideo = videoUrl.length > 0;
 
-  if (!hasInfo && !hasImage && !hasYT) return;
+  if (!hasInfo && !hasImage && !hasYT && !hasVideo) return;
 
   // ── Build header title dynamically ──
   let titleText = 'Comment(s)';
   let iconText  = '◈';
-  if (hasImage && hasYT)        { titleText = 'Details';  iconText = '◈'; }
-  else if (hasImage && hasInfo) { titleText = 'Details';  iconText = '◈'; }
-  else if (hasYT    && hasInfo) { titleText = 'Details';  iconText = '◈'; }
-  else if (hasImage)            { titleText = 'Visual';   iconText = '⬡'; }
-  else if (hasYT)               { titleText = 'Media';    iconText = '▶'; }
+  if (hasVideo && !hasImage && !hasYT && !hasInfo) { titleText = 'Video';   iconText = '▶'; }
+  else if (hasImage && hasYT)        { titleText = 'Details';  iconText = '◈'; }
+  else if (hasImage && hasInfo)      { titleText = 'Details';  iconText = '◈'; }
+  else if (hasYT    && hasInfo)      { titleText = 'Details';  iconText = '◈'; }
+  else if (hasVideo)                 { titleText = 'Details';  iconText = '◈'; }
+  else if (hasImage)                 { titleText = 'Visual';   iconText = '⬡'; }
+  else if (hasYT)                    { titleText = 'Media';    iconText = '▶'; }
 
   dom.infoTooltipTitle.textContent = titleText;
   dom.infoTooltipIcon.textContent  = iconText;
@@ -650,6 +666,17 @@ function showTooltip(iconEl, clientX, clientY) {
     }
   }
 
+  // Local video section — GitHub-hosted mp4/webm via <video>
+  if (hasVideo) {
+    html += `<div class="tooltip-video-wrap">` +
+      `<video class="tooltip-video" src="${esc(videoUrl)}"` +
+      ` controls preload="metadata" playsinline` +
+      ` onerror="this.closest('.tooltip-video-wrap').style.display='none'">` +
+      `Your browser does not support the video tag.` +
+      `</video>` +
+      `</div>`;
+  }
+
   // Info / comments section — rendered as block markdown
   if (hasInfo) {
     const mdHtml = renderFull(rawInfo.trim(), true);
@@ -663,7 +690,7 @@ function showTooltip(iconEl, clientX, clientY) {
 
   // ── Widen when media present; clear any manually resized height so each
   //    new open starts fresh — user can drag/resize again as needed. ──
-  dom.infoTooltip.style.width  = (hasImage || hasYT) ? '400px' : '320px';
+  dom.infoTooltip.style.width  = (hasImage || hasYT || hasVideo) ? '400px' : '320px';
   dom.infoTooltip.style.height = '';
 
   // Reset drag flag so auto-positioning takes effect for this open.
@@ -747,9 +774,11 @@ function _doHide() {
   dom.infoTooltip.classList.remove('visible');
   dom.infoTooltip.setAttribute('aria-hidden', 'true');
   // Stop YouTube playback by blanking the iframe src.
-  // This is the most reliable cross-browser method without the YT JS API.
   const ytFrame = document.getElementById('tooltipYtFrame');
   if (ytFrame) ytFrame.src = '';
+  // Pause any local video so it doesn't play in the background.
+  const vid = dom.infoTooltipBody.querySelector('video');
+  if (vid) { vid.pause(); vid.currentTime = 0; }
 }
 
 // Toggle or set the pin state and update button appearance accordingly.
@@ -1124,9 +1153,79 @@ function _doHideLocalImg() {
   _localImgDragged = false;
   dom.localImgPopup.classList.remove('visible');
   dom.localImgPopup.setAttribute('aria-hidden', 'true');
-  // Clear the image src so the browser releases memory
+  // Clear image src and pause any video so the browser releases memory
   dom.localImgPopupImg.src = '';
+  const vid = dom.localImgPopupBody.querySelector('video');
+  if (vid) { vid.pause(); vid.currentTime = 0; vid.remove(); }
 }
+
+// ── showLocalVideoPopup ──────────────────────────────────────────────────
+// Reuses the localImgPopup panel to show a GitHub-hosted video.
+// The <img> is hidden and a <video> element is injected into the body.
+// Follows the same positioning / pin / drag / resize conventions.
+// ─────────────────────────────────────────────────────────────────────────
+function showLocalVideoPopup(iconEl, clientX, clientY) {
+  const url = iconEl.dataset.localvid || '';
+  if (!url) return;
+
+  if (_localImgPinned) return;
+
+  if (_localImgAnchorIcon && _localImgAnchorIcon !== iconEl) {
+    _localImgAnchorIcon.classList.remove('active');
+  }
+  _localImgAnchorIcon = iconEl;
+  iconEl.classList.add('active');
+
+  // Set title from question text
+  const row   = iconEl.closest('tr');
+  const qCell = row ? row.querySelector('.q-text') : null;
+  const label = qCell
+    ? (qCell.textContent.trim().slice(0, 60) + (qCell.textContent.length > 60 ? '…' : ''))
+    : 'Video';
+  dom.localImgPopupTitle.textContent = label;
+
+  // Hide the <img> and inject a <video> into the body
+  dom.localImgPopupImg.style.display = 'none';
+  // Remove any pre-existing video from a prior open
+  const old = dom.localImgPopupBody.querySelector('video');
+  if (old) old.remove();
+  const vid = document.createElement('video');
+  vid.src        = url;
+  vid.controls   = true;
+  vid.preload    = 'metadata';
+  vid.playsinline = true;
+  vid.className  = 'local-popup-video';
+  vid.onerror    = () => { vid.closest('.local-img-popup-body').style.display = 'none'; };
+  dom.localImgPopupBody.appendChild(vid);
+
+  _localImgDragged = false;
+  _setLocalImgPinned(false);
+
+  dom.localImgPopup.style.width  = '560px';
+  dom.localImgPopup.style.height = '';
+
+  dom.localImgPopup.classList.add('visible');
+  dom.localImgPopup.setAttribute('aria-hidden', 'false');
+
+  // Position near clicked icon
+  const MARGIN  = 12;
+  const popup   = dom.localImgPopup;
+  const vw      = window.innerWidth;
+  const vh      = window.innerHeight;
+  const popupW  = popup.offsetWidth  || 560;
+  const popupH  = popup.offsetHeight || 360;
+
+  let left = clientX - popupW / 2;
+  let top  = clientY + 20;
+  if (left + popupW > vw - MARGIN) left = vw - popupW - MARGIN;
+  if (left < MARGIN) left = MARGIN;
+  if (top  + popupH > vh - MARGIN) top  = clientY - popupH - 20;
+  if (top  < MARGIN) top  = MARGIN;
+
+  popup.style.left = `${left}px`;
+  popup.style.top  = `${top}px`;
+}
+
 
 function _setLocalImgPinned(pinned) {
   _localImgPinned = pinned;
@@ -1812,15 +1911,17 @@ function renderContent(raw) {
 //  ever visible at a time).
 // ════════════════════════════════════
 function buildMediaHTML(card, idSuffix = '') {
-  const imageUrl = String(card.ImageUrl   || '').trim();
-  const ytUrl    = String(card.YoutubeUrl || '').trim();
-  const info     = String(card.Info       || '').trim();
+  const imageUrl = String(card.ImageUrl      || '').trim();
+  const ytUrl    = String(card.YoutubeUrl    || '').trim();
+  const videoUrl = String(card.LocalVideoUrl || '').trim();
+  const info     = String(card.Info          || '').trim();
 
   const hasImage = imageUrl.length > 0;
   const hasYT    = ytUrl.length > 0;
+  const hasVideo = videoUrl.length > 0;
   const hasInfo  = info.length > 0;
 
-  if (!hasImage && !hasYT && !hasInfo) return '';
+  if (!hasImage && !hasYT && !hasVideo && !hasInfo) return '';
 
   let html = '';
 
@@ -1844,6 +1945,17 @@ function buildMediaHTML(card, idSuffix = '') {
         ` allowfullscreen></iframe>` +
         `</div>`;
     }
+  }
+
+  // Local video — GitHub-hosted mp4/webm via <video>
+  if (hasVideo) {
+    html += `<div class="media-video-wrap">` +
+      `<video class="media-video" src="${esc(videoUrl)}"` +
+      ` controls preload="metadata" playsinline` +
+      ` onerror="this.closest('.media-video-wrap').style.display='none'">` +
+      `Your browser does not support the video tag.` +
+      `</video>` +
+      `</div>`;
   }
 
   // Info / comments — rendered as block markdown
@@ -2436,6 +2548,25 @@ function setupEventListeners() {
   dom.localImgCloseBtn.addEventListener('click', e => {
     e.stopPropagation();
     forceHideLocalImgPopup();
+  });
+
+  // ────────────────────────────────────
+  // LOCAL VIDEO ICON — event delegation on tableBody
+  // Reuses the localImgPopup panel but swaps in a <video> element.
+  // ────────────────────────────────────
+  dom.tableBody.addEventListener('click', e => {
+    const vidBtn = e.target.closest('.local-vid-icon');
+    if (!vidBtn) return;
+    e.stopPropagation();
+
+    if (dom.localImgPopup.classList.contains('visible') && _localImgAnchorIcon === vidBtn) {
+      forceHideLocalImgPopup();
+    } else {
+      showLocalVideoPopup(vidBtn, e.clientX, e.clientY);
+      if (e.pointerType === 'touch' || e.pointerType === 'pen') {
+        _setLocalImgPinned(true);
+      }
+    }
   });
 
   // ── Local image popup: drag + resize ──
