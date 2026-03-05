@@ -162,6 +162,14 @@ const dom = {
 //  INIT
 // ════════════════════════════════════
 async function init() {
+  // Configure marked.js if available (loaded via CDN before this script).
+  // headerIds:false  — don't add id="" to headings (avoids clashing with app IDs)
+  // mangle:false     — don't HTML-encode heading text
+  // gfm:true         — GitHub Flavoured Markdown (tables, strikethrough, etc.)
+  if (typeof window.marked !== 'undefined') {
+    window.marked.setOptions({ gfm: true, headerIds: false, mangle: false });
+  }
+
   try {
     const res = await fetch('db.json');
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -398,8 +406,8 @@ function renderTable() {
         const ytUrl    = String(row.YoutubeUrl || '').trim();
         const hasMedia = info || imageUrl || ytUrl;
         const renderedAnswer = search
-          ? highlight(renderWithLangTags(val), search)
-          : renderWithLangTags(val);
+          ? highlight(renderFull(val, false), search)
+          : renderFull(val, false);
 
         if (hasMedia) {
           td.innerHTML =
@@ -419,7 +427,7 @@ function renderTable() {
 
       } else if (col.key === 'Question') {
         td.className = 'col-question';
-        const qHtml       = search ? highlight(renderWithLangTags(val), search) : renderWithLangTags(val);
+        const qHtml       = search ? highlight(renderFull(val, false), search) : renderFull(val, false);
         const audioUrl    = String(row.AudioUrl      || '').trim();
         const localImgUrl = String(row.LocalImageUrl || '').trim();
         const hasLangTags = _LANG_TAG_RE.test(val);
@@ -642,13 +650,11 @@ function showTooltip(iconEl, clientX, clientY) {
     }
   }
 
-  // Info / comments section
+  // Info / comments section — rendered as block markdown
   if (hasInfo) {
-    const lines = rawInfo.split('\n').map(l => l.trim()).filter(Boolean);
-    if (lines.length) {
-      html += `<div class="tooltip-info-section">` +
-        lines.map(l => `<p>${renderWithLangTags(l)}</p>`).join('') +
-        `</div>`;
+    const mdHtml = renderFull(rawInfo.trim(), true);
+    if (mdHtml) {
+      html += `<div class="tooltip-info-section md-body">${mdHtml}</div>`;
     }
   }
 
@@ -1588,7 +1594,132 @@ function renderSci(raw) {
 
 
 // ════════════════════════════════════
-//  CONTENT RENDERER (KaTeX + renderSci)
+//  FULL RENDERER  (Markdown + KaTeX + lang-tags + renderSci)
+//
+//  renderFull(raw, block) is the single top-level renderer used everywhere
+//  text is placed into innerHTML.  It layers four technologies:
+//
+//  ┌─ Markdown (marked.js) ───────────────────────────────────────────────┐
+//  │  block=true  → marked.parse()       Headers, lists, blockquotes …   │
+//  │  block=false → marked.parseInline() **bold**, *italic*, `code` …    │
+//  └──────────────────────────────────────────────────────────────────────┘
+//  ┌─ KaTeX / mhchem ─────────────────────────────────────────────────────┐
+//  │  $…$  $$…$$  \ce{…}   (protected from markdown; restored after)     │
+//  └──────────────────────────────────────────────────────────────────────┘
+//  ┌─ Language badges ────────────────────────────────────────────────────┐
+//  │  <fr>…</fr>  <es>…</es>  etc.   (protected; restored after)         │
+//  └──────────────────────────────────────────────────────────────────────┘
+//  ┌─ renderSci (inline mode only) ───────────────────────────────────────┐
+//  │  Auto-detects H2O→H₂O  x^2→x²  for backward-compat plain-text data │
+//  │  (Skipped in block mode — use \ce{} for chemistry in block content)  │
+//  └──────────────────────────────────────────────────────────────────────┘
+//
+//  Conflict prevention: KaTeX tokens and lang tags are extracted and
+//  replaced with Private-Use-Area Unicode placeholders before marked runs,
+//  so markdown never sees $ signs or <xx> tags.  After markdown, the
+//  placeholders are swapped back with fully-rendered HTML.
+//
+//  Fallback: if marked.js failed to load, falls back to renderWithLangTags.
+// ════════════════════════════════════
+
+// Private-Use-Area delimiters — markdown will never touch these characters.
+const _MD_K_PFX = '\uE000K:';   // prefix for KaTeX placeholders
+const _MD_K_SFX = '\uE000';     // suffix
+const _MD_L_PFX = '\uE001L:';   // prefix for lang-tag placeholders
+const _MD_L_SFX = '\uE001';     // suffix
+// Pre-built regexes for placeholder restoration (global, no 's' flag needed)
+const _MD_K_RE  = /\uE000K:(\d+)\uE000/g;
+const _MD_L_RE  = /\uE001L:(\d+)\uE001/g;
+
+// Render a single KaTeX token string ($$…$$, $…$, or \ce{…}) to HTML.
+// Extracted from renderContent so renderFull can call it during restoration.
+function _renderKatexToken(token) {
+  const hasKatex = typeof window !== 'undefined' && typeof window.katex !== 'undefined';
+  if (!hasKatex) return esc(token);
+  try {
+    let expr, displayMode;
+    if (token.startsWith('$$')) {
+      expr = token.slice(2, -2).trim(); displayMode = true;
+    } else if (token.startsWith('$')) {
+      expr = token.slice(1, -1);        displayMode = false;
+    } else {
+      expr = token;                     displayMode = false; // \ce{…}
+    }
+    return window.katex.renderToString(expr, { displayMode, throwOnError: false, trust: false });
+  } catch (e) {
+    console.warn('KaTeX render error:', e.message, '→', token);
+    return esc(token);
+  }
+}
+
+// Build the HTML for a single lang-tag segment: rendered text + speaker badge.
+// The inner text is processed by renderContent (handles KaTeX within lang tags).
+function _renderLangSegment(lang, text) {
+  const langName = LANG_NAMES[lang] || lang.toUpperCase();
+  const bcp47    = LANG_MAP[lang]   || lang;
+  const rendered = renderContent(text);  // KaTeX + renderSci on inner text
+  const badge =
+    `<button class="lang-speak-btn"` +
+    ` data-lang="${esc(bcp47)}"` +
+    ` data-text="${esc(text)}"` +
+    ` title="Click to hear pronunciation in ${esc(langName)}"` +
+    ` aria-label="Speak in ${esc(langName)}">${lang.toUpperCase()}</button>`;
+  return `<span class="lang-segment">${rendered}</span>${badge}`;
+}
+
+function renderFull(raw, block = false) {
+  if (!raw || typeof raw !== 'string') return '';
+
+  // Fallback if marked failed to load
+  if (typeof window.marked === 'undefined') return renderWithLangTags(raw);
+
+  const kTokens = [];   // original KaTeX token strings
+  const lTokens = [];   // { lang, text } for each lang-tag
+
+  // ── Step 1: protect lang tags (outer layer, must go first) ──
+  // We reset lastIndex before every use of this stateful module-level regex.
+  _LANG_TAG_RE.lastIndex = 0;
+  let s = raw.replace(_LANG_TAG_RE, (_, lang, text) => {
+    lTokens.push({ lang, text });
+    return `${_MD_L_PFX}${lTokens.length - 1}${_MD_L_SFX}`;
+  });
+
+  // ── Step 2: protect KaTeX tokens ──
+  // _KATEX_RE is also module-level; reset before use.
+  _KATEX_RE.lastIndex = 0;
+  s = s.replace(_KATEX_RE, match => {
+    kTokens.push(match);
+    return `${_MD_K_PFX}${kTokens.length - 1}${_MD_K_SFX}`;
+  });
+
+  // ── Step 3: for inline mode apply renderSci for backward compatibility ──
+  // (renderSci converts H2O→H₂O, x^2→x² in plain-text segments.
+  //  Skipped for block mode because renderSci joins lines with <br> which
+  //  would destroy markdown's paragraph / heading detection.)
+  if (!block) s = renderSci(s);
+
+  // ── Step 4: run marked ──
+  const mdResult = block
+    ? window.marked.parse(s,            { breaks: true  })
+    : window.marked.parseInline(s,      { breaks: false });
+
+  // ── Step 5: restore KaTeX placeholders with rendered KaTeX HTML ──
+  _MD_K_RE.lastIndex = 0;
+  let result = mdResult.replace(_MD_K_RE, (_, i) => _renderKatexToken(kTokens[+i]));
+
+  // ── Step 6: restore lang-tag placeholders with badge HTML ──
+  _MD_L_RE.lastIndex = 0;
+  result = result.replace(_MD_L_RE, (_, i) => {
+    const { lang, text } = lTokens[+i];
+    return _renderLangSegment(lang, text);
+  });
+
+  return result;
+}
+
+
+// ════════════════════════════════════
+
 //
 //  renderContent(raw) is the single entry point used everywhere
 //  text is placed into innerHTML.  It gives you two layers:
@@ -1715,13 +1846,13 @@ function buildMediaHTML(card, idSuffix = '') {
     }
   }
 
-  // Info / comments
+  // Info / comments — rendered as block markdown
   if (hasInfo) {
-    const lines = info.split('\n').map(l => l.trim()).filter(Boolean);
-    if (lines.length) {
+    const mdHtml = renderFull(info.trim(), true);
+    if (mdHtml) {
       html += `<div class="media-info-section">` +
         `<div class="media-info-label">◈ Comment(s)</div>` +
-        lines.map(l => `<p>${renderWithLangTags(l)}</p>`).join('') +
+        `<div class="md-body">${mdHtml}</div>` +
         `</div>`;
     }
   }
@@ -1797,6 +1928,7 @@ function _updateFcHints() {
   state.fc.cards = [...state.filteredData];
   state.fc.index = 0;
   if (state.currentMode === 'flashcard') renderFlashcard();
+}
 
 function syncFlashcards() {
   state.fc.cards = [...state.filteredData];
@@ -1821,8 +1953,8 @@ function renderFlashcard() {
 
   const card = cards[i];
   dom.fcCounter.textContent = `Card ${i + 1} of ${cards.length}`;
-  dom.fcQuestion.innerHTML = renderWithLangTags(card.Question);
-  dom.fcAnswer.innerHTML   = renderWithLangTags(card.Answer);
+  dom.fcQuestion.innerHTML = renderFull(card.Question, false);
+  dom.fcAnswer.innerHTML   = renderFull(card.Answer,   false);
   dom.fcMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -1885,7 +2017,7 @@ function renderQuizQuestion() {
 
   const card = q.cards[q.index];
   dom.quizQNum.textContent     = `Question ${q.index + 1} of ${q.cards.length}`;
-  dom.quizQuestion.innerHTML   = renderWithLangTags(card.Question);
+  dom.quizQuestion.innerHTML   = renderFull(card.Question, false);
   dom.quizMeta.innerHTML = `
     <span class="meta-tag">${card.Subject}</span>
     <span class="meta-tag">Yr ${card.Year}</span>
@@ -1909,7 +2041,7 @@ function submitQuizAnswer() {
   q.total++;
   if (isCorrect) q.correct++;
 
-  dom.quizRevealAnswer.innerHTML = renderWithLangTags(card.Answer);
+  dom.quizRevealAnswer.innerHTML = renderFull(card.Answer, false);
   dom.quizFeedback.textContent = isCorrect ? '✓ Correct!' : '✗ Incorrect';
   dom.quizFeedback.className   = `quiz-feedback ${isCorrect ? 'correct' : 'incorrect'}`;
   dom.quizReveal.hidden        = false;
