@@ -9483,7 +9483,9 @@
     "Subject": "Geography",
     "Question": "What capital city, located on the Danube river, is located on the borders of Austria and Hungry, just 50 km from Vienna?",
     "Answer": "Bratislava in Slovakia",
-    "Section": "buzzer"
+    "ImageUrl": "https://c8.alamy.com/comp/F3DN8M/slovakia-political-map-with-capital-bratislava-national-borders-important-F3DN8M.jpg",
+    "Section": "buzzer",
+    "Info": "Bratislava, the capital of Slovakia, is located on the Danube River directly on the borders of Austria and Hungary, sitting approximately 50-60 km (about an hour) from Vienna. It is unique as the only national capital in the world that borders two foreign countries. \n > Geography: The city straddles both banks of the Danube River. \n > History: Formerly known as Pressburg (German) or Pozsony (Hungarian), it was a major city in the Austro-Hungarian Empire. \n > Highlights: Features a historic Old Town, the 18th-century Bratislava Castle overlooking the Danube, and a mix of Slovak, Hungarian, and German cultural influences."
   },
   {
     "Pkey": "763",
@@ -9518,7 +9520,9 @@
     "Subject": "History",
     "Question": "Who was the last king of Prussia?",
     "Answer": "Wilhelm II",
-    "Section": "buzzer"
+    "ImageUrl": "https://c8.alamy.com/comp/RH2CCR/wilhelm-ii-german-emperor-the-last-german-emperor-kaiser-and-king-of-prussia-reigning-from-15-june-1888-until-his-abdication-on-9-november-1918-RH2CCR.jpg",
+    "Section": "buzzer",
+    "Info": "The last King of Prussia and German Emperor (Kaiser) was Wilhelm II (Friedrich Wilhelm Viktor Albert). He reigned from June 15, 1888, until his abdication on November 9, 1918, which marked the end of the Hohenzollern dynasty and the Kingdom of Prussia following Germany's defeat in World War I. \n > Reign: 1888–1918. \n > Abdication: 9 November 1918. \n > Exile: Fled to the Netherlands. \n > Death: 4 June 1941. \n > Wilhelm II was the eldest son of Emperor Frederick III and grandson of Queen Victoria. His reign saw significant industrial, military, and naval expansion, as well as the pursuit of an aggressive foreign policy (Weltpolitik) that preceded World War I."
   },
   {
     "Pkey": "766",
