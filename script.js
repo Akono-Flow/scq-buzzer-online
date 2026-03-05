@@ -1934,7 +1934,6 @@ function syncFlashcards() {
   state.fc.cards = [...state.filteredData];
   state.fc.index = 0;
   if (state.currentMode === 'flashcard') renderFlashcard();
-}
 
 function renderFlashcard() {
   const cards = state.fc.cards;
