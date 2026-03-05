@@ -9533,7 +9533,8 @@
     "Subject": "Mathematics",
     "Question": "What is the area of a triangle with base 23cm and height 7cm?",
     "Answer": "80.5 cm",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Base } b = 23\\text{ cm, Height } h = 7\\text{ cm} \\\\[10pt]&\\textbf{Step 1: Recall the Area Formula} \\\\[4pt]&A = \\dfrac{1}{2} \\times b \\times h \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&A = \\dfrac{1}{2} \\times 23 \\times 7 \\\\[10pt]&\\textbf{Step 3: Simplify} \\\\[4pt]&A = \\dfrac{1}{2} \\times 161 \\\\[10pt]&\\textbf{Step 4: Answer} \\\\[4pt]&A = 80.5\\text{ cm}^2\\end{aligned}$$"
   },
   {
     "Pkey": "767",
@@ -9544,7 +9545,8 @@
     "Subject": "Physics",
     "Question": "If an object with a mass of 20 kilograms is moving at a velocity of 5 meters per second, what is its kinetic energy?",
     "Answer": "250 Joules",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ Mass } m = 20 \\text{ kg, Velocity } v = 5 \\text{ m s}^{-1} \\\\[10pt]&\\textbf{Step 1: Recall the Kinetic Energy Formula} \\\\[4pt]&E_k = \\dfrac{1}{2}mv^2 \\\\[10pt]&\\textbf{Step 2: Substitute Known Values} \\\\[4pt]&E_k = \\dfrac{1}{2} \\times 20 \\times 5^2 \\\\[10pt]&\\textbf{Step 3: Evaluate the Square} \\\\[4pt]&5^2 = 25 \\\\[10pt]&\\textbf{Step 4: Simplify} \\\\[4pt]&E_k = \\dfrac{1}{2} \\times 20 \\times 25 \\\\[4pt]&E_k = 10 \\times 25 \\\\[10pt]&\\textbf{Step 5: Answer} \\\\[4pt]&E_k = 250 \\text{ J}\\end{aligned}$$"
   },
   {
     "Pkey": "768",
@@ -9555,7 +9557,8 @@
     "Subject": "Jamaican Heritage",
     "Question": "Which historic site in St. Mary marks the final pitch battle between British and Spanish Forces for control of Jamaica?",
     "Answer": "Rio Nuevo",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "The historic site in St. Mary that marks the final pitched battle between British and Spanish forces for control of Jamaica is the Rio Nuevo Battle Site. \n > The Battle: The Battle of Rio Nuevo took place on June 17, 1658 (with some sources specifying June 25–27, 1658). \n > Significance: It was the largest battle fought in Jamaica, where English forces under Colonel Edward D'Oyley defeated the Spanish, led by the last Spanish Governor, Don Cristobal de Ysassi. \n > Outcome: This victory ended Spanish attempts to regain control of the island, leading to the formal concession of Jamaica to England in 1670. \n > Location: The site is located in Tower Isle, St. Mary, near the mouth of the Rio Nuevo river. \n > Monument: A memorial at the site commemorates the battle, and the area is maintained by the Jamaica National Heritage Trust (JNHT). "
   },
   {
     "Pkey": "769",
