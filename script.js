@@ -2549,3 +2549,5 @@ function fcNav(dir) {
 //  KICK OFF
 // ════════════════════════════════════
 document.addEventListener('DOMContentLoaded', init);
+}
+}
