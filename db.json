@@ -9470,7 +9470,7 @@
     "Round": "3",
     "Match": "44",
     "Subject": "Spanish",
-    "Question": "Translate to English: No recuerdo el nombre del libro",
+    "Question": "Translate to English: <es>No recuerdo el nombre del libro</es>",
     "Answer": "I don't remember the name of the book",
     "Section": "buzzer"
   },
@@ -9496,7 +9496,8 @@
     "Subject": "Information Technology",
     "Question": "What is the name for the seven-bit character encoding standard that assigns numerical values to 128 characters used for letters, digits, punctuation marks, and control codes in computers?",
     "Answer": "ASCII",
-    "Section": "buzzer"
+    "Section": "buzzer",
+    "Info": "> ASCII - American Standard Code for Information Interchange. \n > Developed in the 1960s, it is the foundational character encoding for English and is widely used in computing. \n > Structure: Uses 7-bit binary numbers to represent characters, allowing for 2^7 = 128 unique characters. \n > Characters Included: Contains 95 printable characters (uppercase/lowercase English letters, digits, and punctuation) and 33 non-printing control characters. \n > Legacy/Modern Use: While largely superseded by Unicode (UTF-8), ASCII remains the first 128 characters of Unicode, ensuring compatibility. \n > Examples: The letter 'A' is 65, and the digit '0' is 48 in decimal."
   },
   {
     "Pkey": "764",
@@ -9580,7 +9581,7 @@
     "Round": "3",
     "Match": "44",
     "Subject": "French",
-    "Question": "What is the English translation for: Il vaut mieux partir maintenant?",
+    "Question": "What is the English translation for: <fr>Il vaut mieux partir maintenant</fr>?",
     "Answer": "It is better to leave now",
     "Section": "buzzer"
   },
