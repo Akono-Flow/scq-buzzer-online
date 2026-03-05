@@ -2537,7 +2537,6 @@ function setupEventListeners() {
   };
   dom.quizRestart.addEventListener('click',  quizRestartFn);
   dom.quizRestart2.addEventListener('click', quizRestartFn);
-}
 
 function fcNav(dir) {
   const cards = state.fc.cards;
