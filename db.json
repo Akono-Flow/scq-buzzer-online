@@ -1192,6 +1192,18 @@
     "Info": ""
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "6",
+    "Subject": "TVJ Buzzer",
+    "Question": "Wolmer's Girls vs St. Andrew High",
+    "Answer": "Wolmer's Girls vs St. Andrew High",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "91",
     "Qkey": "1",
     "Year": "2026",
@@ -1202,7 +1214,7 @@
     "Answer": "AB negative",
     "Section": "buzzer",
     "Info": ""
-  },
+  }
   {
     "Pkey": "92",
     "Qkey": "2",
@@ -1424,6 +1436,18 @@
     "Subject": "English Language",
     "Question": "Name the figure of speech that is used when a mild or indirect expression is substituted for one that is considered harsh.",
     "Answer": "Euphemism",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "7",
+    "Subject": "TVJ Buzzer",
+    "Question": "Cornwall College vs Excelsior High",
+    "Answer": "Cornwall College vs Excelsior High",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1660,6 +1684,18 @@
     "Subject": "Physics",
     "Question": "A transformer has 200 turns on the primary and 50 on the secondary. If the input is 120 V, what is the output?",
     "Answer": "30 V",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "8",
+    "Subject": "TVJ Buzzer",
+    "Question": "Holy Childhood vs Central High",
+    "Answer": "Holy Childhood vs Central High",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1905,6 +1941,18 @@
     "Year": "2026",
     "Round": "1",
     "Match": "9",
+    "Subject": "TVJ Buzzer",
+    "Question": "Jonathan Grant vs Campion",
+    "Answer": "Jonathan Grant vs Campion",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "148",
+    "Qkey": "1",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "9",
     "Subject": "History",
     "Question": "What was the popular name for the post world war II initiative officially known as the European Recovery Program (ERP)?",
     "Answer": "The Marshall Plan",
@@ -2132,6 +2180,18 @@
     "Subject": "History",
     "Question": "Derived from the Latin meaning \"Great Charter\", what was the name of the historic early 13th century English charter that established the principle that everyone including the King is subject to the law?",
     "Answer": "Magna Carta",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "167",
+    "Qkey": "1",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "10",
+    "Subject": "TVJ Buzzer",
+    "Question": "Dinthill Technical vs Montego Bay High",
+    "Answer": "Dinthill Technical vs Montego Bay High",
     "Section": "buzzer",
     "Info": ""
   },
