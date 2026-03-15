@@ -11169,7 +11169,7 @@
     "Match": "51",
     "Subject": "French",
     "Question": "What is the French for the traffic light?",
-    "Answer": "le feu de circulation",
+    "Answer": "<fr>le feu de circulation</fr>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -11301,7 +11301,7 @@
     "Match": "51",
     "Subject": "Spanish",
     "Question": "How do you say in Spanish \"She opened the window\"?",
-    "Answer": "ella abrió la ventana",
+    "Answer": "<es>ella abrió la ventana</es>",
     "Section": "buzzer",
     "Info": ""
   },
