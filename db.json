@@ -11132,7 +11132,7 @@
     "Match": "51",
     "Subject": "Local and International Affairs",
     "Question": "Look at the following clip, identify this person.",
-    "Answer": "Julia Hyatt (Jamaican ambassador to Mexico)",
+    "Answer": "Julia Hyatt",
     "ImageUrl": "https://mfaft.gov.jm/site/wp-content/uploads/2024/05/juliahyatt.jpg",
     "Section": "buzzer",
     "Info": "### Jamaican Ambassador to Mexico"
@@ -11195,7 +11195,7 @@
     "Question": "Which artist created the early 17th century work \"Prometheus Bound\"?",
     "Answer": "Peter Paul Reubens",
     "Section": "buzzer",
-    "Info": ""
+    "Info": "'Prometheus Bound' (begun c. 1611–1612, completed by 1618) was created by the Flemish Baroque artist Peter Paul Rubens \n **Collaborator:** Rubens collaborated with fellow Flemish painter Frans Snyders, who rendered the eagle, a common practice in Antwerp at the time. \n **Subject:** The painting depicts the brutal Greek myth where Prometheus is chained to a rock and his liver is eaten daily by an eagle."
   },
   {
     "Pkey": "893",
