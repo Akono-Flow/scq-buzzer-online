@@ -9799,7 +9799,7 @@
     "Round": "3",
     "Match": "45",
     "Subject": "French",
-    "Question": "What is the English translation for Je reviendrai plus tard?",
+    "Question": "What is the English translation for <fr>Je reviendrai plus tard</fr>?",
     "Answer": "I will be back or I will return later",
     "Section": "buzzer",
     "Info": ""
@@ -10135,7 +10135,7 @@
     "Round": "3",
     "Match": "46",
     "Subject": "French",
-    "Question": "What is the English translation for Il n'a pas tenu sa parole?",
+    "Question": "What is the English translation for <fr>Il n'a pas tenu sa parole</fr>?",
     "Answer": "He did not keep his word",
     "Section": "buzzer",
     "Info": ""
@@ -10351,7 +10351,7 @@
     "Round": "4",
     "Match": "47",
     "Subject": "French",
-    "Question": "What is the English translation for Je pars à sept heures ce soir?",
+    "Question": "What is the English translation for <fr>Je pars à sept heures ce soir</fr>?",
     "Answer": "I leave at seven tonight",
     "Section": "buzzer",
     "Info": ""
@@ -10507,7 +10507,7 @@
     "Round": "4",
     "Match": "48",
     "Subject": "French",
-    "Question": "Translate this sentence to English: Je ne connais pas son nom.",
+    "Question": "Translate this sentence to English: <fr>Je ne connais pas son nom</fr>.",
     "Answer": "I do not know his or her name",
     "Section": "buzzer",
     "Info": ""
@@ -10723,7 +10723,7 @@
     "Round": "4",
     "Match": "49",
     "Subject": "French",
-    "Question": "What is the English translation for: Ils ont oublié les billets?",
+    "Question": "What is the English translation for: <fr>Ils ont oublié les billets</fr>?",
     "Answer": "They forgot the tickets",
     "Section": "buzzer",
     "Info": ""
@@ -10855,7 +10855,7 @@
     "Round": "4",
     "Match": "49",
     "Subject": "French",
-    "Question": "Translate into English: Dès qu’il aura fini, fais-le moi savoir.",
+    "Question": "Translate into English: <fr>Dès qu’il aura fini, fais-le moi savoir</fr>.",
     "Answer": "As soon as he's finished, let me know",
     "Section": "buzzer",
     "Info": ""
@@ -11071,7 +11071,7 @@
     "Round": "4",
     "Match": "50",
     "Subject": "French",
-    "Question": "What is the full English translation for: bananes mûres?",
+    "Question": "What is the full English translation for: <fr>bananes mûres</fr>?",
     "Answer": "Ripe bananas",
     "Section": "buzzer",
     "Info": ""
@@ -11541,7 +11541,7 @@
     "Round": "4",
     "Match": "52",
     "Subject": "French",
-    "Question": "What is the English translation for Il fait trop chaud pour étudier?",
+    "Question": "What is the English translation for <fr>Il fait trop chaud pour étudier</fr>?",
     "Answer": "It's too hot to study",
     "Section": "buzzer",
     "Info": ""
@@ -11601,7 +11601,7 @@
     "Round": "4",
     "Match": "53",
     "Subject": "French",
-    "Question": "What is the English translation for the French: J'attends les vacances?",
+    "Question": "What is the English translation for the French: <fr>J'attends les vacances</fr>?",
     "Answer": "I am looking forward to the holidays",
     "Section": "buzzer",
     "Info": ""
@@ -11889,7 +11889,7 @@
     "Round": "4",
     "Match": "54",
     "Subject": "French",
-    "Question": "What is the English translation for sauter de joie?",
+    "Question": "What is the English translation for <fr>sauter de joie</fr>?",
     "Answer": "To jump for joy",
     "Section": "buzzer",
     "Info": ""
@@ -12105,7 +12105,7 @@
     "Round": "4",
     "Match": "55",
     "Subject": "French",
-    "Question": "Translate to English Nous vivons en Jamaïque.",
+    "Question": "Translate to English <fr>Nous vivons en Jamaïque</fr>.",
     "Answer": "We live in Jamaica",
     "Section": "buzzer",
     "Info": ""
@@ -12489,7 +12489,7 @@
     "Round": "4",
     "Match": "56",
     "Subject": "French",
-    "Question": "What is the English translation for On dirait qu'il va pleuvoir?",
+    "Question": "What is the English translation for <fr>On dirait qu'il va pleuvoir</fr>?",
     "Answer": "It looks like it's going to rain",
     "Section": "buzzer",
     "Info": ""
