@@ -9991,7 +9991,7 @@
     "Round": "3",
     "Match": "45",
     "Subject": "Spanish",
-    "Question": "What is the English translation for the phrase de vez en cuando?",
+    "Question": "What is the English translation for the phrase <es>de vez en cuando</es>?",
     "Answer": "From time to time",
     "Section": "buzzer",
     "Info": ""
@@ -10111,7 +10111,7 @@
     "Round": "3",
     "Match": "46",
     "Subject": "Spanish",
-    "Question": "What is the English equivalent expression for Estar en las nubes?",
+    "Question": "What is the English equivalent expression for <es>Estar en las nubes</es>?",
     "Answer": "To be distracted or day-dreaming",
     "Section": "buzzer",
     "Info": ""
@@ -10231,7 +10231,7 @@
     "Round": "4",
     "Match": "47",
     "Subject": "Spanish",
-    "Question": "What is the English translation of this sentence Mi hija reprobó el examen de matemáticas ayer?",
+    "Question": "What is the English translation of this sentence <es>Mi hija reprobó el examen de matemáticas ayer</es>?",
     "Answer": "My daughter failed the Mathematics exam yesterday",
     "Section": "buzzer",
     "Info": ""
@@ -10616,7 +10616,7 @@
     "Match": "48",
     "Subject": "Spanish",
     "Question": "What is the spanish word for the scholarship?",
-    "Answer": "la beca",
+    "Answer": "<es>la beca</es>",
     "Section": "buzzer",
     "Info": ""
   },
@@ -10795,7 +10795,7 @@
     "Round": "4",
     "Match": "49",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Las llaves están dentro del bolsa?",
+    "Question": "What is the English translation for <es>Las llaves están dentro del bolsa</es>?",
     "Answer": "The keys are inside the bag",
     "Section": "buzzer",
     "Info": ""
@@ -11047,7 +11047,7 @@
     "Round": "4",
     "Match": "50",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Olvidaron sus bolsas en casa?",
+    "Question": "What is the English translation for <es>Olvidaron sus bolsas en casa</es>?",
     "Answer": "They forgot their bags at home",
     "Section": "buzzer",
     "Info": ""
@@ -11385,7 +11385,7 @@
     "Round": "4",
     "Match": "52",
     "Subject": "Spanish",
-    "Question": "Translate to English: La luz está brillando en la sala",
+    "Question": "Translate to English: <es>La luz está brillando en la sala</es>",
     "Answer": "The light is shining in the room (or living room)",
     "Section": "buzzer",
     "Info": ""
@@ -11709,7 +11709,7 @@
     "Round": "4",
     "Match": "53",
     "Subject": "Spanish",
-    "Question": "What is the English translation for this instruction: Antes de salir, apagar las luces?",
+    "Question": "What is the English translation for this instruction: <es>Antes de salir, apagar las luces</es>?",
     "Answer": "Before leaving, turn off the lights",
     "Section": "buzzer",
     "Info": ""
@@ -12021,7 +12021,7 @@
     "Round": "4",
     "Match": "54",
     "Subject": "Spanish",
-    "Question": "What is the English translation for apenas llegué empezó a llover?",
+    "Question": "What is the English translation for <es>apenas llegué empezó a llover</es>?",
     "Answer": "As soon as I arrived it started to rain",
     "Section": "buzzer",
     "Info": ""
@@ -12225,7 +12225,7 @@
     "Round": "4",
     "Match": "55",
     "Subject": "Spanish",
-    "Question": "What is the English translation for Me casé con mi mejor amigo?",
+    "Question": "What is the English translation for <es>Me casé con mi mejor amigo</es>?",
     "Answer": "I married my best friend",
     "Section": "buzzer",
     "Info": ""
@@ -12633,7 +12633,7 @@
     "Round": "4",
     "Match": "57",
     "Subject": "Spanish",
-    "Question": "What is the full English translation for: boxeador de peso pesado?",
+    "Question": "What is the full English translation for: <es>boxeador de peso pesado</es>?",
     "Answer": "Heavyweight boxer",
     "Section": "buzzer",
     "Info": ""
