@@ -2678,4 +2678,15 @@ function fcNav(dir) {
 // ════════════════════════════════════
 //  KICK OFF
 // ════════════════════════════════════
-document.addEventListener('DOMContentLoaded', init);
+// document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', async () => {
+
+  const result = await requireAppAccess('uvvis', 'no-access.html');
+  if (!result) return;
+
+  document.getElementById('page-loader').remove();
+
+  // Your existing init call goes here — completely unchanged
+  await init();
+
+});
