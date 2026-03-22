@@ -8,12 +8,23 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
   <!-- marked.js — Markdown rendering (loaded before script.js) -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js" crossorigin="anonymous"></script>
   <!-- KaTeX — math & chemistry typesetting (mhchem extension) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" />
 </head>
 <body>
+
+  <div id="page-loader" style="
+    position: fixed; inset: 0; background: #080c10;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999; font-family: monospace; color: #14b8a6; font-size: 1.2rem;
+  ">
+  Checking access…
+  </div>
 
   <!-- ════════════════════ HEADER ════════════════════ -->
   <header class="site-header">
