@@ -32,7 +32,7 @@ async function getSessionAndProfile() {
 //  3. Does the device token match Supabase?     → if not, sign out
 //     (This is what enforces the one-device rule)
 //
-async function requireAuth(redirectTo = 'index.html') {
+async function requireAuth(redirectTo = 'https://quiz-bizz.learnwithcole.com/index.html') {
   const { session, profile } = await getSessionAndProfile();
 
   // Check 1 — no session at all
@@ -70,7 +70,7 @@ async function requireAuth(redirectTo = 'index.html') {
 
 // ── Guard: must be admin ──────────────────────────────────────
 async function requireAdmin(redirectTo = 'app.html') {
-  const result = await requireAuth('index.html');
+  const result = await requireAuth('https://quiz-bizz.learnwithcole.com/index.html');
   if (!result) return null;
 
   if (result.profile.role !== 'admin') {
@@ -83,7 +83,7 @@ async function requireAdmin(redirectTo = 'app.html') {
 // ── Guard: must have access to a specific app by slug ────────
 async function requireAppAccess(appSlug, noAccessPage = 'no-access.html') {
   // Not logged in → always send to login page
-  const result = await requireAuth('index.html');
+  const result = await requireAuth('https://quiz-bizz.learnwithcole.com/index.html');
   if (!result) return null;
 
   const { session, profile } = result;
@@ -131,7 +131,7 @@ async function requireAppAccess(appSlug, noAccessPage = 'no-access.html') {
 async function signOut() {
   localStorage.removeItem(SESSION_TOKEN_KEY);
   await sb.auth.signOut();
-  location.href = 'index.html';
+  location.href = 'https://quiz-bizz.learnwithcole.com/index.html';
 }
 
 // ── Toast notification helper ─────────────────────────────────
