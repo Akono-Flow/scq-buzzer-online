@@ -69,7 +69,7 @@ async function requireAuth(redirectTo = 'https://quiz-bizz.learnwithcole.com/ind
 }
 
 // ── Guard: must be admin ──────────────────────────────────────
-async function requireAdmin(redirectTo = 'app.html') {
+async function requireAdmin(redirectTo = 'index.html') {
   const result = await requireAuth('https://quiz-bizz.learnwithcole.com/index.html');
   if (!result) return null;
 
