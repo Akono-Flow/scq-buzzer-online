@@ -247,6 +247,10 @@ function buildColPanel() {
   });
 }
 
+function disableExportBtn(){
+   document.getElementById("exportBtn").disabled = true;
+}
+
 
 // ════════════════════════════════════
 //  TABLE HEAD
@@ -2687,6 +2691,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('page-loader').remove();
 
   // Your existing init call goes here — completely unchanged
+   disableExportBtn();
+   
   await init();
 
 });
