@@ -247,10 +247,6 @@ function buildColPanel() {
   });
 }
 
-function disableExportBtn(){
-   document.getElementById("exportBtn").disabled = true;
-}
-
 
 // ════════════════════════════════════
 //  TABLE HEAD
@@ -2690,9 +2686,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   document.getElementById('page-loader').remove();
 
-  // Your existing init call goes here — completely unchanged
-   disableExportBtn();
-   
+  // Check if this user has the export_csv feature enabled.
+  // The button starts disabled via the HTML disabled attribute.
+  // We only enable it if the admin has explicitly granted it.
+  try {
+    const fr = await _scqSupabase.rpc('get_my_features', { p_app_slug: 'b26' });
+    const features = (fr && fr.data) ? fr.data : {};
+    if (features.export_csv === true) {
+      const btn = document.getElementById('exportBtn');
+      if (btn) btn.disabled = false;
+    }
+  } catch (_) {
+    // Feature check failure is non-fatal — button stays disabled
+  }
+
   await init();
 
 });
