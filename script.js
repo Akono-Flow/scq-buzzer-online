@@ -2681,7 +2681,7 @@ function fcNav(dir) {
 // document.addEventListener('DOMContentLoaded', init);
 document.addEventListener('DOMContentLoaded', async () => {
 
-  const result = await requireAppAccess('smhsq', 'no-access.html');
+  const result = await requireAppAccess('b26', 'no-access.html');
   if (!result) return;
 
   document.getElementById('page-loader').remove();
