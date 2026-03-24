@@ -2696,6 +2696,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       const btn = document.getElementById('exportBtn');
       if (btn) btn.disabled = false;
     }
+     if (features.show_csv === true) {
+      const btn = document.getElementById('exportBtn');
+      if (btn) btn.style.display = 'flex';
+    }
   } catch (_) {
     // Feature check failure is non-fatal — button stays disabled
   }
