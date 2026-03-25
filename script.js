@@ -5,6 +5,11 @@
 
 'use strict';
 
+// ── Feature flags — loaded from Supabase in DOMContentLoaded ──
+// Populated before init() runs. Read by renderTable, _renderLangSegment,
+// and setupEventListeners. Default: empty object (all flags absent = defaults apply).
+let appFeatures = {};
+
 // ════════════════════════════════════
 //  STATE
 // ════════════════════════════════════
@@ -412,19 +417,41 @@ function renderTable() {
         const renderedAnswer = search
           ? highlight(renderFull(val, false), search)
           : renderFull(val, false);
-
-        if (hasMedia) {
-          td.innerHTML =
-            `<span>${renderedAnswer}</span>` +
-            `<button class="info-icon"` +
-            ` data-info="${esc(info)}"` +
-            ` data-image="${esc(imageUrl)}"` +
-            ` data-youtube="${esc(ytUrl)}"` +
-            ` data-video="${esc(videoUrl)}"` +
-            ` aria-label="Details — hover to view" tabindex="0">ⓘ</button>`;
+// ================================================================================================
+        // if (hasMedia) {
+        //   td.innerHTML =
+        //     `<span>${renderedAnswer}</span>` +
+        //     `<button class="info-icon"` +
+        //     ` data-info="${esc(info)}"` +
+        //     ` data-image="${esc(imageUrl)}"` +
+        //     ` data-youtube="${esc(ytUrl)}"` +
+        //     ` data-video="${esc(videoUrl)}"` +
+        //     ` aria-label="Details — hover to view" tabindex="0">ⓘ</button>`;
+        // } else {
+        //   td.innerHTML = `<span>${renderedAnswer}</span>`;
+        // }
+         // ========================================================================================
+         if (hasMedia) {
+          const infoEnabled = appFeatures.info_panel !== false; // default: enabled
+          if (infoEnabled) {
+            td.innerHTML =
+              `<span>${renderedAnswer}</span>` +
+              `<button class="info-icon"` +
+              ` data-info="${esc(info)}"` +
+              ` data-image="${esc(imageUrl)}"` +
+              ` data-youtube="${esc(ytUrl)}"` +
+              ` data-video="${esc(videoUrl)}"` +
+              ` aria-label="Details — hover to view" tabindex="0">ⓘ</button>`;
+          } else {
+            td.innerHTML =
+              `<span>${renderedAnswer}</span>` +
+              `<button class="info-icon feature-locked" disabled` +
+              ` aria-label="Details locked" tabindex="0">ⓘ</button>`;
+          }
         } else {
           td.innerHTML = `<span>${renderedAnswer}</span>`;
         }
+         //================================================================================================
 
       } else if (['Pkey','Qkey','Year','Round','Match'].includes(col.key)) {
         td.className = 'col-num';
@@ -452,13 +479,27 @@ function renderTable() {
           `<button class="tts-read-btn"` +
           ` data-rawtext="${esc(val)}"` +
           ` aria-label="${esc(ttsTitle)}" title="${esc(ttsTitle)}">▶</button>`;
-
-        if (audioUrl) {
-          iconHtml +=
-            `<button class="audio-icon"` +
-            ` data-audio="${esc(audioUrl)}"` +
-            ` aria-label="Play audio clip" title="Play audio clip">♪</button>`;
+// ==========================================================================================================
+        // if (audioUrl) {
+        //   iconHtml +=
+        //     `<button class="audio-icon"` +
+        //     ` data-audio="${esc(audioUrl)}"` +
+        //     ` aria-label="Play audio clip" title="Play audio clip">♪</button>`;
+        // }
+         if (audioUrl) {
+          const audioEnabled = appFeatures.audio_clips !== false; // default: enabled
+          if (audioEnabled) {
+            iconHtml +=
+              `<button class="audio-icon"` +
+              ` data-audio="${esc(audioUrl)}"` +
+              ` aria-label="Play audio clip" title="Play audio clip">♪</button>`;
+          } else {
+            iconHtml +=
+              `<button class="audio-icon feature-locked" disabled` +
+              ` aria-label="Audio locked">♪</button>`;
+          }
         }
+         // ==================================================================================================
         if (localImgUrl) {
           iconHtml +=
             `<button class="local-img-icon"` +
@@ -1395,6 +1436,35 @@ function parseLangSegments(raw) {
   return segments.length > 0 ? segments : [{ type:'text', text: raw }];
 }
 
+// ===========================================================================
+// function renderWithLangTags(raw) {
+//   if (!raw || typeof raw !== 'string') return '';
+
+//   // Fast path — if no language tags, go straight to renderContent
+//   _LANG_TAG_RE.lastIndex = 0;
+//   if (!_LANG_TAG_RE.test(raw)) return renderContent(raw);
+
+//   const segments = parseLangSegments(raw);
+
+//   return segments.map(seg => {
+//     if (seg.type === 'text') {
+//       return renderContent(seg.text);
+//     }
+//     // Language segment: render text + inline speaker badge
+//     const langName = LANG_NAMES[seg.lang] || seg.lang.toUpperCase();
+//     const bcp47    = LANG_MAP[seg.lang]   || seg.lang;
+//     const rendered = renderContent(seg.text);
+//     const badge =
+//       `<button class="lang-speak-btn"` +
+//       ` data-lang="${esc(bcp47)}"` +
+//       ` data-text="${esc(seg.text)}"` +
+//       ` title="Click to hear pronunciation in ${esc(langName)}"` +
+//       ` aria-label="Speak in ${esc(langName)}">${seg.lang.toUpperCase()}</button>`;
+//     return `<span class="lang-segment">${rendered}</span>${badge}`;
+//   }).join('');
+// }
+
+// ==============================================================================================
 function renderWithLangTags(raw) {
   if (!raw || typeof raw !== 'string') return '';
 
@@ -1402,7 +1472,8 @@ function renderWithLangTags(raw) {
   _LANG_TAG_RE.lastIndex = 0;
   if (!_LANG_TAG_RE.test(raw)) return renderContent(raw);
 
-  const segments = parseLangSegments(raw);
+  const segments     = parseLangSegments(raw);
+  const badgeEnabled = appFeatures.lang_badges !== false; // default: enabled
 
   return segments.map(seg => {
     if (seg.type === 'text') {
@@ -1412,17 +1483,17 @@ function renderWithLangTags(raw) {
     const langName = LANG_NAMES[seg.lang] || seg.lang.toUpperCase();
     const bcp47    = LANG_MAP[seg.lang]   || seg.lang;
     const rendered = renderContent(seg.text);
-    const badge =
-      `<button class="lang-speak-btn"` +
-      ` data-lang="${esc(bcp47)}"` +
-      ` data-text="${esc(seg.text)}"` +
-      ` title="Click to hear pronunciation in ${esc(langName)}"` +
-      ` aria-label="Speak in ${esc(langName)}">${seg.lang.toUpperCase()}</button>`;
+    const badge = badgeEnabled
+      ? `<button class="lang-speak-btn"` +
+        ` data-lang="${esc(bcp47)}"` +
+        ` data-text="${esc(seg.text)}"` +
+        ` title="Click to hear pronunciation in ${esc(langName)}"` +
+        ` aria-label="Speak in ${esc(langName)}">${seg.lang.toUpperCase()}</button>`
+      : `<button class="lang-speak-btn feature-locked" disabled` +
+        ` aria-label="Pronunciation locked">${seg.lang.toUpperCase()}</button>`;
     return `<span class="lang-segment">${rendered}</span>${badge}`;
   }).join('');
 }
-
-
 // ════════════════════════════════════
 //  TEXT-TO-SPEECH  (Web Speech API)
 //
@@ -1753,16 +1824,34 @@ function _renderKatexToken(token) {
 
 // Build the HTML for a single lang-tag segment: rendered text + speaker badge.
 // The inner text is processed by renderContent (handles KaTeX within lang tags).
+// =========================================================================================
+// function _renderLangSegment(lang, text) {
+//   const langName = LANG_NAMES[lang] || lang.toUpperCase();
+//   const bcp47    = LANG_MAP[lang]   || lang;
+//   const rendered = renderContent(text);  // KaTeX + renderSci on inner text
+//   const badge =
+//     `<button class="lang-speak-btn"` +
+//     ` data-lang="${esc(bcp47)}"` +
+//     ` data-text="${esc(text)}"` +
+//     ` title="Click to hear pronunciation in ${esc(langName)}"` +
+//     ` aria-label="Speak in ${esc(langName)}">${lang.toUpperCase()}</button>`;
+//   return `<span class="lang-segment">${rendered}</span>${badge}`;
+// }
+// ==========================================================================================
+
 function _renderLangSegment(lang, text) {
-  const langName = LANG_NAMES[lang] || lang.toUpperCase();
-  const bcp47    = LANG_MAP[lang]   || lang;
-  const rendered = renderContent(text);  // KaTeX + renderSci on inner text
-  const badge =
-    `<button class="lang-speak-btn"` +
-    ` data-lang="${esc(bcp47)}"` +
-    ` data-text="${esc(text)}"` +
-    ` title="Click to hear pronunciation in ${esc(langName)}"` +
-    ` aria-label="Speak in ${esc(langName)}">${lang.toUpperCase()}</button>`;
+  const langName     = LANG_NAMES[lang] || lang.toUpperCase();
+  const bcp47        = LANG_MAP[lang]   || lang;
+  const rendered     = renderContent(text);
+  const badgeEnabled = appFeatures.lang_badges !== false; // default: enabled
+  const badge = badgeEnabled
+    ? `<button class="lang-speak-btn"` +
+      ` data-lang="${esc(bcp47)}"` +
+      ` data-text="${esc(text)}"` +
+      ` title="Click to hear pronunciation in ${esc(langName)}"` +
+      ` aria-label="Speak in ${esc(langName)}">${lang.toUpperCase()}</button>`
+    : `<button class="lang-speak-btn feature-locked" disabled` +
+      ` aria-label="Pronunciation locked">${lang.toUpperCase()}</button>`;
   return `<span class="lang-segment">${rendered}</span>${badge}`;
 }
 
@@ -2300,6 +2389,23 @@ function switchMode(mode) {
 // ════════════════════════════════════
 function setupEventListeners() {
 
+   // ===================================================================================================
+   // ── Copy protection — feature flag: copy_protect ──────────────────
+  // When enabled, prevents selecting and copying question/answer text
+  // from the table. Also suppresses the right-click context menu.
+  // Default: copy is allowed (copy_protect must be explicitly true).
+  if (appFeatures.copy_protect === true) {
+    dom.tableBody.addEventListener('copy',        e => e.preventDefault());
+    dom.tableBody.addEventListener('cut',         e => e.preventDefault());
+    dom.tableBody.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Also prevent text selection via CSS — add a class to the table wrapper
+    const wrapper = document.querySelector('.table-wrapper');
+    if (wrapper) wrapper.classList.add('no-select');
+  }
+
+   // ===================================================================================================
+
   // Theme
   dom.themeToggle.addEventListener('click', () => {
     const html  = document.documentElement;
@@ -2699,6 +2805,12 @@ document.addEventListener('DOMContentLoaded', async () => {
      if (features.show_csv === true) {
       const btn = document.getElementById('exportBtn');
       if (btn) btn.style.display = 'flex';
+    }
+     // hide_answer_col — hide the Answer column before init() builds the table.
+    // When true, Answer column is removed from view for this user.
+    if (features.hide_answer_col === true) {
+      const col = state.columns.find(c => c.key === 'Answer');
+      if (col) col.visible = false;
     }
   } catch (_) {
     // Feature check failure is non-fatal — button stays disabled
