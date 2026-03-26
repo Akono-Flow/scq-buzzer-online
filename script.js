@@ -2798,6 +2798,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     const fr = await _scqSupabase.rpc('get_my_features', { p_app_slug: 'b26' });
     const features = (fr && fr.data) ? fr.data : {};
+
+   // ── Store features globally so renderTable and other functions can read them ──
+    appFeatures = features;
+     
     if (features.export_csv === true) {
       const btn = document.getElementById('exportBtn');
       if (btn) btn.disabled = false;
