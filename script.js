@@ -2816,7 +2816,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const col = state.columns.find(c => c.key === 'Answer');
       if (col) col.visible = false;
     }
-     if(features.show_info_panel === true){
+     if(appFeatures.show_info_panel === true){
         // const infpan = document.getElementById("infoTooltipIcon");
         dom.infoTooltip.setAttribute('aria-hidden', 'true');
         // if(infpan) infpan.style.display = 'flex';
