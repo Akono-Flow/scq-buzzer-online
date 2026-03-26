@@ -2815,7 +2815,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (features.hide_answer_col === true) {
       const col = state.columns.find(c => c.key === 'Answer');
       if (col) col.visible = false;
-    }
+    },
+     if(features.show_info_panel === true){
+        const infpan = document.getElementById("infoTooltipIcon");
+        if(infpan) infpan.style.display = 'flex';
+     }
   } catch (_) {
     // Feature check failure is non-fatal — button stays disabled
   }
