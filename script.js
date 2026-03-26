@@ -727,7 +727,7 @@ function showTooltip(iconEl, clientX, clientY) {
   }
 
   dom.infoTooltipBody.innerHTML = html;
-  dom.infoTooltip.setAttribute('aria-hidden', 'false');
+  dom.infoTooltip.setAttribute('aria-hidden', 'true');
 
   // ── Widen when media present; clear any manually resized height so each
   //    new open starts fresh — user can drag/resize again as needed. ──
@@ -2817,8 +2817,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (col) col.visible = false;
     }
      if(features.show_info_panel === true){
-        const infpan = document.getElementById("infoTooltipIcon");
-        if(infpan) infpan.style.display = 'flex';
+        // const infpan = document.getElementById("infoTooltipIcon");
+        dom.infoTooltip.setAttribute('aria-hidden', 'true');
+        // if(infpan) infpan.style.display = 'flex';
      }
   } catch (_) {
     // Feature check failure is non-fatal — button stays disabled
