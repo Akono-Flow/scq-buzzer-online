@@ -10500,6 +10500,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, give the title of the song.",
     "Answer": "End of the World (Miley Cyrus)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=CXBFU97X61I",
     "Section": "buzzer",
     "Info": ""
   },
@@ -10716,6 +10717,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, identify the artist.",
     "Answer": "Kid Rock (Born Free)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=bu3rsha1ZtI",
     "Section": "buzzer",
     "Info": ""
   },
@@ -10944,6 +10946,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, identify this singer.",
     "Answer": "Nat 'King' Cole (Mona Lisa)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=cR7EP6sXWFg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -11161,6 +11164,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, give the title of this song.",
     "Answer": "All The Stars (Kendrick Lamar and SZA)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=JQbjS0_ZfJ0",
     "Section": "buzzer",
     "Info": ""
   },
