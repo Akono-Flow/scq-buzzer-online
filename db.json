@@ -10716,7 +10716,7 @@
     "Match": "49",
     "Subject": "Music",
     "Question": "Listen to the clip, identify the artist.",
-    "Answer": "",
+    "Answer": "Kid Rock (Born Free)",
     "YoutubeUrl": "https://www.youtube.com/watch?v=bu3rsha1ZtI",
     "Section": "buzzer",
     "Info": ""
@@ -11406,6 +11406,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, identify the singer.",
     "Answer": "Tanya Tucker (Bring My Flowers Now)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=WVEd0YUx7X8",
     "Section": "buzzer",
     "Info": ""
   },
@@ -11646,6 +11647,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, give the title of this song.",
     "Answer": "Vietnam (Jimmy Cliff)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=X9Q4G_SgwLM",
     "Section": "buzzer",
     "Info": ""
   },
@@ -11934,6 +11936,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, give the title of this song.",
     "Answer": "Pocomania Day (Lovindeer and Chalice)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=RlJDUd_sLNg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -12150,6 +12153,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, give the title of this song.",
     "Answer": "Sitting and Watching (Dennis Brown)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=WL3OEIjIUyg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -12366,6 +12370,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, give the title of the song.",
     "Answer": "God is Standing By (George Nooks)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=mpDbreZRLF0",
     "Section": "buzzer",
     "Info": ""
   },
@@ -12582,6 +12587,7 @@
     "Subject": "Music",
     "Question": "Listen to the clip, give the title of the song.",
     "Answer": "I Say A Little Prayer (Aretha Franklin)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=TDyiREoBw0o",
     "Section": "buzzer",
     "Info": ""
   },
