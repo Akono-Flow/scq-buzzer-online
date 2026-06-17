@@ -9837,6 +9837,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, identify the singer.",
     "Answer": "Lukas Graham (7 Years)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=LHCob76kigA",
     "Section": "buzzer",
     "Info": ""
   },
@@ -10077,6 +10078,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, give the title of this song.",
     "Answer": "Now and Then (The Beatles)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=Opxhh9Oh3rg",
     "Section": "buzzer",
     "Info": ""
   },
@@ -10293,6 +10295,7 @@
     "Subject": "Music",
     "Question": "Listen to the following clip, identify the singer.",
     "Answer": "Nina Simone (My Baby Just Cares For Me)",
+    "YoutubeUrl": "https://www.youtube.com/watch?v=eYSbUOoq4Vg",
     "Section": "buzzer",
     "Info": ""
   },
