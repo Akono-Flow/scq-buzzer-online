@@ -4594,6 +4594,19 @@
     "Info": ""
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "21",
+    "Subject": "TVJ Buzzer",
+    "Question": "Wolmer's Boys vs Glenmuir High",
+    "Answer": "Wolmer's Boys vs Glenmuir High",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "350",
     "Qkey": "1",
     "Year": "2026",
@@ -4790,6 +4803,19 @@
     "Subject": "Geography",
     "Question": "A contour line closes on itself with the numbers decreasing towards the center. What feature does it represent?",
     "Answer": "Depression or basin",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "22",
+    "Subject": "TVJ Buzzer",
+    "Question": "Calabar High vs St. Catherine High",
+    "Answer": "Calabar High vs St. Catherine High",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5006,6 +5032,19 @@
     "Info": ""
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "23",
+    "Subject": "TVJ Buzzer",
+    "Question": "Titchfield High vs Oberlin High",
+    "Answer": "Titchfield High vs Oberlin High",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "383",
     "Qkey": "1",
     "Year": "2026",
@@ -5216,6 +5255,19 @@
     "Answer": "12.5 cm^3",
     "Section": "buzzer",
     "Info": "$$\\begin{aligned}&\\textbf{Given:} \\text{ } [\\ce{HCl}] = 2.0 \\text{ mol dm}^{-3}, \\text{ } V(\\ce{NaOH}) = 25.0 \\text{ cm}^3, \\text{ } [\\ce{NaOH}] = 1.0 \\text{ mol dm}^{-3} \\\\[10pt]&\\textbf{Step 1: Write the Balanced Equation} \\\\[4pt]&\\ce{HCl_{(aq)} + NaOH_{(aq)} -> NaCl_{(aq)} + H2O_{(l)}} \\\\[10pt]&\\textbf{Step 2: Identify the Mole Ratio} \\\\[4pt]&\\ce{HCl} : \\ce{NaOH} = 1:1 \\\\[4pt]&\\therefore \\text{ moles of } \\ce{HCl} \\text{ required} = \\text{moles of } \\ce{NaOH} \\text{ present} \\\\[10pt]&\\textbf{Step 3: Recall the Moles Formula} \\\\[4pt]&n = C \\times V \\\\[4pt]&\\text{where } C \\text{ is concentration in mol dm}^{-3} \\text{ and } V \\text{ is volume in dm}^3 \\\\[10pt]&\\textbf{Step 4: Convert Volume of } \\ce{NaOH} \\text{ to dm}^3 \\\\[4pt]&V(\\ce{NaOH}) = \\dfrac{25.0}{1000} = 0.025 \\text{ dm}^3 \\\\[10pt]&\\textbf{Step 5: Calculate Moles of } \\ce{NaOH} \\\\[4pt]&n(\\ce{NaOH}) = 1.0 \\times 0.025 = 0.025 \\text{ mol} \\\\[10pt]&\\textbf{Step 6: State Moles of } \\ce{HCl} \\text{ Required} \\\\[4pt]&n(\\ce{HCl}) = n(\\ce{NaOH}) = 0.025 \\text{ mol} \\\\[10pt]&\\textbf{Step 7: Calculate Volume of } \\ce{HCl} \\text{ Required} \\\\[4pt]&V(\\ce{HCl}) = \\dfrac{n}{C} = \\dfrac{0.025}{2.0} = 0.0125 \\text{ dm}^3 \\\\[10pt]&\\textbf{Step 8: Convert to cm}^3 \\\\[4pt]&V(\\ce{HCl}) = 0.0125 \\times 1000 = 12.5 \\text{ cm}^3 \\\\[10pt]&\\textbf{Step 9: Answer} \\\\[4pt]&\\text{Volume of } \\ce{HCl} \\text{ required} = 12.5 \\text{ cm}^3\\end{aligned}$$"
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "24",
+    "Subject": "TVJ Buzzer",
+    "Question": "Decarteret College vs Hampton",
+    "Answer": "Decarteret College vs Hampton",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
+    "Section": "buzzer",
+    "Info": ""
   },
   {
     "Pkey": "400",
@@ -5454,6 +5506,19 @@
     "Info": ""
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "25",
+    "Subject": "TVJ Buzzer",
+    "Question": "Westwood High vs Excelsior",
+    "Answer": "Westwood High vs Excelsior",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "419",
     "Qkey": "1",
     "Year": "2026",
@@ -5686,6 +5751,19 @@
     "Subject": "General Knowledge",
     "Question": "Which wars were fought between the houses of York and Lancaster in the 15th century?",
     "Answer": "Wars of the Roses",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "26",
+    "Subject": "TVJ Buzzer",
+    "Question": "Maggotty High vs St. Andrew High",
+    "Answer": "Maggotty High vs St. Andrew High",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -5934,6 +6012,19 @@
     "Subject": "Physics",
     "Question": "In Newton’s Law of Universal Gravitation, what physical quantity is denoted by the symbol r?",
     "Answer": "The distance between the centres of the two masses",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "27",
+    "Subject": "TVJ Buzzer",
+    "Question": "Cornwall College vs Holy Childhood",
+    "Answer": "Cornwall College vs Holy Childhood",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -6198,6 +6289,19 @@
     "Info": ""
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "28",
+    "Subject": "TVJ Buzzer",
+    "Question": "Jonathan Grant vs Ardenne High",
+    "Answer": "Jonathan Grant vs Ardenne High",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "479",
     "Qkey": "1",
     "Year": "2026",
@@ -6422,6 +6526,19 @@
     "Info": ""
   },
   {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "29",
+    "Subject": "TVJ Buzzer",
+    "Question": "Dinthill Technical vs Vere Technical",
+    "Answer": "Dinthill Technical vs Vere Technical",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
     "Pkey": "497",
     "Qkey": "1",
     "Year": "2026",
@@ -6618,6 +6735,19 @@
     "Subject": "Spanish",
     "Question": "Translate to English <es>El huracán Melissa destruyó partes de Jamaica.</es>",
     "Answer": "Hurricane Melissa destroyed parts of Jamaica",
+    "Section": "buzzer",
+    "Info": ""
+  },
+  {
+    "Pkey": "0",
+    "Qkey": "0",
+    "Year": "2026",
+    "Round": "1",
+    "Match": "30",
+    "Subject": "TVJ Buzzer",
+    "Question": "Manchester High vs Glenmuir High",
+    "Answer": "Manchester High vs Glenmuir High",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/020-York-Castle-St-Marys-College.mp4",
     "Section": "buzzer",
     "Info": ""
   },
