@@ -2670,7 +2670,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Jamaica College vs Russeas High",
     "Answer": "Jamaica College vs Russeas High",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/013-JC-Ruseas.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/013-JC-Ruseas.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2895,7 +2895,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Mannings School vs Marcus Garvey Technical",
     "Answer": "Mannings School vs Marcus Garvey Technical",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/014-Mannings-Marcus-Garvey.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/014-Mannings-Marcus-Garvey.mp4",
     "Section": "buzzer",
     "Info": ""
   },
