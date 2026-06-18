@@ -248,7 +248,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Camperdown vs Decarteret",
     "Answer": "Camperdown vs Decarteret",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/002-Camperdown-Decarteret.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/002-Camperdown-Decarteret.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -464,7 +464,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "MeadowBrook vs Hampton",
     "Answer": "MeadowBrook vs Hampton",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/003-MeadowBrook-Hampton.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/003-MeadowBrook-Hampton.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -689,7 +689,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Westwood vs Ardenne",
     "Answer": "Westwood vs Ardenne",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/004-Westwood-Ardenne.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/004-Westwood-Ardenne.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -951,7 +951,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Maggotty vs Oberlin",
     "Answer": "Maggotty vs Oberlin",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/005-Maggotty-Oberlin.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/005-Maggotty-Oberlin.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1201,7 +1201,7 @@
     "Question": "Wolmer's Girls vs St. Andrew High",
     "Answer": "Wolmer's Girls vs St. Andrew High",
     "Section": "buzzer",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/006-Wolmers-Girls-St-Andrew.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/006-Wolmers-Girls-St-Andrew.mp4",
     "Info": ""
   },
   {
@@ -1450,7 +1450,7 @@
     "Question": "Cornwall College vs Excelsior High",
     "Answer": "Cornwall College vs Excelsior High",
     "Section": "buzzer",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/007-Cornwall-College-Excelsior-High.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/007-Cornwall-College-Excelsior-High.mp4",
     "Info": ""
   },
   {
@@ -1698,7 +1698,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Holy Childhood vs Central High",
     "Answer": "Holy Childhood vs Central High",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/008-Holy-Childhood-Central.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/008-Holy-Childhood-Central.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -1947,7 +1947,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Jonathan Grant vs Campion",
     "Answer": "Jonathan Grant vs Campion",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/009-Jonathan-Grant-Campion.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/009-Jonathan-Grant-Campion.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2196,7 +2196,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Dinthill Technical vs Montego Bay High",
     "Answer": "Dinthill Technical vs Montego Bay High",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/010-Dinthill-Montego-Bay.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/010-Dinthill-Montego-Bay.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -2445,7 +2445,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Manchester High vs BridgePort High",
     "Answer": "Manchester High vs BridgePort High",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/012-Manchester-High-BridgePort.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/012-Manchester-High-BridgePort.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3132,7 +3132,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Old Harbour High vs Mona High",
     "Answer": "Old Harbour High vs Mona High",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/015-Old-Harbour-High-Mona High.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/015-Old-Harbour-High-Mona High.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3345,7 +3345,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Immaculate vs St. Mary",
     "Answer": "Immaculate vs St. Mary",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/016-Immaculate-St-Mary-High.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/016-Immaculate-St-Mary-High.mp4",
     "Section": "buzzer",
     "Info": ""
   },
@@ -3606,7 +3606,7 @@
     "Subject": "TVJ Buzzer",
     "Question": "Queens vs Morant Bay",
     "Answer": "Queens vs Morant Bay",
-    "": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/017-Queens-Morant-Bay.mp4",
+    "LocalVideoUrl": "https://akono-flow.github.io/scq-buzzer-online/videos/2026/017-Queens-Morant-Bay.mp4",
     "Section": "buzzer",
     "Info": ""
   },
