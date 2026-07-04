@@ -237,6 +237,36 @@ body {
 
 
 /* ═══════════════════════════════════
+   DATASET BAR
+   Mirrors the filters-bar visual language (same tokens, same
+   filter-group/filter-select/filter-input classes) since it sits in the
+   same toolbar stack and should read as part of the same system, not a
+   bolted-on control.
+   ═══════════════════════════════════ */
+.dataset-bar {
+  display: flex; align-items: flex-end; gap: 12px;
+  padding: 14px 28px; background: var(--bg-surface);
+  border-bottom: 1px solid var(--border); flex-wrap: wrap;
+}
+.dataset-custom-wrap {
+  display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap;
+}
+.dataset-url-input { width: 260px; }
+.dataset-load-btn { align-self: flex-end; }
+.dataset-status {
+  align-self: center;
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-left: auto;
+}
+@media (max-width: 640px) {
+  .dataset-bar { padding: 12px 16px; }
+  .dataset-status { margin-left: 0; width: 100%; }
+  .dataset-url-input { width: 100%; }
+}
+
+
+/* ═══════════════════════════════════
    FILTERS BAR
    ═══════════════════════════════════ */
 .filters-bar {
