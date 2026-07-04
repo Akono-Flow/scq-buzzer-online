@@ -59,6 +59,17 @@ const state = {
   //   'shown'  → row content visible regardless of global state
   //   'hidden' → row content hidden regardless of global state
   tableToggles: { answersHidden: false, contentHidden: false, rowOverrides: {} },
+
+  // ── Dataset + media library (added for multi-repo GitHub Media Studio wiring) ──
+  // datasets:     the parsed contents of datasets.json (presets available in the picker)
+  // activeDataset:the dataset definition currently loaded ({id,name,questionsUrl,mediaLibraryUrl})
+  // mediaLookup:  built from the active dataset's media-library.json, keyed by mediaID.
+  //               { [mediaID]: { url, thumbUrl } }. Empty object = no media library loaded
+  //               (or it failed to load) — resolveMediaField() falls back to each row's own
+  //               baked URL fields in that case, so existing questions keep working either way.
+  datasets:      [],
+  activeDataset: null,
+  mediaLookup:   {},
 };
 
 // ════════════════════════════════════
@@ -68,6 +79,14 @@ const $ = id => document.getElementById(id);
 const dom = {
   loadingOverlay:  $('loadingOverlay'),
   recordCount:     $('recordCount'),
+
+  // Dataset picker bar
+  datasetSelect:      $('datasetSelect'),
+  datasetCustomWrap:  $('datasetCustomWrap'),
+  datasetQuestionsUrl:$('datasetQuestionsUrl'),
+  datasetMediaUrl:    $('datasetMediaUrl'),
+  datasetLoadBtn:     $('datasetLoadBtn'),
+  datasetStatus:      $('datasetStatus'),
   themeToggle:     $('themeToggle'),
   globalSearch:    $('globalSearch'),
   searchClear:     $('searchClear'),
@@ -178,36 +197,215 @@ async function init() {
     window.marked.setOptions({ gfm: true, headerIds: false, mangle: false });
   }
 
+  setupEventListeners();
+  setupDatasetBar();
+
   try {
-    const res = await fetch('db.json');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    state.allData = await res.json();
-    state.filteredData = [...state.allData];
-
-    buildFilterOptions();
-    buildColPanel();
-    buildTableHead();
-    applyFilters();
-
-    // Table is the default mode — activate its toolbar controls immediately
-    const toolbar = document.querySelector('.toolbar');
-    if (toolbar) toolbar.classList.add('tbl-mode-active');
-
-    hideLoading();
-    setupEventListeners();
+    await loadDatasetsConfig();
   } catch (err) {
-    dom.loadingOverlay.innerHTML = `
-      <p style="color:var(--incorrect);font-family:var(--font-mono);text-align:center;padding:20px">
-        ✕ Failed to load db.json<br>
-        <span style="font-size:0.8rem;color:var(--text-muted)">${err.message}</span>
-      </p>`;
-    console.error('Failed to load db.json:', err);
+    console.error('Failed to load datasets.json:', err);
+    showToast('Could not load dataset list — check datasets.json');
+  }
+
+  // Auto-load the default dataset on first view. The picker is already built
+  // (from loadDatasetsConfig above) so the person can switch afterwards —
+  // this just saves them from having to click Load before seeing anything.
+  const defaultDataset = state.datasets.find(d => d.default) || state.datasets[0];
+  if (defaultDataset) {
+    if (dom.datasetSelect) dom.datasetSelect.value = defaultDataset.id;
+    await loadDataset(defaultDataset, { isFirstLoad: true });
+  } else {
+    hideLoading();
+    showToast('No datasets configured — add one in datasets.json');
   }
 }
 
 function hideLoading() {
   dom.loadingOverlay.classList.add('hidden');
   setTimeout(() => dom.loadingOverlay.style.display = 'none', 350);
+}
+
+
+// ════════════════════════════════════
+//  DATASET CONFIG  (datasets.json — the browser-side equivalent of a
+//  GitHub Media Studio repo profile: each entry bundles a questions URL
+//  with the media-library.json URL that goes with it, so picking a
+//  dataset also picks which repo's media catalog gets resolved.)
+// ════════════════════════════════════
+async function loadDatasetsConfig() {
+  const res = await fetch('datasets.json');
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const list = await res.json();
+  state.datasets = Array.isArray(list) ? list : [];
+
+  if (!dom.datasetSelect) return;
+  dom.datasetSelect.innerHTML = '';
+  state.datasets.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d.id;
+    opt.textContent = d.name || d.id;
+    dom.datasetSelect.appendChild(opt);
+  });
+  const customOpt = document.createElement('option');
+  customOpt.value = '__custom__';
+  customOpt.textContent = 'Custom…';
+  dom.datasetSelect.appendChild(customOpt);
+}
+
+// Resolve the dataset the picker currently points at — either a preset
+// from datasets.json, or the free-text Custom boxes.
+function getSelectedDatasetDef() {
+  if (!dom.datasetSelect) return state.datasets[0] || null;
+  const val = dom.datasetSelect.value;
+  if (val === '__custom__') {
+    return {
+      id: '__custom__',
+      name: 'Custom',
+      questionsUrl:    (dom.datasetQuestionsUrl.value || '').trim(),
+      mediaLibraryUrl: (dom.datasetMediaUrl.value || '').trim(),
+    };
+  }
+  return state.datasets.find(d => d.id === val) || null;
+}
+
+function setupDatasetBar() {
+  if (!dom.datasetSelect) return;
+
+  dom.datasetSelect.addEventListener('change', () => {
+    const isCustom = dom.datasetSelect.value === '__custom__';
+    dom.datasetCustomWrap.hidden = !isCustom;
+  });
+
+  dom.datasetLoadBtn.addEventListener('click', () => {
+    const def = getSelectedDatasetDef();
+    if (!def || !def.questionsUrl) {
+      showToast('Enter a questions URL to load');
+      return;
+    }
+    loadDataset(def, { isFirstLoad: false });
+  });
+}
+
+// ════════════════════════════════════
+//  MEDIA LIBRARY LOOKUP
+//
+//  Builds a { mediaID: {url, thumbUrl} } lookup from a GitHub Media Studio
+//  media-library.json (accepts either the {records:[...]} wrapper shape or
+//  a bare array, defensively). resolveMediaField() is what every render
+//  call site uses instead of reading a row's URL field directly:
+//  mediaID present + found in the lookup → catalog URL wins; otherwise the
+//  row's own baked URL field is used unchanged. This is what lets existing
+//  rows (no mediaID yet) keep working exactly as before.
+// ════════════════════════════════════
+function buildMediaLookup(library) {
+  const lookup = {};
+  const records = Array.isArray(library) ? library
+    : (library && Array.isArray(library.records)) ? library.records
+    : [];
+  records.forEach(rec => {
+    const id = rec.mediaID || rec.id;
+    if (!id) return;
+    lookup[id] = {
+      url:      (rec.github && rec.github.fullUrl) || rec.url || '',
+      thumbUrl: rec.thumbUrl || (rec.github && rec.github.thumbnailUrl) || '',
+    };
+  });
+  return lookup;
+}
+
+// Returns '' if neither the mediaID lookup nor the fallback field has a value.
+function resolveMediaField(row, idField, fallbackField) {
+  const mediaID = String(row[idField] || '').trim();
+  if (mediaID && state.mediaLookup[mediaID] && state.mediaLookup[mediaID].url) {
+    return state.mediaLookup[mediaID].url;
+  }
+  return String(row[fallbackField] || '').trim();
+}
+
+// Fetches and builds the media lookup for a dataset. Failure here is
+// non-fatal — an empty lookup just means every row falls back to its own
+// baked URL fields, so questions still load and display correctly.
+async function loadMediaLibrary(mediaLibraryUrl) {
+  if (!mediaLibraryUrl) {
+    state.mediaLookup = {};
+    return { ok: true, count: 0, skipped: true };
+  }
+  try {
+    const res = await fetch(mediaLibraryUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const library = await res.json();
+    state.mediaLookup = buildMediaLookup(library);
+    return { ok: true, count: Object.keys(state.mediaLookup).length };
+  } catch (err) {
+    console.warn('Failed to load media-library.json:', err.message);
+    state.mediaLookup = {};
+    return { ok: false, error: err.message };
+  }
+}
+
+// ════════════════════════════════════
+//  DATASET LOADING
+//
+//  Fetches a dataset's questions + media library, then rebuilds every
+//  part of the UI that depends on state.allData. Used both for the
+//  automatic first load and for subsequent Load-button clicks.
+// ════════════════════════════════════
+async function loadDataset(datasetDef, { isFirstLoad = false } = {}) {
+  if (dom.datasetStatus) dom.datasetStatus.textContent = `Loading ${datasetDef.name || datasetDef.id}…`;
+  if (dom.datasetLoadBtn) dom.datasetLoadBtn.disabled = true;
+
+  try {
+    const res = await fetch(datasetDef.questionsUrl);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    const mediaResult = await loadMediaLibrary(datasetDef.mediaLibraryUrl);
+
+    state.allData      = data;
+    state.filteredData = [...state.allData];
+    state.activeDataset = datasetDef;
+
+    // Reset per-dataset UI state — filters/columns/toggles from a previous
+    // dataset shouldn't silently carry over and hide rows in the new one.
+    state.currentPage = 1;
+    state.tableToggles = { answersHidden: false, contentHidden: false, rowOverrides: {} };
+    if (dom.globalSearch) dom.globalSearch.value = '';
+    [dom.filterYear, dom.filterRound, dom.filterMatch, dom.filterSubject, dom.filterSection].forEach(el => {
+      if (el) el.innerHTML = '<option value="">All</option>';
+    });
+
+    buildFilterOptions();
+    buildColPanel();
+    buildTableHead();
+    applyFilters();
+
+    const toolbar = document.querySelector('.toolbar');
+    if (toolbar) toolbar.classList.add('tbl-mode-active');
+
+    if (dom.datasetStatus) {
+      const mediaNote = datasetDef.mediaLibraryUrl
+        ? (mediaResult.ok ? `${mediaResult.count} media records` : 'media library failed to load — using fallback URLs')
+        : 'no media library configured';
+      dom.datasetStatus.textContent = `${datasetDef.name || datasetDef.id} · ${data.length} questions · ${mediaNote}`;
+    }
+    if (!isFirstLoad) showToast(`Loaded ${datasetDef.name || datasetDef.id}`);
+
+    hideLoading();
+  } catch (err) {
+    console.error('Failed to load dataset:', err);
+    if (isFirstLoad) {
+      dom.loadingOverlay.innerHTML = `
+        <p style="color:var(--incorrect);font-family:var(--font-mono);text-align:center;padding:20px">
+          ✕ Failed to load ${esc(datasetDef.questionsUrl)}<br>
+          <span style="font-size:0.8rem;color:var(--text-muted)">${esc(err.message)}</span>
+        </p>`;
+    } else {
+      showToast(`Failed to load dataset: ${err.message}`);
+    }
+    if (dom.datasetStatus) dom.datasetStatus.textContent = 'Load failed — previous dataset still shown';
+  } finally {
+    if (dom.datasetLoadBtn) dom.datasetLoadBtn.disabled = false;
+  }
 }
 
 
@@ -412,7 +610,7 @@ function renderTable() {
         const info      = String(row.Info          || '').trim();
         const imageUrl  = String(row.ImageUrl      || '').trim();
         const ytUrl     = String(row.YoutubeUrl    || '').trim();
-        const videoUrl  = String(row.LocalVideoUrl || '').trim();
+        const videoUrl  = resolveMediaField(row, 'LocalVideoMediaID', 'LocalVideoUrl');
         const hasMedia  = info || imageUrl || ytUrl || videoUrl;
         const renderedAnswer = search
           ? highlight(renderFull(val, false), search)
@@ -460,9 +658,9 @@ function renderTable() {
       } else if (col.key === 'Question') {
         td.className = 'col-question';
         const qHtml       = search ? highlight(renderFull(val, false), search) : renderFull(val, false);
-        const audioUrl    = String(row.AudioUrl      || '').trim();
-        const localImgUrl = String(row.LocalImageUrl || '').trim();
-        const localVidUrl = String(row.LocalVideoUrl || '').trim();
+        const audioUrl    = resolveMediaField(row, 'AudioMediaID', 'AudioUrl');
+        const localImgUrl = resolveMediaField(row, 'LocalImageMediaID', 'LocalImageUrl');
+        const localVidUrl = resolveMediaField(row, 'LocalVideoMediaID', 'LocalVideoUrl');
         const hasLangTags = _LANG_TAG_RE.test(val);
 
         // Build the icon cluster — TTS read button always included;
@@ -2002,7 +2200,7 @@ function renderContent(raw) {
 function buildMediaHTML(card, idSuffix = '') {
   const imageUrl = String(card.ImageUrl      || '').trim();
   const ytUrl    = String(card.YoutubeUrl    || '').trim();
-  const videoUrl = String(card.LocalVideoUrl || '').trim();
+  const videoUrl = resolveMediaField(card, 'LocalVideoMediaID', 'LocalVideoUrl');
   const info     = String(card.Info          || '').trim();
 
   const hasImage = imageUrl.length > 0;
