@@ -1,0 +1,9 @@
+[
+  {
+    "id": "2026-buzzer",
+    "name": "2026 Buzzer",
+    "default": true,
+    "questionsUrl": "db.json",
+    "mediaLibraryUrl": ""
+  }
+]
